@@ -1,0 +1,163 @@
+#VRML_SIM R2023a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/floors/protos/Floor.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/appearances/protos/SandyGround.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/road/protos/Road.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/appearances/protos/Pavement.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/robots/bitcraze/crazyflie/protos/Crazyflie.proto"
+
+
+WorldInfo {
+  info [
+    "This demonstration shows a swarm of Crazyflie drones flying over a rural area by exposing the ROS2 Twist topic."
+  ]
+  title "ROS2 and Crazyflie demo"
+  basicTimeStep 8
+  defaultDamping Damping {
+    linear 0.5
+    angular 0.5
+  }
+}
+Viewpoint {
+  orientation 0 0.5 0 0.5
+  position -5.5 1.5 4.5
+  near 0.2
+  follow "CRAZYFLIE_8"
+  followType "Mounted Shot"
+}
+TexturedBackground {
+  luminosity 3
+}
+TexturedBackgroundLight {
+  castShadows FALSE
+}
+Floor {
+  size 400 400
+  tileSize 6 6
+  appearance SandyGround {
+  }
+}
+Crazyflie {
+  translation 0.9660470000000083 0.8372480000000008 0.12
+  rotation 1.4432514312069223e-13 -7.094951043479413e-14 1 0.004202810932212425
+  name "crazyflie"
+  controller "main"
+  supervisor TRUE
+  extensionSlot [
+    DEF CF_CAMERA Camera {
+      width 300
+      height 300
+      near 0.2
+      fieldOfView 1.5
+      projection "planar"
+      name "cf_camera"
+    }
+    DistanceSensor {
+      translation -0.0106777 -0.00872367 0.013
+      rotation -0.23981088349186744 0.9407345429597554 0.23981088349186744 1.63185
+      name "laser_down"
+      lookupTable [
+        0 0 0
+        0.1 100 0.001
+        3 3000 0.001
+      ]
+      type "laser"
+      aperture 0.005
+    }
+    Accelerometer {
+      xAxis TRUE
+      yAxis TRUE
+      zAxis TRUE
+      resolution -1
+    }
+  ]
+}
+DEF TAKE_OFF_PAD Solid {
+  translation 0.9660470000000083 0.8372480000000008 0.05
+  children [
+    DEF PAD_SHAPE Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "./textures_epfl_lis/obstacle_box.jpg"
+          ]
+        }
+        roughness 1
+        metalness 0
+      }
+      geometry Box {
+        size 0.31 0.31 0.1
+      }
+    }
+  ]
+  name "take_off_pad"
+  boundingObject USE PAD_SHAPE
+}
+DEF LANDING_PAD Solid {
+  translation 4.5 1 0.05
+  children [
+    USE PAD_SHAPE
+  ]
+  name "landing_pad"
+  boundingObject USE PAD_SHAPE
+}
+DEF FLIGHT_AREA Solid {
+  translation 2.5 1.5 0.001
+  children [
+    DEF FLIGHT_AREA_SHAPE Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "./textures_epfl_lis/flight_area.jpg"
+          ]
+        }
+        roughness 1
+        metalness 0
+      }
+      geometry Box {
+        size 5 3 0.001
+      }
+    }
+  ]
+  name "flight_area"
+}
+DEF SPHERE1 Solid {
+  translation 0 0 1
+  children [
+    DEF SPHERE_MODEL Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.988235 0.913725 0.309804
+          transparency 0.5
+        }
+      }
+      geometry Sphere {
+        radius 0.1
+      }
+    }
+  ]
+  name "sphere_1"
+}
+DEF SPHERE2 Solid {
+  translation 0 3 1.25
+  children [
+    USE SPHERE_MODEL
+  ]
+  name "sphere_2"
+}
+DEF SPHERE3 Solid {
+  translation 5 3 1.25
+  children [
+    USE SPHERE_MODEL
+  ]
+  name "sphere_3"
+}
+DEF SPHERE4 Solid {
+  translation 5 0 0.25
+  children [
+    USE SPHERE_MODEL
+  ]
+  name "sphere_4"
+}
