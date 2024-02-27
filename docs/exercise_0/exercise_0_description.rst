@@ -55,5 +55,4 @@ Bonus challenge
 ---------------
 To further test your skills, see if you can complete the same task using quaternions instead of Euler angles. 
 
-====================================================================================§
 Any questions about the exercise, please contact Benjamin Jarvis (benjamin.jarvis@epfl.ch).
