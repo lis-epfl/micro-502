@@ -56,14 +56,14 @@ class kalman_filter():
 
         # YOUR CODE HERE
         # -----------------------------------
-        # self.X_opt = ...
-        # self.P_opt = ...
+        self.X_opt = None
+        self.P_opt = None
 
-        # self.H_GPS = ...
-        # self.H_ACCEL = ...
+        self.H_GPS = None
+        self.H_ACCEL = None
 
-        # self.R_GPS = ...
-        # self.R_ACCEL = ...
+        self.R_GPS = None
+        self.R_ACCEL = None
 
     def KF_state_propagation(self, dt):
         # Function that propagates the last fused state over a time-interval dt
@@ -83,9 +83,6 @@ class kalman_filter():
 
         # X_pred = ...
         # P_pred = ...
-
-        # SAMPLE SOLUTION
-
 
         return #X_pred, P_pred
 
