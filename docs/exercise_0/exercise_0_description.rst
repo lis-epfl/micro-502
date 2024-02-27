@@ -8,7 +8,8 @@ Task Overview
 For this task you will need to convert commands for a drone from the body frame to the inertial frame.
 This is important because the drone's orientation will change as it moves, and the control commands need to be aligned with the drone's current orientation to ensure that it moves correctly.
 
-To start, you can run the the simulation in Webots by opening the world file (**crazyflie_world_exercise.wbt**) and clicking the play button.
+To start, you can run the simulation in Webots by opening the world file (**crazyflie_world_exercise.wbt**) and clicking the play button.
+To open the world file, click **File** -> **Open World** and select the **crazyflie_world_exercise.wbt** file from where you have saved this directory.
 You should see a drone in the simulation that you can control using the keys on your keyboard as follows:
   - **W**: Move the drone forward
   - **S**: Move the drone backward
@@ -29,7 +30,7 @@ However, sometimes we also want to control the drone relative to its own orienta
 
 To fix this, you will need to implement a function to convert the control commands from the inertial frame to the body frame of the drone.
 This will involve using the drone's current orientation, which is given as a set of Euler angles, to calculate a rotation matrix that can be used to transform the control commands.
-The drone will then respond correctly to the control commands, regardless of its orientation and you can perform complex manouevres while yawing.
+If implemented correctly, the drone will then respond correctly to the control commands, regardless of its orientation and you can perform complex manouevres while yawing.
 
 .. image:: after_transform.gif
   :width: 650
