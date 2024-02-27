@@ -1,6 +1,5 @@
 Exercise 0: Coordinate Transformations
 ==================================================
-
 In this exercise, you will learn how to implement a coordinate transform for a drone using euler angles.
 This will introduce you to Webots and help you to get familiar with some of the tools you will be using throughout the course.
 
@@ -11,12 +10,12 @@ This is important because the drone's orientation will change as it moves, and t
 
 To start, you can run the the simulation in Webots by opening the world file (**crazyflie_world_exercise.wbt**) and clicking the play button.
 You should see a drone in the simulation that you can control using the keys on your keyboard as follows:
-  - **W**: Move the drone forward
-  - **S**: Move the drone backward
-  - **A**: Move the drone left
-  - **D**: Move the drone right
-  - **Q**: Turn the drone left
-  - **E**: Turn the drone right
+- **W**: Move the drone forward
+- **S**: Move the drone backward
+- **A**: Move the drone left
+- **D**: Move the drone right
+- **Q**: Turn the drone left
+- **E**: Turn the drone right
 
 By looking at the 3D view of the scene and the FPV camera from the drone, you can see that the drone moves in the inertial frame, regardless of its orientation.
 (**Note**: The drone might not seem very stable, this is something you will improve in the exercise next week.)
@@ -56,5 +55,5 @@ Bonus challenge
 ---------------
 To further test your skills, see if you can complete the same task using quaternions instead of Euler angles. 
 
-====================================================================================
+====================================================================================§
 Any questions about the exercise, please contact Benjamin Jarvis (benjamin.jarvis@epfl.ch).

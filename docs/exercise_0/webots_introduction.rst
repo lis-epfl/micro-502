@@ -17,7 +17,7 @@ If you prefer, you can also use your favorite text editor or IDE to edit the cod
 Webots Installation
 -------------------
 Download Webots R2023b according to the operation system of your laptop and the following commands.
-If necessary, more information can be found here: `Webots Documentation <https://cyberbotics.com/doc/guide/installation-procedure>`_.
+If necessary, more information can be found here: `Webots Intallation <https://cyberbotics.com/doc/guide/installation-procedure>`_.
 
 - For Ubuntu 20.04 & 22.04, you will download the `webots_2023b_amd64.deb <https://github.com/cyberbotics/webots/releases/download/R2023b/webots_2023b_amd64.deb>`_. To install the deb file, run the following command in your terminal:
 
