@@ -10,12 +10,12 @@ This is important because the drone's orientation will change as it moves, and t
 
 To start, you can run the the simulation in Webots by opening the world file (**crazyflie_world_exercise.wbt**) and clicking the play button.
 You should see a drone in the simulation that you can control using the keys on your keyboard as follows:
-- **W**: Move the drone forward
-- **S**: Move the drone backward
-- **A**: Move the drone left
-- **D**: Move the drone right
-- **Q**: Turn the drone left
-- **E**: Turn the drone right
+  - **W**: Move the drone forward
+  - **S**: Move the drone backward
+  - **A**: Move the drone left
+  - **D**: Move the drone right
+  - **Q**: Turn the drone left
+  - **E**: Turn the drone right
 
 By looking at the 3D view of the scene and the FPV camera from the drone, you can see that the drone moves in the inertial frame, regardless of its orientation.
 (**Note**: The drone might not seem very stable, this is something you will improve in the exercise next week.)
@@ -47,7 +47,7 @@ Exercise
 
 1. Start by opening the **utils.py** file and locating the **euler2rotmat(euler_angs)** function. Implement the function to calculate the rotation matrix based on the given Euler angles. Remember, Euler angles represent roll, pitch, and yaw of the drone in the inertial frame.
 
-2. Next, implement the **rot_global2body(control_commands, euler_angs)** function. Use the rotation matrix you obtained from **euler2rotmat(euler_angs)** to transform the velocity commands from the inertial frame to the body frame. This step is crucial for ensuring that the drone's movements are correctly aligned with its current orientation. You do not need to rotate the altitude command, just the horizontal velocity commands.
+2. Next, implement the **rot_body2inertial(control_commands, euler_angs)** function. Use the rotation matrix you obtained from **euler2rotmat(euler_angs)** to transform the velocity commands from the body frame to the inertial frame. This step is crucial for ensuring that the drone's movements are correctly aligned with its current orientation. You do not need to rotate the altitude command, just the horizontal velocity commands.
 
 3. Test your implementation in the Webots simulation environment (**crazyflie_world_exercise**). You should observe that the drone can now be flown in the body frame, and that the control commands are correctly aligned with the drone's orientation.
 
