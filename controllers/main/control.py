@@ -6,27 +6,9 @@ from scipy.spatial.transform import Rotation as R
 
 class quadrotor_controller():
     def __init__(self):
-        self.pastVxError = 0
-        self.pastVyError = 0
-        self.pastAltError = 0
-        self.pastPitchError = 0
-        self.pastRollError = 0
-        self.pastYawrateError = 0
+        # Exercise 1: Choose what to tune ["vel_z", "pos_z", "rate_rp", ("rate_y"), "att_rp", ("att_y"), "vel_xy", "pos_xy"]
+        self.tuning_level = "off"
 
-        self.intVx = 0
-        self.intVy = 0
-        self.intAlt = 0
-        self.intPitch = 0
-        self.intRoll = 0
-        self.intYawrate = 0
-
-        self.global_time = 0
-        self.mass = 0.05 #[kg]
-
-        # Only for tuning
-        self.tuning_level = "off" # Exercise 1: Choose what to tune ["vel_z", "pos_z", "rate_rp", ("rate_y"), "att_rp", ("att_y"), "vel_xy", "pos_xy"]
-
-        
         # Exercise 1: Tune gains (we suggest: P < 25, I = 0 in most cases, D < 2)
         gains = {"P_vel_z": 4.0,     "I_vel_z": 1.0,     "D_vel_z": 0.1,
                     "P_pos_z": 4.0,     "I_pos_z": 0.0,     "D_pos_z": 0.0,
@@ -45,6 +27,10 @@ class quadrotor_controller():
                 "L_vel_z": 0.75,
                 "L_vel_xy": 2.0
         }
+        
+        # DO NOT CHANGE ANYTHING BELOW
+        self.global_time = 0
+        self.mass = 0.05 #[kg]
 
         self.tuning_on = False
         self.tuning_start = 7
@@ -244,6 +230,7 @@ class quadrotor_controller():
         return input
     
     def plot(self,ylabel):
+        # Plot tuning relevant data
         c_actual = "black"
         c_desired = "grey"
         c_os = [0/255,109/255,143/255]
