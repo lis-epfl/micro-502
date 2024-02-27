@@ -15,7 +15,7 @@ This documentation details the weekly exercises and the project description, inc
    :maxdepth: 3
 
    exercise_0/webots_introduction
-   exercise_0/exercise_0_description\
+   exercise_0/exercise_0_description
 
 .. rubric:: Indices and tables
 
