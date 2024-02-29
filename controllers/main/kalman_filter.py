@@ -114,7 +114,7 @@ class kalman_filter():
         #       -> 0: No sensor measurement received at current requested time
         #       -> 1: GPS measurement received at current requested time
         #       -> 2: Accelerometer measurement received at current requested time
-        #       -> 3: Accelerometer and GPS measurements received simultaneously
+        #       -> 3: Accelerometer and GPS measurements received simultaneously (Propagte the accelerometer and use the GPS measurements as ground truth in this case)
         #   measured_state_gps: The latest GPS position measurement (X,Y,Z) in inertial world frame (n_measurements x 1)
         #   measured_state_accel: The latest ACCELEROMETER measurement (A_X, A_Y, A_Z) in  world frame (n_measurements x 1)
         # Returns:
@@ -124,14 +124,16 @@ class kalman_filter():
         # YOUR CODE HERE
         # -----------------------------------
 
+        # Calculate the propagated state from the last fused measurement
+
         # X_prop, P_prop = ...
 
-        # # Sensor fusion dependant on measurement cases (sensor_flag)
+        # Implement your sensor fusion function calls dependent on measurement case (value of sensor_flag)
 
-        # # Example implementation for case 3
+        # Example implementation structure for case of sensor_flag = 3
         # if sensor_state_flag == 3:
-        #     X_opt_gps, P_opt_gps = self.KF_sensor_fusion(X_prop, P_prop, self.H_GPS, self.R_GPS, measured_state_gps)
-        #     X_est, P_est = self.KF_sensor_fusion(X_opt_gps, P_opt_gps, self.H_ACCEL, self.R_ACCEL, measured_state_accel)
+        #     X_opt_gps, P_opt_gps = ... 
+        #     X_est, P_est = ... 
 
         return #X_est, P_est
     
