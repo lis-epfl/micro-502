@@ -119,7 +119,7 @@ class quadrotor_controller():
         if self.tuning_level == "att_rp":
             acc_y_setpoint = self.tuning(-self.limits["L_acc_rp"],self.limits["L_acc_rp"],2,dt,acc_y_setpoint, sensor_data["roll"], "roll [rad]", transform=True)
         if self.tuning_level == "att_y":
-            att_z_setpoint = self.tuning(-2,2,1,dt,att_z_setpoint, sensor_data["att_y"], "yaw [rad]")
+            att_z_setpoint = self.tuning(-2,2,1,dt,att_z_setpoint, sensor_data["yaw"], "yaw [rad]")
 
         R_setpoint, combined_thrust = self.acc_to_rotation(acc_x_setpoint, acc_y_setpoint, acc_z_setpoint, att_z_setpoint)
 
