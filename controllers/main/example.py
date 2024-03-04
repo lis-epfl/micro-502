@@ -12,23 +12,24 @@ timer_done = None
 
 # Obstacle avoidance with range sensors
 def obstacle_avoidance(sensor_data):
-    global on_ground, height_desired
+    global on_ground, height_desired, startpos
 
-    # Take off
-    if on_ground and sensor_data['range_down'] < 0.49:
-        control_command = [0.0, 0.0, 0.0, height_desired]
-        return control_command
+    if startpos is None:
+        startpos = [sensor_data['x_global'], sensor_data['y_global'], sensor_data['z_global']]
+    if on_ground and sensor_data['z_global'] < 0.49:
+        current_setpoint = [startpos[0], startpos[1], height_desired, 0.0]
+        return current_setpoint
     else:
         on_ground = False
 
     # Obstacle avoidance with distance sensors
     if sensor_data['range_front'] < 0.2:
         if sensor_data['range_left'] > sensor_data['range_right']:
-            control_command = [0.0, 0.2, 0.0, height_desired]
+            control_command = [sensor_data['x_global'], sensor_data['y_global']+0.1, height_desired, sensor_data['yaw']]
         else:
-            control_command = [0.0, -0.2, 0.0, height_desired]
+            control_command = [sensor_data['x_global'], sensor_data['y_global']-0.1, height_desired, sensor_data['yaw']]
     else:
-        control_command = [0.2, 0.0, 0.0, height_desired]
+        control_command = [sensor_data['x_global']+0.1, sensor_data['y_global'], height_desired, sensor_data['yaw']]
 
     return control_command
 
@@ -40,7 +41,7 @@ def path_planning(sensor_data,dt):
 
     # Take off
     if startpos is None:
-        startpos = [sensor_data['x_global'], sensor_data['y_global'], sensor_data['z_global']]
+        startpos = [sensor_data['x_global'], sensor_data['y_global'], sensor_data['z_global']]    
     if on_ground and sensor_data['z_global'] < 0.49:
         current_setpoint = [startpos[0], startpos[1], height_desired, 0.0]
         return current_setpoint

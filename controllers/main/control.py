@@ -6,26 +6,27 @@ from scipy.spatial.transform import Rotation as R
 
 class quadrotor_controller():
     def __init__(self):
-        # Exercise 1: Choose what to tune ["vel_z", "pos_z", "rate_rp", ("rate_y"), "att_rp", ("att_y"), "vel_xy", "pos_xy"]
+        # Exercise 1: Choose what to tune ["vel_z", "pos_z", ("rate_rp"), ("rate_y"), "att", "vel_xy", "pos_xy"]
         self.tuning_level = "off"
 
         # Exercise 1: Tune gains (we suggest: P < 25, I = 0 in most cases, D < 2)
-        gains = {"P_vel_z": 4.0,     "I_vel_z": 1.0,     "D_vel_z": 0.1,
+        gains = {   
+                    "P_rate_rp": 0.2,   "I_rate_rp":0.0,    "D_rate_rp": 0.03, # already good
+                    "P_rate_y": 0.01,   "I_rate_y": 0.0,    "D_rate_y": 0.001, # already good
+                    "P_att": 11.0,      "I_att":0.0,        "D_att": 0.0,
+                    "P_vel_xy": 1.0,    "I_vel_xy": 0.0,    "D_vel_xy": 0.0,
+                    "P_vel_z": 4.0,        "I_vel_z": 1.0,     "D_vel_z": 0.1,
+                    "P_pos_xy": 4.0,    "I_pos_xy": 0.0,    "D_pos_xy": 0.0,
                     "P_pos_z": 4.0,     "I_pos_z": 0.0,     "D_pos_z": 0.0,
-                    "P_rate_rp": 0.2,     "I_rate_rp":0.0,      "D_rate_rp": 0.03, # already good
-                    "P_rate_y": 0.01,      "I_rate_y": 0.0,      "D_rate_y": 0.001, # already good
-                    "P_att_rp": 11.0,     "I_att_rp":0.0,      "D_att_rp": 0.0,
-                    "P_att_y": 5.0,      "I_att_y": 0.0,      "D_att_y": 0.1, # already good
-                    "P_vel_xy": 1.0,     "I_vel_xy": 0.0,     "D_vel_xy": 0.0,
-                    "P_pos_xy": 4.0,     "I_pos_xy": 0.0,     "D_pos_xy": 0.0}
+                }
         
         # Bonus: Increase limits and retune
         self.limits = {
-                "L_rate_rp": 2.0,
-                "L_rate_y": 3.0,
-                "L_acc_rp": 10.0,
-                "L_vel_z": 0.75,
-                "L_vel_xy": 2.0
+                    "L_rate_rp": 2.0,
+                    "L_rate_y": 3.0,
+                    "L_acc_rp": 10.0,
+                    "L_vel_z": 0.75,
+                    "L_vel_xy": 2.0
         }
         
         # DO NOT CHANGE ANYTHING BELOW
@@ -59,12 +60,12 @@ class quadrotor_controller():
         self.pid_vel_z.output_limits = (None,None)
 
         # Attitude controller
-        self.pid_att_x = PID(gains["P_att_rp"], gains["I_att_rp"], gains["D_att_rp"])
-        self.pid_att_y = PID(gains["P_att_rp"], gains["I_att_rp"], gains["D_att_rp"])
-        self.pid_att_z = PID(gains["P_att_y"], gains["I_att_y"], gains["D_att_y"])
+        self.pid_att_x = PID(gains["P_att"], gains["I_att"], gains["D_att"])
+        self.piD_att = PID(gains["P_att"], gains["I_att"], gains["D_att"])
+        self.pid_att_z = PID(gains["P_att"], gains["I_att"], gains["D_att"])
         
         self.pid_att_x.output_limits = (-self.limits["L_rate_rp"],self.limits["L_rate_rp"])
-        self.pid_att_y.output_limits = (-self.limits["L_rate_rp"],self.limits["L_rate_rp"])
+        self.piD_att.output_limits = (-self.limits["L_rate_rp"],self.limits["L_rate_rp"])
         self.pid_att_z.output_limits = (-self.limits["L_rate_y"],self.limits["L_rate_y"])
 
         # Rate controller
@@ -116,7 +117,7 @@ class quadrotor_controller():
         acc_z_setpoint = self.pid_vel_z(sensor_data["v_z"],dt=dt)
 
         # Convert linear accelerations to orientation        
-        if self.tuning_level == "att_rp":
+        if self.tuning_level == "att":
             acc_y_setpoint = self.tuning(-self.limits["L_acc_rp"],self.limits["L_acc_rp"],2,dt,acc_y_setpoint, sensor_data["roll"], "roll [rad]", transform=True)
         if self.tuning_level == "att_y":
             att_z_setpoint = self.tuning(-2,2,1,dt,att_z_setpoint, sensor_data["yaw"], "yaw [rad]")
@@ -131,11 +132,11 @@ class quadrotor_controller():
 
         # Attitude control loop
         self.pid_att_x.setpoint = 0
-        self.pid_att_y.setpoint = 0
+        self.piD_att.setpoint = 0
         self.pid_att_z.setpoint = 0
         
         rate_roll_setpoint = self.pid_att_x(-error_quat[0]*np.sign(error_quat[3]),dt=dt)
-        rate_pitch_setpoint = self.pid_att_y(-error_quat[1]*np.sign(error_quat[3]),dt=dt)
+        rate_pitch_setpoint = self.piD_att(-error_quat[1]*np.sign(error_quat[3]),dt=dt)
         rate_yaw_setpoint = self.pid_att_z(-error_quat[2]*np.sign(error_quat[3]),dt=dt)
 
         # Body Rate control loop
