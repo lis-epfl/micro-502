@@ -13,7 +13,7 @@ Task overview
 -------------
 
 For this task you will learn how to systematically tune each layer of the cascaded controller and thus improve the overall performance.
-To start, make sure that you are in **control.py**, **exp_num = 1** and **control_style = 1**. You can now run the simulation on webots (**crazyflie_world_excercise**) and you should see a badly tuned controller flying through a parcour, marked by four spheres.
+To start, make sure that you are in **main.py**, **exp_num = 1** and **control_style = "path_planner"**. You can now run the simulation on webots (**crazyflie_world_excercise**) and you should see a badly tuned controller flying through a parcour, marked by four spheres.
 Note that webots tells you how long it takes the drone to complete the task: With the initial gains this is roughly 18 s. 
 
 .. image:: square_before.gif
