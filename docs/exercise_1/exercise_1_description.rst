@@ -48,7 +48,7 @@ As a general rule of thumb, we propose the following strategy:
 - Increase P until you see an overshoot.
 - Increase D until the overshoot vanishes (D is usually smaller than P).
 - Repeat last two steps until increasing D does no longer stabilize your system and leads to oscillatory behaviour.
-- Reduce P by 20% and adapt D accordingly. This ensures robust behaviour when operating in unforseen cases (e.g. roll and pitch at the same time).
+- Reduce P by 20% and adapt D accordingly. This ensures robust behaviour when operating in unforseen cases (e.g. roll and pitch at the same time). If this is not respected, you might end up with unexpected behaviour (e.g. oscillations) when tuning higher levels.
 - If nescessary, increase I to counteract steady state error: e.g. on "vel_z" to counteract gravity, or on "vel_xy" to counteract drag).
 
 This should lead you to similar performance:
