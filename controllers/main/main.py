@@ -470,7 +470,8 @@ if __name__ == '__main__':
                 control_commands = drone.action_from_keyboard(sensor_data)
 
                 euler_angles = [sensor_data['roll'], sensor_data['pitch'], sensor_data['yaw']]
-                control_commands = utils.rot_body2inertial(control_commands, euler_angles)
+                quaternion = [sensor_data['q_x'], sensor_data['q_y'], sensor_data['q_z'], sensor_data['q_w']]
+                control_commands = utils.rot_body2inertial(control_commands, euler_angles, quaternion)
 
                 set_x = sensor_data['x_global'] + control_commands[0]
                 set_y = sensor_data['y_global'] + control_commands[1]
