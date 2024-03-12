@@ -10,23 +10,23 @@ class quadrotor_controller():
         self.tuning_level = "off"
 
         # Exercise 1: Tune gains (we suggest: P < 25, I = 0 in most cases, D < 2)
-        gains = {   
-                    "P_rate_rp": 0.2,   "I_rate_rp":0.0,    "D_rate_rp": 0.03,
-                    "P_rate_y": 0.001,   "I_rate_y": 0.0,    "D_rate_y": 0.0,
-                    "P_att": 11.0,      "I_att":0.0,        "D_att": 0.0,
-                    "P_vel_xy": 1.0,    "I_vel_xy": 0.0,    "D_vel_xy": 0.0,
-                    "P_vel_z": 4.0,        "I_vel_z": 1.0,     "D_vel_z": 0.1,
-                    "P_pos_xy": 4.0,    "I_pos_xy": 0.0,    "D_pos_xy": 0.0,
-                    "P_pos_z": 4.0,     "I_pos_z": 0.0,     "D_pos_z": 0.0,
-                }
+        gains = {
+                    "P_vel_z": 6.0,     "I_vel_z": 1.0,      "D_vel_z": 0.8,
+                    "P_pos_z": 2.5,     "I_pos_z": 0.0,      "D_pos_z": 1.0,
+                    "P_rate_rp": 0.5,   "I_rate_rp":0.0,     "D_rate_rp": 0.03,
+                    "P_rate_y": 0.01,   "I_rate_y": 0.0,     "D_rate_y": 0.001,
+                    "P_att": 18.0,      "I_att":0.0,         "D_att": 0.3,
+                    "P_vel_xy": 5.0,    "I_vel_xy": 1.0,     "D_vel_xy": 0.15,
+                    "P_pos_xy": 2.2,    "I_pos_xy": 0.0,     "D_pos_xy": 0.03
+        }
         
         # Bonus: Increase limits and retune
         self.limits = {
                     "L_rate_rp": 2.0,
                     "L_rate_y": 3.0,
                     "L_acc_rp": 10.0,
-                    "L_vel_z": 0.75,
-                    "L_vel_xy": 2.0
+                    "L_vel_z": 1.25,
+                    "L_vel_xy": 3.0
         }
         
         # DO NOT CHANGE ANYTHING BELOW
