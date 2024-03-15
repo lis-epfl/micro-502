@@ -84,7 +84,7 @@ class kalman_filter():
         # X_pred = ...
         # P_pred = ...
 
-        return #X_pred, P_pred
+        return X_pred, P_pred
 
     def KF_sensor_fusion(self, X_pred, P_pred, H, R, Z):
         # Function that performs sensor fusion when a measurement is received
@@ -104,7 +104,7 @@ class kalman_filter():
         # self.X_opt = ...
         # self.P_opt = ...
 
-        return #self.X_opt, self.P_opt
+        return self.X_opt, self.P_opt
 
     def KF_estimate(self, measured_state_gps, measured_state_accel, dt_last_measurement, sensor_state_flag):
         # Function that outputs the state estimate wehn requested
@@ -132,10 +132,10 @@ class kalman_filter():
 
         # Example implementation structure for case of sensor_flag = 3
         # if sensor_state_flag == 3:
-        #     X_opt_gps, P_opt_gps = ... 
-        #     X_est, P_est = ... 
+        #     X_opt_gps, P_opt_gps = self.KF_sensor_fusion(X_prop, P_prop, self.H_GPS, self.R_GPS, measured_state_gps)
+        #     X_est, P_est = self.KF_sensor_fusion(X_opt_gps, P_opt_gps, self.H_ACCEL, self.R_ACCEL, measured_state_accel)
 
-        return #X_est, P_est
+        return X_est, P_est
     
     # --------------------------------------------------------- WORK ONLY UP TO HERE --------------------------------------------------------------------------------- #
 
