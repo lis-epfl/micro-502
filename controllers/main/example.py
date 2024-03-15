@@ -64,7 +64,11 @@ def path_planning(sensor_data,dt):
         timer += dt
     # Hover at the final setpoint
     if index_current_setpoint == len(setpoints):
-        control_command = [startpos[0], startpos[1], startpos[2]-0.05, 0.0]
+        # Uncomment for KF
+        # control_command = [startpos[0], startpos[1], startpos[2]-0.05, 0.0]
+        control_command = [0.0,0.0,1.0,0.0] #KF final setpoint
+
+
 
         if timer_done is None:
             timer_done = True
