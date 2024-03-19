@@ -24,7 +24,7 @@ class kalman_filter():
         self.use_noisy_measurement = False
 
         # Simulation time after which plots are generated
-        self.plot_time_limit = 30.0
+        self.plot_time_limit = 20.0
 
         # ---------------------------------- DO NOT MODIFY ---------------------------------
         #Variables for Plotting
@@ -47,10 +47,10 @@ class kalman_filter():
     
     def initialize_KF(self, noise_std_GPS, noise_std_ACCEL):
         # Function to initialize the following:
-        #   Optimal state vector (self.X_opt)
-        #   Optimal prediction covariance (self.P_opt)
-        #   Measurement Matrices (self.H_GPS and self.H_ACCEL)
-        #   Measurement Covariance Matrices (self.R_GPS and self.R_ACCEL)
+        #   Optimal state vector (self.X_opt) (DIM: n_states x 1)
+        #   Optimal prediction covariance (self.P_opt) (DIM: n_states x n_states)
+        #   Measurement Matrices for GPS and Accelerometer (self.H_GPS and self.H_ACCEL) (DIM: n_measurements x n_states)
+        #   Measurement Covariance Matrices (self.R_GPS and self.R_ACCEL) (DIM: n_measurements x n_states)
 
         # IMPORTANT: Assume the state definition in the order: X = [x, v_x, a_x, y, v_y, a_y, z, v_z, a_z], Shape: (9,1), n_states = 9
 
@@ -304,7 +304,7 @@ class kalman_filter():
         ax[1].legend(['Noisy X','Noisy Y', 'Noisy Z','Ground truth X ','Ground truth Y','Ground truth Z'], fontsize = 10)
         ax[1].set_xlabel("Time (s)")
         ax[1].set_ylabel("Acceleration (m/s²)")
-        ax[1].set_ylim(-10,10)
+        ax[1].set_ylim(-5,5)
         plt.savefig("Comparison_pos_accel_truth_Noise.png")
 
         fig, ax = plt.subplots(1)

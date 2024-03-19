@@ -25,7 +25,7 @@ Each of the sensors in the simulation and the PID controller furthermore run at 
 
 - GPS: 24 milliseconds
 - Accelerometer: 16 milliseconds
-- PID Controller: 16 milliseconds
+- PID Controller: 24 milliseconds
 
 As we are considering real sensor data, the GPS and the Accelerometer measurements posess a so-called "Gaussian" noise with a 
 certain standard deviation from the true measurement, defined respectively as std_GPS = 0.2 meters and std_ACCEL = 0.02 m/s².
@@ -36,7 +36,7 @@ Let us first look at position and acceleration data obtained from these noisy me
 
 .. FIGURE (Noisy position and acceleration)
 
-.. image:: Figures/True_and_Noisy_Measurements_NO_KF_FB_USE.png
+.. image:: GT_REF/True_and_Noisy_Measurements_USE_TRUTH.png
   :width: 650
   :alt: Noisy and Ground truth measurements obtained from GPS and Accelerometer
   :align: center
@@ -46,21 +46,21 @@ By comparing this estimate to the ground-truth velocity as shown below, we howev
 
 .. FIGURE (Figure of velocity noise)
 
-.. image:: Figures/True_and_Noisy_Velocity_Measurements_NO_KF_FB_USE.png
+.. image:: GT_REF/Comparison_velocity_truth_Noise.png
   :width: 650
   :alt: Noisy and ground truth velocity measurements derived from GPS data
   :align: center
 
 When feeding these measurements directly into our cascaded PID controller, we then see the catastrophic results:
 
-.. image:: Figures/crazyflie_world_excercise_2_noisy_feedback.gif
+.. image:: GT_REF/crazyflie_world_excercise_UPDATE_1903_NOISE.gif
   :width: 650
   :alt: Noisy and ground truth velocity measurements derived from GPS data
   :align: center
 
-As you will see later in this exercise, relying on the integration of accleration measurements for the same purpose yields similarly unsatisfactory results.
+As you will see later in this exercise, relying on the integration of acceleration measurements for the same purpose yields similarly unsatisfactory results.
 
-Therefore, to remedy this problem, given the noisy GPS and Acclerometer measurements and using the provided theory from the lecture, you will implement a Kalman Filter that returns much better state estimates for three-dimensional position, velocity and acceleration, yielding better performance despite noise.
+To remedy this problem, given the noisy GPS and Acclerometer measurements and using the provided theory from the lecture, you will implement a Kalman Filter that returns much better state estimates for three-dimensional position, velocity and acceleration, yielding better performance despite noise.
 Your drone should then remain in flight throughout the parcours and you can modify process parameters to improve the performance of your controller with the Kalman Filter!
 
 Exercise
@@ -105,7 +105,7 @@ and optimal prediction covariance (**self.P_opt**) obtained at the time of the l
     - **sensor_state_flag**: Indicates the measurement(s) obtained at the current timestep, can take the values: {0: No measurement received, 1: GPS measurement received, 2: Accelerometer measurement received, 3: GPS and Accelerometer measurement received simultaneousy}.
     - **dt_last_measurement**: The elapsed time since the latest received sensor measurement(s). 
 
-  By calling the functions **KF_sensor_fusion** and **KF_state_propagation** and using **sensor_state_flag**, you should implement the followoing:
+  By calling the functions **KF_sensor_fusion** and **KF_state_propagation** and using **sensor_state_flag**, you should implement the following:
 
   a) Propagate the current optimal Kalman filter state by the provided input time interval **dt_last_measurement** to yield the propragated Kalman Filter state (**X_prop**) and prediction covariance estimates (**P_prop**).
 
@@ -118,12 +118,12 @@ and optimal prediction covariance (**self.P_opt**) obtained at the time of the l
 To test your implementation, first set **self.use_ground_truth_measurement = True** and compare your Kalman Filter estimate to the ground truth using the plots generated at the end of the run.
 Your results should look similar to the plots below:
 
-.. image:: Figures/position_estimates_truth_KF_NO_KF_FB.png
+.. image:: KF_REF/position_estimates_truth_KF.png
   :width: 650
   :alt: Noisy and Kalman filter position estimates for drone parcours flight
   :align: center
 
-.. image:: Figures/velocity_estimates_truth_KF_NO_KF_FB.png
+.. image:: KF_REF/position_estimates_truth_KF.png
   :width: 650
   :alt: Noisy and Kalman filter velocity estimates for drone parcours flight
   :align: center
@@ -131,9 +131,11 @@ Your results should look similar to the plots below:
 If you are happy with the filtering performance, run the PID controller with the activated noisy measurements and a running Kalman Filter. 
 To do this, set **self.use_ground_truth_measurement = False**, **self.use_noisy_measurement = False** and **self.use_accel_only = False**. 
 
-You should now see a smooth tracking performance. How do your run times compare to the case with ground truth feedback? 
+You should now see a smooth tracking performance. How do your run times compare to the case with direct ground truth feedback? 
 
-.. image:: Figures/crazyflie_world_excercise_2_KF_success_new_PID.gif
+**Note:** You may increase the value **self.plot_time_limit** if you would like to plot over a longer timespan.
+
+.. image:: KF_REF/crazyflie_world_excercise_UPDATE_19_03_KF.gif
   :width: 650
   :alt: Performance of drone parcours flight with Kalman Filter estimate
   :align: center
@@ -148,14 +150,14 @@ For this, within your implemented Kalman Filter class, set **self.use_accel_only
 
 Your drone movement should show a noticeable change after taking off, similar to this scenario:
 
-.. image:: Figures/crazyflie_world_excercise_2_ACCEL_DRIFT.gif
+.. image:: ACCEL_ONLY/crazyflie_world_excercise_UPDATE_1903_ACCEL_ONLY.gif
   :width: 650
   :alt: Drone parcours flight with Kalman Filter estimate using only the accelerometer
   :align: center
 
 A comparison of the ground truth and Kalman Filter estimate then looks like this:
 
-.. image:: Figures/position_estimates_truth_KF_ACCEL.png
+.. image:: ACCEL_ONLY/position_estimates_truth_KF.png
   :width: 650
   :alt: Performance of drone parcours flight with Kalman Filter estimate using only the accerlometer
   :align: center
@@ -174,14 +176,14 @@ This parameter describes the uncertainty associated with the classical Kalman Fi
 
 In simpler words:
 
-  - If **self.q_tr = 0**, we assume that the drone undergoes motions which perfectly match the piecewise constant acclereration assumption. Therefore, the Kalman Filter will rely heavily on our model prediction to provide an accurate state estimate.
+  - If **self.q_tr = 0**, we assume that the drone undergoes motions which perfectly match the piecewise constant acceleration assumption. Therefore, the Kalman Filter will rely heavily on our model prediction to provide an accurate state estimate.
 
   - If **self.q_tr >> 0**, we assume that the drone undergoes motions which are different to the piecewise constant accleration assumption. Therefore, with a higher **self.q_tr**, the Kalman Filter will rely more heavily on the noisy sensor measurements to provide a more accurate state estimate.
 
 Starting with **self.q_tr = 0**, increase **self.q_tr** by small increments and investigate how this affects the behavior of the drone in the parcours.
-You can then keep tuning this coeffcient to find the lowest possible total run-time!
+You can then keep tuning this coefficient to find the lowest possible total run-time!
 
-**Note:** There are more advanced mehtods to determine your process covariance. An ideal process covariance may for instance be calculated from the variance between the predicted and measured accelerations along the parcours.
+**Note:** There are more advanced methods to determine your process covariance. An ideal process covariance may for instance be calculated from the variance between the predicted and measured accelerations along the parcours.
 
 ====================================================================================
 Any questions about the exercise, please contact Julius Wanner (julius.wanner@epfl.ch).
