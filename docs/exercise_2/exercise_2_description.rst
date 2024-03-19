@@ -123,7 +123,7 @@ Your results should look similar to the plots below:
   :alt: Noisy and Kalman filter position estimates for drone parcours flight
   :align: center
 
-.. image:: KF_REF/position_estimates_truth_KF.png
+.. image:: KF_REF/velocity_estimates_truth_KF.png
   :width: 650
   :alt: Noisy and Kalman filter velocity estimates for drone parcours flight
   :align: center
