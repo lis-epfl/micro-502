@@ -6,11 +6,13 @@ from control import quadrotor_controller
 from kalman_filter import kalman_filter as KF
 import utils
 from scipy.spatial.transform import Rotation as R
-import example
+import my_control
 import time, random
 
-exp_num = 2                         # 0: Coordinate Transformation, 1: PID Tuning, 2: Kalman Filter, 3: Practical
+exp_num = 3                     # 0: Coordinate Transformation, 1: PID Tuning, 2: Kalman Filter, 3: Practical
 control_style = 'path_planner'      # 'keyboard' or 'path_planner
+
+path_around_arena = [[0.0, 0.0, 1.0, 0.0], [0.0, 3.0, 1.25, np.pi/2], [5.0, 3.0, 1.5, np.pi], [5.0, 0.0, 0.25, 1.5*np.pi], [0.0, 0.0, 1.0, 0.0]]
 
 # Crazyflie drone class in webots
 class CrazyflieInDroneDome(Supervisor):
@@ -107,9 +109,6 @@ class CrazyflieInDroneDome(Supervisor):
         # rotation_field = drone.getField('rotation')
         # rotation_field.setSFRotation([0, 0, 1, init_yaw_drone])
 
-        # Simulation step update
-        super().step(self.timestep)
-
         # For the assignment, randomise the positions of the drone, obstacles, goal, take-off pad and landing pad 
         if exp_num == 3:
 
@@ -170,6 +169,9 @@ class CrazyflieInDroneDome(Supervisor):
                 translation_field.setSFVec3f([new_init_x_obs, new_init_y_obs, 0.74])
                 existed_points.append([new_init_x_obs, new_init_y_obs])
 
+        # Simulation step update
+        super().step(self.timestep)
+
     def wait_keyboard(self):
         while self.keyboard.getKey() != ord('Y'):
             super().step(self.timestep)
@@ -178,7 +180,7 @@ class CrazyflieInDroneDome(Supervisor):
         forward_velocity = 0.0
         left_velocity = 0.0
         yaw_rate = 0.0
-        altitude = 1
+        z_velocity = 0
         key = self.keyboard.getKey()
         while key > 0:
             if key == ord('W'):
@@ -193,8 +195,12 @@ class CrazyflieInDroneDome(Supervisor):
                 yaw_rate = 1.0
             elif key == ord('E'):
                 yaw_rate = -1.0
+            elif key == ord('V'):
+                z_velocity = 0.5
+            elif key == ord('C'):
+                z_velocity = -0.5
             key = self.keyboard.getKey()
-        return [forward_velocity, left_velocity, altitude, yaw_rate]
+        return [forward_velocity, left_velocity, z_velocity, yaw_rate]
 
     def read_KF_estimates(self):
         
@@ -361,7 +367,7 @@ class CrazyflieInDroneDome(Supervisor):
         
         drone_position = [sensor_data['x_global'], sensor_data['y_global'], sensor_data['range_down']]
 
-        distance = np.linalg.norm([drone_position[0] - self.landing_pad_position[0], drone_position[1] - self.landing_pad_position[1], drone_position[2]])
+        distance = np.linalg.norm([drone_position[0] - self.landing_pad_position[0], drone_position[1] - self.landing_pad_position[1], drone_position[2] - 0.1])
         if distance < 0.16 and not self.reached_landing_pad:
             goal_node = super().getFromDef('GOAL')
             cam_node = super().getFromDef('CF_CAMERA')
@@ -425,8 +431,8 @@ class CrazyflieInDroneDome(Supervisor):
         self.dt_ctrl = self.getTime() - self.PID_update_last_time
 
         if np.round(self.dt_ctrl,3) >= self.ctrl_update_period/1000:
-
-            pp_cmds = example.path_planning(KF_data, self.dt_ctrl)
+            
+            pp_cmds = my_control.path_to_setpoint(path_around_arena, KF_data, self.dt_ctrl)
 
             self.PID_update_last_time = self.getTime()
             # Low-level PID velocity control with fixed height
@@ -454,7 +460,7 @@ if __name__ == '__main__':
 
     # Simulation loops
     for step in range(100000):
-        
+        # Default path around the arena
         if exp_num == 2:
             assert control_style == 'path_planner', "Variable control_style must be set to path planner for this exercise"
             state_data = drone.read_KF_estimates()
@@ -466,6 +472,14 @@ if __name__ == '__main__':
             sensor_data = drone.read_sensors()
             dt_ctrl = drone.getTime() - drone.PID_update_last_time
 
+            if exp_num == 3:
+                drone.check_landing_pad(sensor_data)
+                drone.check_goal(sensor_data)
+                setpoint = my_control.mission_planner(sensor_data, dt_ctrl)
+            else:
+                setpoint = my_control.path_to_setpoint(path_around_arena,sensor_data,dt_ctrl)
+
+                
             if control_style == 'keyboard':
                 control_commands = drone.action_from_keyboard(sensor_data)
 
@@ -475,26 +489,14 @@ if __name__ == '__main__':
 
                 set_x = sensor_data['x_global'] + control_commands[0]
                 set_y = sensor_data['y_global'] + control_commands[1]
-                set_alt = control_commands[2]
+                set_alt = sensor_data['z_global'] + control_commands[2]
                 set_yaw = sensor_data['yaw'] + control_commands[3]
                 
                 setpoint = [set_x, set_y, set_alt, set_yaw]
-            elif control_style == 'path_planner':
-                setpoint = example.path_planning(sensor_data,dt_ctrl)
-
-            if exp_num == 3:
-                # For the PROJECT CHANGE YOUR CODE HERE
-                # Example Path planner call
-                setpoint = example.path_planning(sensor_data,dt_ctrl)
-                drone.check_landing_pad(sensor_data)
-                # Check if the drone has reached the goal
-                drone.check_goal(sensor_data)
 
             # Update the drone status in simulation
             drone.step(setpoint, sensor_data)
 
-        # control_commands = example.obstacle_avoidance(sensor_data)
-        # map = example.occupancy_map(sensor_data)
         # ---- end --- #
 
 
