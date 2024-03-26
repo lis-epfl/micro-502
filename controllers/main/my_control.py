@@ -2,6 +2,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import time
+import cv2
 
 # Global variables
 on_ground = True
@@ -10,26 +11,15 @@ timer = None
 startpos = None
 timer_done = None
 
-def get_setpoint(sensor_data,dt):
+# This is the main function where you will implement your control algorithm
+def get_command(sensor_data, camera_data, dt):
     global on_ground, startpos
 
-    # Take off
-    if startpos is None:
-        startpos = [sensor_data['x_global'], sensor_data['y_global'], sensor_data['z_global']]    
-    if on_ground and sensor_data['range_down'] < 0.49:
-        setpoint = [startpos[0], startpos[1], height_desired, 0.0]
-    else:
-        setpoint = [startpos[0]+1, startpos[1], height_desired, 0.0]
-        on_ground = False
-    # IMPLEMENT YOUR CODE HERE
-    # map = occupancy_map(sensor_data)
-
-    return setpoint # [x, y, z, yaw]
-
-
-def get_command(sensor_data,dt):
-    global on_ground, startpos
-
+    # Open a window to display the camera image
+    # NOTE: Displaying the camera image will slow down the simulation, this is just for testing
+    cv2.imshow('Camera Feed', camera_data)
+    cv2.waitKey(1)
+    
     # Take off
     if startpos is None:
         startpos = [sensor_data['x_global'], sensor_data['y_global'], sensor_data['z_global']]    
@@ -38,6 +28,8 @@ def get_command(sensor_data,dt):
         return control_command
     else:
         on_ground = False
+
+    # ---- YOUR CODE HERE ----
     control_command = [0.0, 0.0, height_desired, 1.0]
     on_ground = False
     # map = occupancy_map(sensor_data)

@@ -8,9 +8,10 @@ import utils
 from scipy.spatial.transform import Rotation as R
 import my_control
 import time, random
+import cv2
 
 exp_num = 3                     # 0: Coordinate Transformation, 1: PID Tuning, 2: Kalman Filter, 3: Practical
-control_style = 'keyboard'      # 'keyboard' or 'path_planner
+control_style = 'keyboard'      # 'keyboard' or 'autonomous'
 
 path_around_arena = [[0.0, 0.0, 1.0, 0.0], [0.0, 3.0, 1.25, np.pi/2], [5.0, 3.0, 1.5, np.pi], [5.0, 0.0, 0.25, 1.5*np.pi], [0.0, 0.0, 1.0, 0.0]]
 
@@ -169,6 +170,11 @@ class CrazyflieInDroneDome(Supervisor):
                 translation_field = obstacle.getField('translation')
                 translation_field.setSFVec3f([new_init_x_obs, new_init_y_obs, 0.74])
                 existed_points.append([new_init_x_obs, new_init_y_obs])
+
+
+            # Start an OpenCV window to display the camera feed
+            cv2.startWindowThread()
+            cv2.namedWindow("Camera Feed")
 
         # Simulation step update
         super().step(self.timestep)
@@ -363,6 +369,18 @@ class CrazyflieInDroneDome(Supervisor):
 
         return data
 
+    # Read the camera feed
+    def read_camera(self):
+
+        # Read the camera image in BRGA format
+        camera_image = self.camera.getImage()
+
+        # Convert the image to a numpy array for OpenCV
+        image = np.frombuffer(camera_image, np.uint8).reshape((self.camera.getHeight(), self.camera.getWidth(), 4))
+
+        return image
+
+    
     # Create a function to detect if the drone has reached the landing pad, if it has set the GOAL object to be transparent
     def check_landing_pad(self, sensor_data):
         
@@ -440,14 +458,14 @@ if __name__ == '__main__':
 
     # Initialize the drone
     drone = CrazyflieInDroneDome()
-    assert control_style in ['keyboard','path_planner'], "Variable control_style must either be 'keyboard' or 'path_planner'"
+    assert control_style in ['keyboard','autonomous'], "Variable control_style must either be 'keyboard' or 'autonomous'"
     assert exp_num in [0,1,2,3], "Exp_num must be a value between 0 and 3"
 
     # Simulation loops
     for step in range(100000):
         # Default path around the arena
         if exp_num == 2:
-            assert control_style == 'path_planner', "Variable control_style must be set to path planner for this exercise"
+            assert control_style == 'autonomous', "Variable control_style must be set to 'autonomous' for this exercise"
             state_data = drone.read_KF_estimates()
             # Update the drone status in simulation with KF
             drone.step_KF(state_data)
@@ -455,12 +473,13 @@ if __name__ == '__main__':
         else:
             # Read sensor data including []
             sensor_data = drone.read_sensors()
+            camera_data = drone.read_camera()
             dt_ctrl = drone.getTime() - drone.PID_update_last_time
 
             if exp_num == 3:
                 drone.check_landing_pad(sensor_data)
                 drone.check_goal(sensor_data)
-                control_commands = my_control.get_command(sensor_data, dt_ctrl)
+                control_commands = my_control.get_command(sensor_data, camera_data, dt_ctrl)
             else:
                 setpoint = my_control.path_to_setpoint(path_around_arena,sensor_data,dt_ctrl)
 
