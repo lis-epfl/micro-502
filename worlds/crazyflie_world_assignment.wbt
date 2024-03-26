@@ -6,6 +6,15 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/project
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/robots/bitcraze/crazyflie/protos/Crazyflie.proto"
 
 WorldInfo {
+  info [
+    "This demonstration shows a swarm of Crazyflie drones flying over a rural area by exposing the ROS2 Twist topic."
+  ]
+  title "ROS2 and Crazyflie demo"
+  basicTimeStep 8
+  defaultDamping Damping {
+    linear 0.5
+    angular 0.5
+  }
 }
 Viewpoint {
   orientation 0.10108478615221962 0.9392679168334673 0.32795982439298665 0.2711620466657379
