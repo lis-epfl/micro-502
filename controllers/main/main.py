@@ -137,12 +137,12 @@ class CrazyflieInDroneDome(Supervisor):
             translation_field.setSFVec3f([self.landing_pad_position[0], self.landing_pad_position[1], 0.05])
 
             # Set random initial position of the Goal
-            self.goal_position = [random.uniform(2.3, 2.7), random.uniform(0.3, 2.7), random.uniform(0.8,1.4)]
+            self.goal_position = [random.uniform(2.3, 2.7), random.uniform(0.3, 2.7), random.uniform(0.4,1.3)]
             goal = super().getFromDef('GOAL')
             translation_field = goal.getField('translation')
             translation_field.setSFVec3f(self.goal_position)
 
-            # TODO: Do this properly using the supervisor
+            # Set Goal dimensions
             self.goal_height = 0.4
             self.goal_width = 0.4
             self.goal_depth = 0.1    
@@ -403,8 +403,8 @@ class CrazyflieInDroneDome(Supervisor):
         goal_x_min = self.goal_position[0] - self.goal_width / 2
         goal_x_max = self.goal_position[0] + self.goal_width / 2
 
-        goal_y_min = self.goal_position[1] - self.goal_depth / 2
-        goal_y_max = self.goal_position[1] + self.goal_depth / 2
+        goal_y_min = self.goal_position[1] - self.goal_depth
+        goal_y_max = self.goal_position[1] + self.goal_depth
 
         goal_z_min = self.goal_position[2] - self.goal_height / 2
         goal_z_max = self.goal_position[2] + self.goal_height / 2
