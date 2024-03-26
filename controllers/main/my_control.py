@@ -11,6 +11,32 @@ timer = None
 startpos = None
 timer_done = None
 
+# All available ground truth measurements can be accessed by calling sensor_data[item], where "item" can take the following values:
+# "x_global": Global X position
+# "y_global": Global Y position
+# "z_global": Global Z position
+# "roll": Roll angle (rad)
+# "pitch": Pitch angle (rad)
+# "yaw": Yaw angle (rad)
+# "v_x": Global X velocity
+# "v_y": Global Y velocity
+# "v_z": Global Z velocity
+# "v_forward": Forward velocity (body frame)
+# "v_left": Leftward velocity (body frame)
+# "v_down": Downward velocity (body frame)
+# "ax_global": Global X acceleration
+# "ay_global": Global Y acceleration
+# "az_global": Global Z acceleration
+# "range_front": Front range finder distance
+# "range_down": Donward range finder distance
+# "range_left": Leftward range finder distance 
+# "range_back": Backward range finder distance
+# "range_right": Rightward range finder distance
+# "range_down": Downward range finder distance
+# "rate_roll": Roll rate (rad/s)
+# "rate_pitch": Pitch rate (rad/s)
+# "rate_yaw": Yaw rate (rad/s)
+
 # This is the main function where you will implement your control algorithm
 def get_command(sensor_data, camera_data, dt):
     global on_ground, startpos
