@@ -2,7 +2,7 @@
 
 import numpy as np
 from controller import Supervisor, Keyboard
-from control import quadrotor_controller
+from control import quadrotor_controller_setpoint, quadrotor_controller_command
 from kalman_filter import kalman_filter as KF
 import utils
 from scipy.spatial.transform import Rotation as R
@@ -84,7 +84,8 @@ class CrazyflieInDroneDome(Supervisor):
         self.laser_down.enable(self.timestep)
         
         # Crazyflie velocity PID controller
-        self.PID_CF = quadrotor_controller()
+        self.PID_SP = quadrotor_controller_setpoint()
+        self.PID_CM = quadrotor_controller_command()
         self.PID_update_last_time = self.getTime()
         self.sensor_read_last_time = self.getTime()
         self.step_count = 0
@@ -180,7 +181,7 @@ class CrazyflieInDroneDome(Supervisor):
         forward_velocity = 0.0
         left_velocity = 0.0
         yaw_rate = 0.0
-        z_velocity = 0
+        z_reference = 1.0
         key = self.keyboard.getKey()
         while key > 0:
             if key == ord('W'):
@@ -196,11 +197,11 @@ class CrazyflieInDroneDome(Supervisor):
             elif key == ord('E'):
                 yaw_rate = -1.0
             elif key == ord('V'):
-                z_velocity = 0.5
+                z_reference = 1.5
             elif key == ord('C'):
-                z_velocity = -0.5
+                z_reference = 0.5
             key = self.keyboard.getKey()
-        return [forward_velocity, left_velocity, z_velocity, yaw_rate]
+        return [forward_velocity, left_velocity, z_reference, yaw_rate]
 
     def read_KF_estimates(self):
         
@@ -407,24 +408,8 @@ class CrazyflieInDroneDome(Supervisor):
         self.simulationReset()
         super().step(self.timestep)
 
-    def step(self, setpoint, sensor_data):
-        
-        dt_ctrl = self.getTime() - self.PID_update_last_time
-        # Time interval for PID control
-        self.PID_update_last_time = self.getTime()
-        # Low-level PID velocity control with fixed height
-        motorPower = self.PID_CF.pid(dt_ctrl, setpoint, sensor_data)
-            
-        # Update motor command
-        self.m1_motor.setVelocity(-motorPower[0])
-        self.m2_motor.setVelocity(motorPower[1])
-        self.m3_motor.setVelocity(-motorPower[2])
-        self.m4_motor.setVelocity(motorPower[3])
-        
-
-        # Update drone states in simulation
+    def step_physics(self):
         super().step(self.timestep)
-
 
     def step_KF(self, KF_data):
 
@@ -436,7 +421,7 @@ class CrazyflieInDroneDome(Supervisor):
 
             self.PID_update_last_time = self.getTime()
             # Low-level PID velocity control with fixed height
-            motorPower = self.PID_CF.pid(self.dt_ctrl, pp_cmds, KF_data)
+            motorPower = self.PID_SP.pid(self.dt_ctrl, pp_cmds, KF_data)
         
             # Update motor command
             self.m1_motor.setVelocity(-motorPower[0])
@@ -475,27 +460,30 @@ if __name__ == '__main__':
             if exp_num == 3:
                 drone.check_landing_pad(sensor_data)
                 drone.check_goal(sensor_data)
-                setpoint = my_control.mission_planner(sensor_data, dt_ctrl)
+                control_commands = my_control.get_command(sensor_data, dt_ctrl)
             else:
                 setpoint = my_control.path_to_setpoint(path_around_arena,sensor_data,dt_ctrl)
 
-                
             if control_style == 'keyboard':
                 control_commands = drone.action_from_keyboard(sensor_data)
 
-                euler_angles = [sensor_data['roll'], sensor_data['pitch'], sensor_data['yaw']]
-                quaternion = [sensor_data['q_x'], sensor_data['q_y'], sensor_data['q_z'], sensor_data['q_w']]
-                control_commands = utils.rot_body2inertial(control_commands, euler_angles, quaternion)
-
-                set_x = sensor_data['x_global'] + control_commands[0]
-                set_y = sensor_data['y_global'] + control_commands[1]
-                set_alt = sensor_data['z_global'] + control_commands[2]
-                set_yaw = sensor_data['yaw'] + control_commands[3]
-                
-                setpoint = [set_x, set_y, set_alt, set_yaw]
-
             # Update the drone status in simulation
-            drone.step(setpoint, sensor_data)
+            dt_ctrl = drone.getTime() - drone.PID_update_last_time
+            # Time interval for PID control
+            drone.PID_update_last_time = drone.getTime()
+            # Low-level PID velocity control with fixed height
+            if exp_num != 3:
+                motorPower = drone.PID_SP.pid(dt_ctrl, setpoint, sensor_data)
+            else:
+                motorPower = drone.PID_CM.pid(dt_ctrl, control_commands, sensor_data)
+                
+            # Update motor command
+            drone.m1_motor.setVelocity(-motorPower[0])
+            drone.m2_motor.setVelocity(motorPower[1])
+            drone.m3_motor.setVelocity(-motorPower[2])
+            drone.m4_motor.setVelocity(motorPower[3])
+            
+            drone.step_physics()
 
         # ---- end --- #
 

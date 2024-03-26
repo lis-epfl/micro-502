@@ -5,18 +5,18 @@ import time
 
 # Global variables
 on_ground = True
-height_desired = 0.5
+height_desired = 1.0
 timer = None
 startpos = None
 timer_done = None
 
-def mission_planner(sensor_data,dt):
+def get_setpoint(sensor_data,dt):
     global on_ground, startpos
 
     # Take off
     if startpos is None:
         startpos = [sensor_data['x_global'], sensor_data['y_global'], sensor_data['z_global']]    
-    if on_ground and sensor_data['z_global'] < 0.49:
+    if on_ground and sensor_data['range_down'] < 0.49:
         setpoint = [startpos[0], startpos[1], height_desired, 0.0]
     else:
         setpoint = [startpos[0]+1, startpos[1], height_desired, 0.0]
@@ -25,6 +25,24 @@ def mission_planner(sensor_data,dt):
     # map = occupancy_map(sensor_data)
 
     return setpoint # [x, y, z, yaw]
+
+
+def get_command(sensor_data,dt):
+    global on_ground, startpos
+
+    # Take off
+    if startpos is None:
+        startpos = [sensor_data['x_global'], sensor_data['y_global'], sensor_data['z_global']]    
+    if on_ground and sensor_data['range_down'] < 0.49:
+        control_command = [0.0, 0.0, height_desired, 0.0]
+        return control_command
+    else:
+        on_ground = False
+    control_command = [0.0, 0.0, height_desired, 1.0]
+    on_ground = False
+    # map = occupancy_map(sensor_data)
+    
+    return control_command # [x, y, z, yaw]
 
 
 # Occupancy map based on distance sensor
