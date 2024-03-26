@@ -172,7 +172,7 @@ class CrazyflieInDroneDome(Supervisor):
                 existed_points.append([new_init_x_obs, new_init_y_obs])
 
 
-            # Start an OpenCV window to display the camera feed
+            # # Start an OpenCV window to display the camera feed
             cv2.startWindowThread()
             cv2.namedWindow("Camera Feed")
 
