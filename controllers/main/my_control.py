@@ -10,7 +10,6 @@ timer = None
 startpos = None
 timer_done = None
 
-
 def mission_planner(sensor_data,dt):
     global on_ground, startpos
 
@@ -23,7 +22,7 @@ def mission_planner(sensor_data,dt):
         setpoint = [startpos[0]+1, startpos[1], height_desired, 0.0]
         on_ground = False
     # IMPLEMENT YOUR CODE HERE
-    map = occupancy_map(sensor_data)
+    # map = occupancy_map(sensor_data)
 
     return setpoint # [x, y, z, yaw]
 
