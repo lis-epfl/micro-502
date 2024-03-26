@@ -17,8 +17,8 @@ def get_command(sensor_data, camera_data, dt):
 
     # Open a window to display the camera image
     # NOTE: Displaying the camera image will slow down the simulation, this is just for testing
-    cv2.imshow('Camera Feed', camera_data)
-    cv2.waitKey(1)
+    # cv2.imshow('Camera Feed', camera_data)
+    # cv2.waitKey(1)
     
     # Take off
     if startpos is None:

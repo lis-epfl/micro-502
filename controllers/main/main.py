@@ -187,7 +187,7 @@ class CrazyflieInDroneDome(Supervisor):
         forward_velocity = 0.0
         left_velocity = 0.0
         yaw_rate = 0.0
-        z_reference = 1.0
+        z_reference = 0.75
         key = self.keyboard.getKey()
         while key > 0:
             if key == ord('W'):
@@ -205,7 +205,7 @@ class CrazyflieInDroneDome(Supervisor):
             elif key == ord('V'):
                 z_reference = 1.5
             elif key == ord('C'):
-                z_reference = 0.5
+                z_reference = 0.0
             key = self.keyboard.getKey()
         return [forward_velocity, left_velocity, z_reference, yaw_rate]
 
