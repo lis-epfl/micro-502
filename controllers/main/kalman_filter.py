@@ -2,7 +2,7 @@
 import os
 import numpy as np
 import matplotlib.pyplot as plt
-from control import quadrotor_controller as pid
+from control import quadrotor_controller_setpoint as pid
 import matplotlib.pyplot as plt
 import pandas as pd
 from PIL import Image

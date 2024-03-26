@@ -34,7 +34,7 @@ def get_command(sensor_data, camera_data, dt):
     on_ground = False
     # map = occupancy_map(sensor_data)
     
-    return control_command # [x, y, z, yaw]
+    return control_command # [vx, vy, alt, yaw_rate]
 
 
 # Occupancy map based on distance sensor
