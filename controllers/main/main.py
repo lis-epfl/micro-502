@@ -177,8 +177,8 @@ class CrazyflieInDroneDome(Supervisor):
 
 
             # # Start an OpenCV window to display the camera feed
-            cv2.startWindowThread()
-            cv2.namedWindow("Camera Feed")
+            # cv2.startWindowThread()
+            # cv2.namedWindow("Camera Feed")
 
         # Simulation step update
         super().step(self.timestep)
