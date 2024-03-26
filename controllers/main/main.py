@@ -115,9 +115,12 @@ class CrazyflieInDroneDome(Supervisor):
         if exp_num == 3:
 
             # Variables to track progress
+            self.reached_landing_zone = False
             self.reached_landing_pad = False
             self.reached_goal_first = False
             self.reached_goal_second = False
+            self.reached_takeoff_zone = False
+            self.returned_to_takeoff_pad = False
                 
             # Set random initial position of the drone
             init_x_drone, init_y_drone = random.uniform(0.3, 1.2), random.uniform(0.3, 2.7)
@@ -129,6 +132,7 @@ class CrazyflieInDroneDome(Supervisor):
             take_off_pad = super().getFromDef('TAKE_OFF_PAD')
             translation_field = take_off_pad.getField('translation')
             translation_field.setSFVec3f([init_x_drone, init_y_drone, 0.05])
+            self.take_off_pad_position = [init_x_drone, init_y_drone]
 
             # Set random initial position of the landing pad
             self.landing_pad_position = [random.uniform(3.8, 4.7), random.uniform(0.3, 2.7)]
@@ -382,18 +386,38 @@ class CrazyflieInDroneDome(Supervisor):
 
     
     # Create a function to detect if the drone has reached the landing pad, if it has set the GOAL object to be transparent
-    def check_landing_pad(self, sensor_data):
+    def check_landing_pads(self, sensor_data):
         
         drone_position = [sensor_data['x_global'], sensor_data['y_global'], sensor_data['range_down']]
-
-        distance = np.linalg.norm([drone_position[0] - self.landing_pad_position[0], drone_position[1] - self.landing_pad_position[1], drone_position[2] - 0.1])
-        if distance < 0.16 and not self.reached_landing_pad:
+        
+        # Check if the drone is in the landing zone
+        if drone_position[0] > 3.5 and drone_position[0] < 5.0 and drone_position[1] > 0.0 and drone_position[1] < 3.0 and not self.reached_landing_zone:
+            print("Congratulations! You have reached the landing zone, now find the landing pad.")
+            self.reached_landing_zone = True
+        
+        
+        # Check if the drone has reached the landing pad
+        landing_pad_distance = np.linalg.norm([drone_position[0] - self.landing_pad_position[0], drone_position[1] - self.landing_pad_position[1], drone_position[2] - 0.1])
+        if landing_pad_distance < 0.16 and not self.reached_landing_pad:
             goal_node = super().getFromDef('GOAL')
             cam_node = super().getFromDef('CF_CAMERA')
             goal_node.setVisibility(cam_node, 0)
             print("Congratulations! You have reached the landing pad, the goal is now hidden.")
             self.reached_landing_pad = True
 
+        
+        if drone_position[0] > 0.0 and drone_position[0] < 1.5 and drone_position[1] > 0.0 and drone_position[1] < 3.0 and not self.reached_takeoff_zone and self.reached_landing_zone:
+            print("Congratulations! You have made it back to the takeoff zone, now find the takeoff pad.")
+            self.reached_takeoff_zone = True
+        
+        # Check if the drone has made it back to the takeoff pad after reaching the landing pad
+        if self.reached_landing_zone and not self.returned_to_takeoff_pad:
+            take_off_pad_distance = np.linalg.norm([drone_position[0] - self.take_off_pad_position[0], drone_position[1] - self.take_off_pad_position[1], drone_position[2] - 0.1])
+            if take_off_pad_distance < 0.16:
+                print("Congratulations! You have made it back to the takeoff pad.")
+                self.returned_to_takeoff_pad = True     
+
+    
     # Create a function to detect if the drone has reached the goal
     def check_goal(self, sensor_data):
 
@@ -477,7 +501,7 @@ if __name__ == '__main__':
             dt_ctrl = drone.getTime() - drone.PID_update_last_time
 
             if exp_num == 3:
-                drone.check_landing_pad(sensor_data)
+                drone.check_landing_pads(sensor_data)
                 drone.check_goal(sensor_data)
                 control_commands = my_control.get_command(sensor_data, camera_data, dt_ctrl)
             else:
