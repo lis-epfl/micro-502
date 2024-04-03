@@ -85,7 +85,7 @@ The data flow diagram for both the simulation and the real quadrotor is shown be
 Though they have the same types of sensory inputs and control outputs, your algorithm in simulation should be tuned in the real world in order to control the real drone.
 
 .. image:: sim2real_edit.png
-  :width: 650
+  :width: 450
   :alt: sim2real
 
 Project schedule
