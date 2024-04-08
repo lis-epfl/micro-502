@@ -107,4 +107,4 @@ The following table provides the schedule of the crazy-practical project.
 | Week 14, May 28           | Hardware demonstrations, hand in the drones
 ==========================  ========================================================
 
-Any questions about the task, submission, schedule and grading, please contact Charbel Toumieh (charbel.toumieh@epfl.ch).
+Any questions about the task, submission, schedule and grading, please post on the forum. In case it is a private matter, please contact Charbel Toumieh (charbel.toumieh@epfl.ch).
