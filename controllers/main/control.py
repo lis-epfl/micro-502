@@ -332,7 +332,7 @@ class quadrotor_controller_command():
         actual_roll = sensor_data["roll"]
         actual_pitch = sensor_data["pitch"]
         actual_yaw_rate = sensor_data["rate_yaw"]
-        actual_alt = sensor_data["z_global"]
+        actual_alt = sensor_data["range_down"]
         actual_vforward = sensor_data["v_forward"]
         actual_vleft = sensor_data["v_left"]
 
