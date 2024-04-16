@@ -3,7 +3,13 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# Customized files
+# vim files
+*.swp
+*.swo
+*.swn
+
+# ignore temp files
+*~
 
 # C extensions
 *.so
@@ -132,3 +138,4 @@ dmypy.json
 
 # Occupancy map
 map.png
+
