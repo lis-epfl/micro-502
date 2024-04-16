@@ -20,6 +20,8 @@ timer_done = None
 # "range_left": Leftward range finder distance 
 # "range_right": Rightward range finder distance
 # "range_back": Backward range finder distance
+# "roll": Roll angle (rad)
+# "pitch": Pitch angle (rad)
 # "yaw": Yaw angle (rad)
 
 # This is the main function where you will implement your control algorithm
