@@ -84,7 +84,7 @@ System scheme
 The data flow diagram for both the simulation and the real quadrotor is shown below. The sensor data values that are available in both simulation and hardware are listed. Note that on the real drone, you do not have access to the camera image.
 Though your control output structure is the same, you will find that your algorithm in simulation should be tuned in the real world in order to control the real drone accurately.
 
-.. image:: sim2real_edit.pdf
+.. image:: sim2real_edit_new.png
   :width: 550
   :alt: sim2real
 
