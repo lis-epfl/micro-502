@@ -17,8 +17,11 @@ Please ensure that the zip file you submit at least contains your **my_control.p
 6. Flying the drone higher above the obstacles is not allowed
 7. Flying below 0.1m for exploration is allowed, but it may cause instability in real drones.
 
-============== ========= ======== 
-Name           Avg Grade Avg Time 
-============== ========= ======== 
-LIS            6.0       60.0
-============== ========= ======== 
+============== ========= ========
+Name           Avg Grade Avg Time
+============== ========= ========
+FLY_NB_783     5.60      119.59s
+TWC            5.20      98.96s   
+jvousfume      4.00      240.00s 
+============== ========= ========
+
