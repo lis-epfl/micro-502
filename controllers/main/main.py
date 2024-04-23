@@ -11,7 +11,8 @@ import time, random
 import cv2
 
 exp_num = 3                     # 0: Coordinate Transformation, 1: PID Tuning, 2: Kalman Filter, 3: Practical
-control_style = 'autonomous'      # 'keyboard' or 'autonomous'
+control_style = 'keyboard'      # 'keyboard' or 'autonomous'
+rand_env = True                # Randomise the environment for the practical exercise
 
 path_around_arena = [[0.0, 0.0, 1.0, 0.0], [0.0, 3.0, 1.25, np.pi/2], [5.0, 3.0, 1.5, np.pi], [5.0, 0.0, 0.25, 1.5*np.pi], [0.0, 0.0, 1.0, 0.0]]
 
@@ -122,11 +123,17 @@ class CrazyflieInDroneDome(Supervisor):
             self.reached_takeoff_zone = False
             self.returned_to_takeoff_pad = False
                 
-            # Set random initial position of the drone
-            init_x_drone, init_y_drone = random.uniform(0.3, 1.2), random.uniform(0.3, 2.7)
-            drone = super().getSelf()
-            translation_field = drone.getField('translation')
-            translation_field.setSFVec3f([init_x_drone, init_y_drone, 0.2])
+            if rand_env:
+                # Set random initial position of the drone
+                init_x_drone, init_y_drone = random.uniform(0.3, 1.2), random.uniform(0.3, 2.7)
+                drone = super().getSelf()
+                translation_field = drone.getField('translation')
+                translation_field.setSFVec3f([init_x_drone, init_y_drone, 0.2])
+            else:
+                drone = super().getSelf()
+                translation_field = drone.getField('translation')
+                init_x_drone, init_y_drone, _ = translation_field.getSFVec3f()
+                translation_field.setSFVec3f([init_x_drone, init_y_drone, 0.2])
 
             # Set random initial position of the take-off pad
             take_off_pad = super().getFromDef('TAKE_OFF_PAD')
@@ -134,11 +141,16 @@ class CrazyflieInDroneDome(Supervisor):
             translation_field.setSFVec3f([init_x_drone, init_y_drone, 0.05])
             self.take_off_pad_position = [init_x_drone, init_y_drone]
 
-            # Set random initial position of the landing pad
-            self.landing_pad_position = [random.uniform(3.8, 4.7), random.uniform(0.3, 2.7)]
-            landing_pad = super().getFromDef('LANDING_PAD')
-            translation_field = landing_pad.getField('translation')
-            translation_field.setSFVec3f([self.landing_pad_position[0], self.landing_pad_position[1], 0.05])
+            if rand_env:
+                # Set random initial position of the landing pad
+                self.landing_pad_position = [random.uniform(3.8, 4.7), random.uniform(0.3, 2.7)]
+                landing_pad = super().getFromDef('LANDING_PAD')
+                translation_field = landing_pad.getField('translation')
+                translation_field.setSFVec3f([self.landing_pad_position[0], self.landing_pad_position[1], 0.05])
+            else:
+                landing_pad = super().getFromDef('LANDING_PAD')
+                translation_field = landing_pad.getField('translation')
+                self.landing_pad_position = translation_field.getSFVec3f()
 
             # Set random initial position of the Goal
             self.goal_position = [random.uniform(2.3, 2.7), random.uniform(0.3, 2.7), random.uniform(0.4,1.3)]
@@ -151,29 +163,30 @@ class CrazyflieInDroneDome(Supervisor):
             self.goal_width = 0.4
             self.goal_depth = 0.1    
 
-            # Set random initial positions of obstacles
-            existed_points = []
-            existed_points.append([init_x_drone, init_y_drone])
-            existed_points.append([self.landing_pad_position[0], self.landing_pad_position[1]])
-            existed_points.append([self.goal_position[0], self.goal_position[1]])
-            for i in range(1, 11):
-                find_appropriate_random_position = False
-                while not find_appropriate_random_position:
-                    # Generate new random position
-                    new_init_x_obs, new_init_y_obs = random.uniform(0.3, 4.7), random.uniform(0.3, 2.7)
-                    min_distance = 1000
-                    # Calculate the min distance to existed obstacles and pads
-                    for point in existed_points:
-                        distance = np.linalg.norm([point[0] - new_init_x_obs, point[1] - new_init_y_obs])
-                        if distance < min_distance:
-                            min_distance = distance
-                    if min_distance > 0.8:
-                        find_appropriate_random_position = True
-                # Accept position that is 0.8m far away from existed obstacles and pads
-                obstacle = super().getFromDef('OBSTACLE' + str(i))
-                translation_field = obstacle.getField('translation')
-                translation_field.setSFVec3f([new_init_x_obs, new_init_y_obs, 0.74])
-                existed_points.append([new_init_x_obs, new_init_y_obs])
+            if rand_env:
+                # Set random initial positions of obstacles
+                existed_points = []
+                existed_points.append([init_x_drone, init_y_drone])
+                existed_points.append([self.landing_pad_position[0], self.landing_pad_position[1]])
+                existed_points.append([self.goal_position[0], self.goal_position[1]])
+                for i in range(1, 11):
+                    find_appropriate_random_position = False
+                    while not find_appropriate_random_position:
+                        # Generate new random position
+                        new_init_x_obs, new_init_y_obs = random.uniform(0, 5.0), random.uniform(0, 3.0)
+                        min_distance = 1000
+                        # Calculate the min distance to existed obstacles and pads
+                        for point in existed_points:
+                            distance = np.linalg.norm([point[0] - new_init_x_obs, point[1] - new_init_y_obs])
+                            if distance < min_distance:
+                                min_distance = distance
+                        if min_distance > 0.8:
+                            find_appropriate_random_position = True
+                    # Accept position that is 0.8m far away from existed obstacles and pads
+                    obstacle = super().getFromDef('OBSTACLE' + str(i))
+                    translation_field = obstacle.getField('translation')
+                    translation_field.setSFVec3f([new_init_x_obs, new_init_y_obs, 0.74])
+                    existed_points.append([new_init_x_obs, new_init_y_obs])
 
 
             # # Start an OpenCV window to display the camera feed
@@ -427,7 +440,10 @@ class CrazyflieInDroneDome(Supervisor):
         
         # Check if the drone has reached the landing pad
         landing_pad_distance = np.linalg.norm([drone_position[0] - self.landing_pad_position[0], drone_position[1] - self.landing_pad_position[1], drone_position[2] - 0.1])
-        if landing_pad_distance < 0.16 and not self.reached_landing_pad:
+        pad_half_size = 0.155
+        if drone_position[0] > self.landing_pad_position[0] - pad_half_size and drone_position[0] < self.landing_pad_position[0] + pad_half_size \
+            and drone_position[1] > self.landing_pad_position[1] - pad_half_size and drone_position[1] < self.landing_pad_position[1] + pad_half_size \
+            and drone_position[2] < 0.05 and not self.reached_landing_pad:
             goal_node = super().getFromDef('GOAL')
             cam_node = super().getFromDef('CF_CAMERA')
             goal_node.setVisibility(cam_node, 0)
@@ -441,8 +457,9 @@ class CrazyflieInDroneDome(Supervisor):
         
         # Check if the drone has made it back to the takeoff pad after reaching the landing pad
         if self.reached_landing_zone and not self.returned_to_takeoff_pad:
-            take_off_pad_distance = np.linalg.norm([drone_position[0] - self.take_off_pad_position[0], drone_position[1] - self.take_off_pad_position[1], drone_position[2] - 0.1])
-            if take_off_pad_distance < 0.16:
+            if drone_position[0] > self.take_off_pad_position[0] - 0.1 and drone_position[0] < self.take_off_pad_position[0] + 0.1 \
+                and drone_position[1] > self.take_off_pad_position[1] - 0.1 and drone_position[1] < self.take_off_pad_position[1] + 0.1 \
+                and drone_position[2] < 0.05:
                 print("Congratulations! You have made it back to the takeoff pad.")
                 self.returned_to_takeoff_pad = True     
 
@@ -544,7 +561,7 @@ if __name__ == '__main__':
             # Time interval for PID control
             drone.PID_update_last_time = drone.getTime()
             # Low-level PID velocity control with fixed height
-            if exp_num != 3:
+            if exp_num != 3 and control_style != 'keyboard':
                 motorPower = drone.PID_SP.pid(dt_ctrl, setpoint, sensor_data)
             else:
                 motorPower = drone.PID_CM.pid(dt_ctrl, control_commands, sensor_data)
