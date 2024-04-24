@@ -33,7 +33,7 @@ Crazyflie {
     DEF CF_CAMERA Camera {
       width 300
       height 300
-      near 0.2
+      near 0.000001
       fieldOfView 1.5
       projection "planar"
       name "cf_camera"
@@ -242,7 +242,7 @@ DEF CHECKERBOARD_A4_25mm_8x6 Solid {
   name "checkerboard"
 }
 DEF GOAL Solid {
-  translation 0 0 1
+  translation 2.6 1.9 1
   children [
     DEF GOAL_SHAPE Shape {
       appearance Appearance {
