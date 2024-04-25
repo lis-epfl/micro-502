@@ -11,7 +11,7 @@ import time, random
 import cv2
 
 exp_num = 3                     # 0: Coordinate Transformation, 1: PID Tuning, 2: Kalman Filter, 3: Practical
-control_style = 'keyboard'      # 'keyboard' or 'autonomous'
+control_style = 'autonomous'      # 'keyboard' or 'autonomous'
 rand_env = True                # Randomise the environment for the practical exercise
 
 path_around_arena = [[0.0, 0.0, 1.0, 0.0], [0.0, 3.0, 1.25, np.pi/2], [5.0, 3.0, 1.5, np.pi], [5.0, 0.0, 0.25, 1.5*np.pi], [0.0, 0.0, 1.0, 0.0]]
@@ -475,11 +475,11 @@ class CrazyflieInDroneDome(Supervisor):
         drone_position = [sensor_data['x_global'], sensor_data['y_global'], sensor_data['range_down']]
 
         # Check that the drone is within the goal
-        goal_x_min = self.goal_position[0] - self.goal_width / 2
-        goal_x_max = self.goal_position[0] + self.goal_width / 2
+        goal_x_min = self.goal_position[0] - self.goal_depth / 2
+        goal_x_max = self.goal_position[0] + self.goal_depth / 2
 
-        goal_y_min = self.goal_position[1] - self.goal_depth
-        goal_y_max = self.goal_position[1] + self.goal_depth
+        goal_y_min = self.goal_position[1] - self.goal_width / 2
+        goal_y_max = self.goal_position[1] + self.goal_width / 2
 
         goal_z_min = self.goal_position[2] - self.goal_height / 2
         goal_z_max = self.goal_position[2] + self.goal_height / 2

@@ -33,7 +33,7 @@ Crazyflie {
     DEF CF_CAMERA Camera {
       width 300
       height 300
-      near 0.000001
+      near 0.06
       fieldOfView 1.5
       projection "planar"
       name "cf_camera"
