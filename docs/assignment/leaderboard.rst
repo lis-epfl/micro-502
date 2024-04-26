@@ -11,7 +11,7 @@ Please ensure that the zip file you submit at least contains your **my_control.p
 
 1. Your code will be evaluated on five randomly generated environments
 2. Please save your code before the submission deadline on Moodle to avoid any potential last-minute system crashes
-3. Avoid flying the drone outside of the 3x5m arena in simulation, as the real drone may not be able to localize itself accurately without textures.
+3. Do not fly the drone outside the 3x5m arena, as this is counted as a crash / failure.
 4. Simulation code submission deadline is **May 2nd at 23:59**
 5. There may be some obstacles outside the 3x5m arena
 6. Flying the drone higher above the obstacles is not allowed
