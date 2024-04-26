@@ -20,14 +20,23 @@ Please ensure that the zip file you submit at least contains your **my_control.p
 ============== ========= ========
 Name           Avg Grade Avg Time
 ============== ========= ========
-FLY_NB_783     5.55      117.98s
-FlowerBoy3000  5.20      106.30s
-AE_TF_234      5.20      127.22s
-Test310595     5.00      161.51s
-TWC            4.55      210.57s
-Kopie	       4.20.     240.00s
-E_L            3.95      240.00s
-PL_o           3.80      240.00s  
-jvousfume      3.70      240.00s 
+KidYugi3P      6.00      152.18s 
+FlowerBoy3000  5.60      71.83s  
+BipBop_Flyer   5.60      66.16s 
+Jvoufume       5.50      53.46s 
+AE_TF_234      5.50      70.62s    
+my_control_SL  5.20      108.43s 
+TWC_2          5.00      213.30s
+controllers    4.90      132.54s 
+W.A.R          4.90      154.56s 
+Luky005        4.90      165.00s 
+Aerial_test_1  4.90      168.09s
+neb_ki         4.85      193.68s 
+VOP11.py       4.60      202.55s
+test22310595   4.55      186.71s  
+FLY_NB_783     4.50      198.72s  
+AeroQuest_v1   4.30      212.88s  
+simulation_324 3.50      240.00s 
+PL_o           3.50      240.00s 
 ============== ========= ========
 
