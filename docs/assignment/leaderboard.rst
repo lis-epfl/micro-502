@@ -21,22 +21,39 @@ Please ensure that the zip file you submit at least contains your **my_control.p
 Name           Avg Grade Avg Time
 ============== ========= ========
 KidYugi3P      6.00      152.18s 
-FlowerBoy3000  5.60      71.83s  
-BipBop_Flyer   5.60      66.16s 
-Jvoufume       5.50      53.46s 
-AE_TF_234      5.50      70.62s    
-my_control_SL  5.20      108.43s 
-TWC_2          5.00      213.30s
-controllers    4.90      132.54s 
-W.A.R          4.90      154.56s 
-Luky005        4.90      165.00s 
-Aerial_test_1  4.90      168.09s
-neb_ki         4.85      193.68s 
-VOP11.py       4.60      202.55s
-test22310595   4.55      186.71s  
-FLY_NB_783     4.50      198.72s  
-AeroQuest_v1   4.30      212.88s  
+WML            5.60      72.92s  
+Jvoufume       5.55      112.08s 
+PL_s           5.50      104.27s 
+drone_pilotist 5.40      172.80s 
+Oui            5.30      96.03s  
+TWC_3          5.25      165.80s 
+FlowerBoy3000  5.20      71.83s  
+BipBop_Flyer   5.20      66.16s  
+YoungHustler02 5.10      131.05s 
+Luky005        5.10      146.37s 
+neb_ki_2       5.10      168.01s 
+AE_TF_234      5.00      70.62s  
+drone_maxxing  5.00      198.51s 
+BetterThanCoco 4.90      196.30s 
+Siaoeh         4.90      194.82s 
+nezuko         4.90      122.62s 
+ASR            4.80      83.38s  
+my_control_SL2 4.80      108.49s 
+WAR2.py        4.70      186.55s 
+HSO            4.60      199.25s 
+AeroQuest_v3   4.60      212.15s 
+test333310595  4.55      181.58s 
+FLY_NB_783     4.50      198.72s 
+pas_facile     4.50      168.21s 
+test333310595  4.40      179.10s 
+drone_cc2      4.40      240.00s 
+controllers  2 4.25      200.06s 
+eddai          4.05      240.00s 
+my_control - K 4.00      240.00s 
+Cholalibuhate  3.65      240.00s 
 simulation_324 3.50      240.00s 
-PL_o           3.50      240.00s 
+kordh_test_dro 3.50      240.00s 
+Aerial_test_2  3.50      240.00s 
+spagetti_code  3.50      240.00s 
 ============== ========= ========
 
