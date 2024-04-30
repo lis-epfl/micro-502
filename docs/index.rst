@@ -22,6 +22,8 @@ This documentation details the weekly exercises and the project description, inc
    assignment/simulation_quickstart
    assignment/examples
    assignment/leaderboard
+   assignemtn/hardware_instruction
+   assignment/hardware_quickstart
 
 .. rubric:: Indices and tables
 

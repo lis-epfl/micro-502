@@ -41,6 +41,9 @@ Your grade in this simulation exercise will be determined according to the follo
 - **Grade 5.5**: Land on the take-off pad
 - **Grade + 0.25**: Detect and pass through the pink square during flight from the starting region towards the landing region
 - **Grade + 0.25**: Pass through the location of the pink square during flight from the landing region towards the starting region
+- Solutions that go against the spirit of the exercise will not be accepted (e.g. flying above obstacles).
+
+You will get a 3.5 if you crash before reaching the landing region.
 
 Hardware Task overview
 -----------------------
@@ -65,12 +68,16 @@ Your grade in this hardware exercise will be determined according to the followi
 - **Grade 5.25**: Avoid obstacles and reach the starting region whilst being airborne
 - **Grade 5.5**: Land on the take-off pad
 - **Grade 5.5 + f(t)**: For students who complete the full task, extra grades will be based on the time taken to complete the task. The top 25% of students will receive a grade of f(t)=0.5, the next 50% will receive a grade of f(t)=0.25, and the bottom 25% will receive a grade of f(t)=0.
+- Solutions that go against the spirit of the exercise will not be accepted (e.g. flying above obstacles).
+
+You will get a 3.5 if you crash before reaching the landing region.
 
 Here is a real-world test example of this project from last year:
 
 .. image:: demo_2022.gif
   :width: 650
   :alt: demo video from last year
+
 
 Final project grade
 --------------------
@@ -81,11 +88,11 @@ The final project grade is composed of the following weighted average of both yo
 
 System scheme
 -------------
-The data flow diagram for both the simulation and the real quadrotor is shown below. The sensor data values that are available in both simulation and hardware are listed. Note that on the real drone, you do not have access to the camera image.
-Though your control output structure is the same, you will find that your algorithm in simulation should be tuned in the real world in order to control the real drone accurately.
+The data flow diagram for both the simulation and the real quadrotor is shown below.
+Though they have the same types of sensory inputs and control outputs, your algorithm in simulation should be tuned in the real world in order to control the real drone.
 
-.. image:: sim2real_edit_new.png
-  :width: 550
+.. image:: sim2real.png
+  :width: 650
   :alt: sim2real
 
 Project schedule
@@ -103,8 +110,10 @@ The following table provides the schedule of the crazy-practical project.
 | Week 10, April 30         | Hardware introduction, pick up your drone by group
 | Week 11, May 7            | Hardware development, Q&A
 | Week 12, May 14           | Hardware development, Q&A
-| Week 13, May 21           | Hardware development, Q&A
-| Week 14, May 28           | Hardware demonstrations, hand in the drones
+| Week 13, May 21/22        | Hardware development, Q&A
+                            | Testing runs for hardware demonstrations (May 22nd)
+| Week 14, May 27/28        | Submit hardware task video, Code and Presentation files (due May 27th 23:59)
+                            | Hardware task presentation and final demonstrations, hand in the drones (May 28th)
 ==========================  ========================================================
 
-Any questions about the task, submission, schedule and grading, please post on the forum. In case it is a private matter, please contact Charbel Toumieh (charbel.toumieh@epfl.ch).
+Any questions about the task, submission, schedule and grading, please contact Charbel Toumieh (charbel.toumieh@epfl.ch).
