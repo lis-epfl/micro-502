@@ -32,8 +32,8 @@ Luky005        5.50      135.79s
 Aerial_test_3  5.50      156.16s 
 BipBop_Flyer   5.30      145.75s 
 Gs             5.30      159.79s 
-test310595     5.25      122.51s 
 AeroQuest_v4   5.30      180.57s 
+test310595     5.25      122.51s 
 ASR            5.20      83.38s  
 my_control_SL  5.20      108.49s 
 nezuko         5.20      122.62s 
