@@ -35,6 +35,7 @@ ob1            5.60      53.91s
 eddai_3        5.60      160.49s 
 drone_pilotist 5.60      167.82s 
 kukubird       5.55      165.98s 
+AE_TF_234      5.50      70.62s  
 Oui            5.50      96.03s  
 PL_s3          5.50      107.35s 
 my_control     5.40      121.71s 
@@ -83,7 +84,6 @@ marmar la reva 3.80      240.00s
 Hobinroodz     3.80      240.00s 
 Youngchapo2pay 3.50      240.00s 
 acoustic_fly   3.50      240.00s 
-AE_TF_234      3.50      240.00s 
 Furieux_et_rap 3.50      240.00s 
 kordh2         3.50      240.00s 
 simulation_324 3.50      240.00s 
