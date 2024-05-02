@@ -37,7 +37,9 @@ drone_pilotist 5.60      167.82s
 kukubird       5.55      165.98s 
 AE_TF_234      5.50      70.62s  
 Oui            5.50      96.03s  
+hiha           5.50      99.27s  
 PL_s3          5.50      107.35s 
+Luky005        5.50      135.69s 
 my_control     5.40      121.71s 
 flying_monkey  5.30      142.66s 
 TWC_4          5.30      154.03s 
@@ -50,7 +52,6 @@ Aerial_test_3  5.20      161.66s
 drone_cc4      5.10      132.69s 
 test15         5.10      145.50s 
 Dexter         5.05      196.41s 
-hiha           5.00      145.52s 
 kookie_06      4.95      139.92s 
 PID_ZEUS       4.95      169.04s 
 LaMotoDansLeRe 4.90      155.57s 
@@ -72,7 +73,6 @@ ASR_3          4.30      200.41s
 Romain_Bernada 4.30      240.00s 
 testing05      4.30      240.00s 
 Test_home_swee 4.05      240.00s 
-Luky005        4.05      240.00s 
 notflyingwell  4.00      240.00s 
 my_control.py  4.00      240.00s 
 my_control     4.00      240.00s 
