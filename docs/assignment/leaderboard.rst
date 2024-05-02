@@ -20,6 +20,7 @@ Please ensure that the zip file you submit at least contains your **my_control.p
 ============== ========= ========
 Name           Avg Grade Avg Time
 ============== ========= ========
+Jvoufume2      6.00      79.74s  
 FlowerBoy3000  6.00      82.94s   
 Leafar_4       6.00      136.79s 
 Gs2            6.00      142.27s 
@@ -82,7 +83,6 @@ marmar la reva 3.80      240.00s
 Hobinroodz     3.80      240.00s 
 Youngchapo2pay 3.50      240.00s 
 acoustic_fly   3.50      240.00s 
-Jvoufume2      3.50      240.00s 
 AE_TF_234      3.50      240.00s 
 Furieux_et_rap 3.50      240.00s 
 kordh2         3.50      240.00s 
