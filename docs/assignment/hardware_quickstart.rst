@@ -96,3 +96,4 @@ Please ensure that you place the drone on the ground before testing this example
 Additionally, it is recommended to take off from a white part of the ground for best performance.
 
 These two examples are sufficient for finishing the task. Additional examples can be found at `Crazyflie Python library examples <https://github.com/bitcraze/crazyflie-lib-python/tree/master/examples>`_.
+Note that a timer is implemented in these examples that automatically disconnects the Crazyflie after 50 seconds. To change this cutoff time, modify the value in line 103.
