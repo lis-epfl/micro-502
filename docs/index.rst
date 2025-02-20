@@ -6,8 +6,8 @@
 crazy-practical documentation!
 ==============================
 This project is part of the Aerial Robotics course at EPFL.
-The primary goal is to develop the navigation of a quadrotor through cluttered environments using onboard sensors.
-This documentation shows the project description, step-by-step software implementation, example code, simulation leaderboard and real-world competition.
+The primary goal is to develop an efficient route of a quadrotor through a race course and demonstrate this in simulation and on a real Crazyflie drone.
+This documentation introduces you to the project and it's core concepts. During the semester it will be updated to include, weekly exercises, the project description, step-by-step software implementation, example code, simulation leaderboard and real-world competition.
 
 .. rubric:: Table of contents
 
