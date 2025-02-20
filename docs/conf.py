@@ -7,7 +7,7 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'crazy-practical'
-copyright = '2024, LIS'
+copyright = '2023, LIS'
 author = 'LIS'
 
 # -- General configuration ---------------------------------------------------

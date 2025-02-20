@@ -1,0 +1,123 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/appearances/protos/RoughPine.proto"
+
+
+PROTO RacingGate [
+  field SFString name "racing gate"
+  field SFVec3f translation 0 2 1
+  field SFRotation rotation 0 0 1 0
+  field SFFloat goalVisible 0.2
+  field SFVec3f goalSize 0.4 0.1 0.4
+  field SFVec3f topBeamTranslation 0 0 0.53
+  field SFVec3f topBeamScale 0.94 0.06 0.04
+  field SFVec3f bottomBeamTranslation 0 0 -0.53
+  field SFVec3f bottomBeamScale 0.94 0.06 0.04
+  field SFVec3f leftBeamTranslation 0 0.5 -0.2
+  field SFVec3f leftBeamScale 1.52 0.06 0.04
+  field SFVec3f rightBeamTranslation 0 -0.5 -0.2
+  field SFVec3f rightBeamScale 1.52 0.06 0.04
+  field SFVec3f leftLegTranslation 0, 0.5, -0.98
+  field SFVec3f rightLegTranslation 0, -0.5, -0.98
+]
+{
+    Solid {
+        name IS name
+        translation IS translation
+        rotation IS rotation
+        children [
+            Pose {
+                translation 0 0 0
+                children [
+                    Shape {
+                        appearance PBRAppearance {
+                            emissiveColor 1 0 1
+                            transparency IS goalVisible
+                        }
+                        geometry Box {
+                            size IS goalSize
+                        }
+                    }
+                ]
+            }
+            Pose {
+                translation IS leftLegTranslation
+                rotation 0, 0, 0, 0
+                children [
+                    Shape {
+                        appearance RoughPine {
+                        }
+                        geometry Box {
+                            size 1.0 0.06 0.04
+                        }
+                    }
+                ]
+            }
+            Pose {
+                translation IS rightLegTranslation
+                rotation 0, 0, 0, 0
+                children [
+                    Shape {
+                        appearance RoughPine {
+                        }
+                        geometry Box {
+                            size 1.0 0.06 0.04
+                        }
+                    }
+                ]
+            }
+            Pose {
+                translation IS leftBeamTranslation
+                rotation 0, 1, 0, 1.5708
+                children [
+                    Shape {
+                        appearance RoughPine {
+                        }
+                        geometry Box {
+                            size IS leftBeamScale
+                        }
+                    }
+                ]
+            }
+            Pose {
+                translation IS rightBeamTranslation
+                rotation 0, 1, 0, 1.5708
+                children [
+                    Shape {
+                        appearance RoughPine {
+                        }
+                        geometry Box {
+                            size IS rightBeamScale
+                        }
+                    }
+                ]
+            }
+            Pose {
+                translation IS topBeamTranslation
+                rotation 0.57735 0.57735 0.57735 2.0944
+                children [
+                    Shape {
+                        appearance RoughPine {
+                        }
+                        geometry Box {
+                            size IS topBeamScale
+                        }
+                    }
+                ]
+            }
+            Pose {
+                translation IS bottomBeamTranslation
+                rotation 0.57735 0.57735 0.57735 2.0944
+                children [
+                    Shape {
+                        appearance RoughPine {
+                        }
+                        geometry Box {
+                            size IS bottomBeamScale
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}
