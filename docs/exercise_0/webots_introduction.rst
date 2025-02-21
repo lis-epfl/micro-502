@@ -25,6 +25,12 @@ If necessary, more information can be found here: `Webots Documentation <https:/
 
 	$ sudo apt install ./webots_2023b_amd64.deb
 
+- For Ubuntu 24.04, you will download the `webots_2025a_amd64.deb <https://github.com/cyberbotics/webots/releases/download/R2025a/webots_2025a_amd64.deb>`_. To install the deb file, run the following command in your terminal:
+
+.. code-block:: console
+
+	$ sudo apt install ./webots_2025a_amd64.deb
+
 - For Windows 10, you will download and install the `webots-R2023b_setup.exe <https://github.com/cyberbotics/webots/releases/download/R2023b/webots-R2023b_setup.exe>`_.
 - For macOS, you will download and install the `webots-R2023b.dmg <https://github.com/cyberbotics/webots/releases/download/R2023b/webots-R2023b.dmg>`_. For error like 'unidentified developer', try 'right-click' the application and choose 'open'. For error of 'Python was not found' in Webots, put the correct Python path in 'Webots->preferences->python command'. To find the python path, open terminal, type 'python3', type 'import sys', and type 'print(sys.executable)'.
 
