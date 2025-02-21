@@ -24,19 +24,19 @@ def euler2rotmat(euler_angles):
     
     return R
 
-# Rotate the control commands from the inertial refernce frame to the body reference frame
-def rot_inertial2body(control_commands, euler_angles):
+# Rotate the control commands from the body reference frame to the inertial reference frame
+def rot_body2inertial(control_commands, euler_angles, quaternion):
     
-    # Here you need to rotate the control commands from the inertial reference frame to the drone reference frame
+    # Here you need to rotate the control commands from the body reference frame to the inertial reference frame
     # You should use the euler2rotmat function to get the rotation matrix
     # Keep in mind that you only want to rotate the velocity commands, which are the first two elements of the control_commands array
     # Think carefully about which direction you need to perform the rotation
 
     # Inputs:
-    #           control_commands: A list of 4 control commands [vel_x, vel_y, altitude, yaw_rate] in the inertial reference frame
+    #           control_commands: A list of 4 control commands [vel_x, vel_y, altitude, yaw_rate] in the body reference frame
     #           euler_angles: A list of 3 Euler angles [roll, pitch, yaw] in radians
     # Outputs:
-    #           control_commands: A list of 4 control commands [vel_x, vel_y, altitude, yaw_rate] in the body reference frame
+    #           control_commands: A list of 4 control commands [vel_x, vel_y, altitude, yaw_rate] in the inertial reference frame
 
     # --- YOUR CODE HERE ---
 
