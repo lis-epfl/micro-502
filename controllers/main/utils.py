@@ -35,6 +35,7 @@ def rot_body2inertial(control_commands, euler_angles, quaternion):
     # Inputs:
     #           control_commands: A list of 4 control commands [vel_x, vel_y, altitude, yaw_rate] in the body reference frame
     #           euler_angles: A list of 3 Euler angles [roll, pitch, yaw] in radians
+    #           quaternion: A list of 4 elements [x, y, z, w] representing the quaternion of the drone
     # Outputs:
     #           control_commands: A list of 4 control commands [vel_x, vel_y, altitude, yaw_rate] in the inertial reference frame
 
