@@ -48,7 +48,7 @@ After making changes in the code you need to reload the world file in Webots to 
 Exercise
 ---------
 
-1. Start by opening the **utils.py** file and locating the **euler2rotmat(euler_angs)** function. Implement the function to calculate the rotation matrix based on the given Euler angles. Remember, Euler angles represent roll, pitch, and yaw of the drone in the inertial frame.
+1. Start by opening the **ex0_rotations.py** file and locating the **euler2rotmat(euler_angs)** function. Implement the function to calculate the rotation matrix based on the given Euler angles. Remember, Euler angles represent roll, pitch, and yaw of the drone in the inertial frame.
 
 2. Next, implement the **rot_body2inertial(control_commands, euler_angs)** function. Use the rotation matrix you obtained from **euler2rotmat(euler_angs)** to transform the velocity commands from the body frame to the inertial frame. This step is crucial for ensuring that the drone's movements are correctly aligned with its current orientation. You do not need to rotate the altitude command, just the horizontal velocity commands.
 
