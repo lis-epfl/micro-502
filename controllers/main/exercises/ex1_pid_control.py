@@ -1,7 +1,7 @@
 # Low-level PID control of velocity and attitude
 import numpy as np
 import matplotlib.pyplot as plt
-from simple_pid import PID
+from lib.simple_pid import PID
 from scipy.spatial.transform import Rotation as R
 
 class quadrotor_controller():
@@ -21,7 +21,6 @@ class quadrotor_controller():
                     "P_att": 5.0,      "I_att": 0.0,      "D_att": 0.1
                     }
         
-        # Do not touch
         self.limits = {
                     "L_rate_rp": 2.0,
                     "L_rate_y": 3.0,
@@ -108,6 +107,7 @@ class quadrotor_controller():
         # return self.acceleration_to_pwm(dt, [acc_x_setpoint, acc_y_setpoint, acc_z_setpoint], yaw_setpoint, sensor_data)
 
         pass
+    
     def keys_to_pwm(self, dt, keys, sensor_data):
         # keys = acc_x, acc_y, altitude, yaw
         vel_z_setpoint = keys[2]
