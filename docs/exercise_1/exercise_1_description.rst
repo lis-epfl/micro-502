@@ -1,7 +1,7 @@
 Exercise 1: Cascaded PID control
 ==================================
 
-In this exercise, you will learn how to write and tune a cascaded PID controller for the CrazyFlie (**control.py**). 
+In this exercise, you will learn how to write and tune a cascaded PID controller for the CrazyFlie (**ex_1_pid_control.py**). 
 As seen in the lecture, it takes a position and yaw setpoint as an input and generates pwm signals for the motors as output:
 
 .. image:: pid.png
