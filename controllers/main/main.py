@@ -11,8 +11,8 @@ import lib.mapping_and_planning_examples as mapping_and_planning_examples
 import time, random
 import threading
 
-exp_num = 0                     # 0: Coordinate Transformation, 1: PID Tuning, 2: Kalman Filter, 3: Motion Planning, 4: Project
-control_style = 'keyboard'      # 'keyboard' or 'path_planner'
+exp_num = 1                     # 0: Coordinate Transformation, 1: PID Tuning, 2: Kalman Filter, 3: Motion Planning, 4: Project
+control_style = 'path_planner'      # 'keyboard' or 'path_planner'
 rand_env = False                # Randomise the environment
 
 # Global variables for handling threads
@@ -419,7 +419,7 @@ class CrazyflieInDroneDome(Supervisor):
         KF_state_outputs['v_z'] = v_z_g_est
         KF_state_outputs['v_forward'] = v_x_g_est * np.cos(KF_state_outputs['yaw']) + v_y_g_est * np.sin(KF_state_outputs['yaw'])
         KF_state_outputs['v_left'] = -v_x_g_est * np.sin(KF_state_outputs['yaw']) + v_y_g_est * np.cos(KF_state_outputs['yaw'])
-        KF_state_outputs['v_down'] = v_z_g_est
+        KF_state_outputs['v_up'] = v_z_g_est
         KF_state_outputs['ax_global'] = a_x_g_est
         KF_state_outputs['ay_global'] = a_y_g_est
         KF_state_outputs['az_global'] = a_z_g_est
@@ -495,7 +495,7 @@ class CrazyflieInDroneDome(Supervisor):
 
         data['v_forward'] =  self.vx_global * np.cos(data['yaw']) + self.vy_global * np.sin(data['yaw'])
         data['v_left'] =  -self.vx_global * np.sin(data['yaw']) + self.vy_global * np.cos(data['yaw'])
-        data['v_down'] =  self.vz_global
+        data['v_up'] =  self.vz_global
 
         #Accleration from body to global frame
         r = R.from_euler('xyz', [data['roll'], data['pitch'], data['yaw']])
@@ -675,7 +675,7 @@ if __name__ == '__main__':
                             setpoint = mapping_and_planning_examples.trajectory_tracking(sensor_data,drone.dt_ctrl,drone.timepoints,drone.setpoints, drone.tol_goal)
 
                         # Call the PID controller to get the motor commands
-                        motorPower = drone.PID_CF.setpoint_to_rpm(drone.dt_ctrl, setpoint, sensor_data)
+                        motorPower = drone.PID_CF.setpoint_to_pwm(drone.dt_ctrl, setpoint, sensor_data)
 
                     else:
 
@@ -684,7 +684,7 @@ if __name__ == '__main__':
                             latest_sensor_data = sensor_data
 
                         # Call the PID controller to get the motor commands
-                        motorPower = drone.PID_CF.setpoint_to_rpm(drone.dt_ctrl, current_setpoint, latest_sensor_data)
+                        motorPower = drone.PID_CF.setpoint_to_pwm(drone.dt_ctrl, current_setpoint, latest_sensor_data)
 
                 if exp_num == 4:
                     # Track the progress of the drone through the assignment world
