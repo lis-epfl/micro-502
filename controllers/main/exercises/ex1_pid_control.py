@@ -5,30 +5,65 @@ from lib.simple_pid import PID
 from scipy.spatial.transform import Rotation as R
 
 class quadrotor_controller():
-    def __init__(self):
+    def __init__(self, exp_num):
         # Exercise 1: Choose what to tune ["vel_z", "pos_z", "vel_xy", "pos_xy"]
         self.tuning_level = "off"
         
-        # Only change the gains you are asked to, the others are already tuned by us
-        gains = {
-                    "P_pos_z": 8.0,     "I_pos_z": 0.0,     "D_pos_z": 0.8,
-                    "P_pos_xy": 0.5,    "I_pos_xy": 0.0,    "D_pos_xy": 0.0,
-                    "P_vel_z": 2.0,     "I_vel_z": 0.0,     "D_vel_z": 1.0,
-                    "P_vel_xy": 0.2,    "I_vel_xy": 0.0,    "D_vel_xy": 0.0,
-                    "P_att_rp": 10.0,   "I_att_rp": 0.0,    "D_att_rp": 0.2,
-                    "P_att_y": 4.0,     "I_att_y": 0.0,     "D_att_y": 0.3,
-                    "P_rate_rp": 1.5,   "I_rate_rp":0.0,    "D_rate_rp": 0.1,
-                    "P_rate_y": 0.02,   "I_rate_y": 0.0,    "D_rate_y": 0.001
-                    }
+        # Only change the gains you are asked to, the others are already tuned by us (INITIAL GAINS)
+        # gains = {
+        #             "P_pos_z": 8.0,     "I_pos_z": 0.0,     "D_pos_z": 0.8,
+        #             "P_pos_xy": 0.5,    "I_pos_xy": 0.0,    "D_pos_xy": 0.0,
+        #             "P_vel_z": 2.0,     "I_vel_z": 0.0,     "D_vel_z": 1.0,
+        #             "P_vel_xy": 0.2,    "I_vel_xy": 0.0,    "D_vel_xy": 0.0,
+        #             "P_att_rp": 10.0,   "I_att_rp": 0.0,    "D_att_rp": 0.2,
+        #             "P_att_y": 4.0,     "I_att_y": 0.0,     "D_att_y": 0.3,
+        #             "P_rate_rp": 1.5,   "I_rate_rp":0.0,    "D_rate_rp": 0.1,
+        #             "P_rate_y": 0.02,   "I_rate_y": 0.0,    "D_rate_y": 0.001
+        #             }
         
-        self.limits = {
-                    "L_rate_rp": 2.0,
-                    "L_rate_y": 3.0,
-                    "L_acc_rp": np.pi/6,
-                    "L_vel_z": 0.75,
-                    "L_vel_xy": 2.0
-        }
-        
+        if exp_num == 2 or exp_num == 3:
+            # KF gains and limits
+            
+            gains = {
+                        "P_pos_z": 5.0,     "I_pos_z": 0.0,     "D_pos_z": 2.5,
+                        "P_pos_xy": 2.0,    "I_pos_xy": 0.0,    "D_pos_xy": 0.0,
+                        "P_vel_z": 7.0,     "I_vel_z": 0.1,     "D_vel_z": 2.0,
+                        "P_vel_xy": 0.5,    "I_vel_xy": 0.0,    "D_vel_xy": 0.015,
+                        "P_att_rp": 8.0,   "I_att_rp": 0.0,    "D_att_rp": 0.9,
+                        "P_att_y": 2.0,     "I_att_y": 0.0,     "D_att_y": 1.0,
+                        "P_rate_rp": 1.5,   "I_rate_rp":0.0,    "D_rate_rp": 0.15,
+                        "P_rate_y": 0.01,   "I_rate_y": 0.0,    "D_rate_y": 0.002
+                        }
+            
+            self.limits = {
+                        "L_rate_rp": 2.0,
+                        "L_rate_y": 2.0,
+                        "L_acc_rp": np.pi/6,
+                        "L_vel_z": 0.75,
+                        "L_vel_xy": 2.0
+            }
+        else:
+            # ### SOLUTION GAINS EXERCISE 1###
+            gains = {
+                        "P_pos_z": 5.0,     "I_pos_z": 0.0,     "D_pos_z": 0.8,
+                        "P_pos_xy": 1.5,    "I_pos_xy": 0.0,    "D_pos_xy": 0.0,
+                        "P_vel_z": 7.0,     "I_vel_z": 0.0,     "D_vel_z": 2.0,
+                        "P_vel_xy": 0.5,    "I_vel_xy": 0.0,    "D_vel_xy": 0.015,
+                        "P_att_rp": 10.0,   "I_att_rp": 0.0,    "D_att_rp": 0.2,
+                        "P_att_y": 4.0,     "I_att_y": 0.0,     "D_att_y": 0.3,
+                        "P_rate_rp": 1.5,   "I_rate_rp":0.0,    "D_rate_rp": 0.1,
+                        "P_rate_y": 0.02,   "I_rate_y": 0.0,    "D_rate_y": 0.001
+                        }
+
+                        
+            self.limits = {
+                        "L_rate_rp": 2.0,
+                        "L_rate_y": 3.0,
+                        "L_acc_rp": np.pi/6,
+                        "L_vel_z": 0.75,
+                        "L_vel_xy": 2.0
+            }
+                
         self.global_time = 0
         self.mass = 0.0552 #[kg]
 
@@ -79,61 +114,52 @@ class quadrotor_controller():
 
     def setpoint_to_pwm(self, dt, setpoint, sensor_data):
         if self.tuning_level != "off":
-            setpoint = [0.97,0.84,2,0]
-        
+            setpoint = [0.97,0.84,3,0]
+
+        ### START EXERCISE 1 SOLUTION ###
         ### Position control loop ###
-
         # For tuning (use later)
-        # if self.tuning_level == "pos_xy":
-        #     setpoint[1] = self.tuning(-3, 3, 5, dt, setpoint[1], sensor_data["y_global"], "y position [m]")
-        # if self.tuning_level == "pos_z":
-        #     setpoint[2] = self.tuning(0.5, 1.5, 5, dt, setpoint[2], sensor_data["z_global"], "z position [m]")
-
+        if self.tuning_level == "pos_xy":
+            setpoint[1] = self.tuning(-3, 3, 5, dt, setpoint[1], sensor_data["y_global"], "y position [m]")
+        if self.tuning_level == "pos_z":
+            setpoint[2] = self.tuning(0.5, 1.5, 5, dt, setpoint[2], sensor_data["z_global"], "z position [m]")
         # Position error in inertial frame (use sensor_data["x_global"], sensor_data["y_global"], sensor_data["z_global"])
-        # pos_x_error = 
-        # pos_y_error = 
-        # pos_z_error = 
-        # yaw_setpoint = 
-
+        pos_x_error = setpoint[0] - sensor_data["x_global"]
+        pos_y_error = setpoint[1] - sensor_data["y_global"]
+        pos_z_error = setpoint[2] - sensor_data["z_global"]
+        yaw_setpoint = setpoint[3]
         # Calculate rotation
-        # R_inertial_to_body = 
-
+        R_current = R.from_quat([sensor_data["q_x"], sensor_data["q_y"], sensor_data["q_z"], sensor_data["q_w"]])
+        R_body_to_inertial = R_current.as_matrix()  # Rotation from body to inertial frame
+        R_inertial_to_body = R_body_to_inertial.T  # Inverse (transpose for rotation matrices)
         # Rotate position error into body frame
-        # pos_error_body = 
-
+        pos_error_inertial = np.array([pos_x_error, pos_y_error, pos_z_error])
+        pos_error_body = R_inertial_to_body @ pos_error_inertial  # Rotate into body frame
+        pos_x_error, pos_y_error, pos_z_error = pos_error_body
         # Put setpoint of PID controller
-        # self.pid_pos_x.setpoint = 
-        # self.pid_pos_y.setpoint = 
-        # self.pid_pos_z.setpoint = 
-
+        self.pid_pos_x.setpoint = 0
+        self.pid_pos_y.setpoint = 0
+        self.pid_pos_z.setpoint = 0
         # Call PID controller
-        # vel_x_setpoint = self.pid_pos_x(#measurement, dt=dt)
-        # vel_y_setpoint = self.pid_pos_y(#measurement, dt=dt)
-        # vel_z_setpoint = self.pid_pos_z(#measurement, dt=dt)
-
+        vel_x_setpoint = self.pid_pos_x(-pos_x_error, dt=dt)
+        vel_y_setpoint = self.pid_pos_y(-pos_y_error, dt=dt)
+        vel_z_setpoint = self.pid_pos_z(-pos_z_error, dt=dt)
         ### Velocity control loop ###
-
         # For tuning (use later)
-        # if self.tuning_level == "vel_xy":
-        #     vel_y_setpoint = self.tuning(-self.limits["L_vel_xy"], self.limits["L_vel_xy"], 3, dt, vel_y_setpoint, sensor_data["v_y"], "y velocity [m/s]")
-        # if self.tuning_level == "vel_z":
-        #     vel_z_setpoint = self.tuning(-self.limits["L_vel_z"], self.limits["L_vel_z"], 2, dt, vel_z_setpoint, sensor_data["v_z"], "z velocity [m/s]")
-
+        if self.tuning_level == "vel_xy":
+            vel_y_setpoint = self.tuning(-self.limits["L_vel_xy"], self.limits["L_vel_xy"], 3, dt, vel_y_setpoint, sensor_data["v_y"], "y velocity [m/s]")
+        if self.tuning_level == "vel_z":
+            vel_z_setpoint = self.tuning(-self.limits["L_vel_z"], self.limits["L_vel_z"], 2, dt, vel_z_setpoint, sensor_data["v_z"], "z velocity [m/s]")
         # Put setpoint of PID controller
-        # self.pid_vel_x.setpoint = 
-        # self.pid_vel_y.setpoint =
-        # self.pid_vel_z.setpoint = 
-
+        self.pid_vel_x.setpoint = vel_x_setpoint
+        self.pid_vel_y.setpoint = vel_y_setpoint
+        self.pid_vel_z.setpoint = vel_z_setpoint
         # Call PID controller (use sensor_data["v_forward"], sensor_data["v_left"], sensor_data["v_up"])
-        # acc_x_setpoint = self.pid_vel_x(#measurement, dt=dt)
-        # acc_y_setpoint = self.pid_vel_y(#measurement, dt=dt)
-        # acc_z_setpoint = self.pid_vel_z(#measurement, dt=dt)
-
-        acc_x_setpoint = 0 # this line is just here so it doesn't throw an error
-        acc_y_setpoint = 0 # this line is just here so it doesn't throw an error
-        acc_z_setpoint = 0 # this line is just here so it doesn't throw an error
-        yaw_setpoint = 0 # this line is just here so it doesn't throw an error
+        acc_x_setpoint = self.pid_vel_x(sensor_data["v_forward"], dt=dt)
+        acc_y_setpoint = self.pid_vel_y(sensor_data["v_left"], dt=dt)
+        acc_z_setpoint = self.pid_vel_z(sensor_data["v_up"], dt=dt)
         return self.acceleration_and_yaw_to_pwm(dt, [acc_x_setpoint, acc_y_setpoint, acc_z_setpoint], yaw_setpoint, sensor_data)
+        ### END EXERCISE 1 SOLUTION ###
     
     def keys_to_pwm(self, dt, keys, sensor_data):
         # keys = acc_x, acc_y, altitude, yaw
@@ -146,7 +172,7 @@ class quadrotor_controller():
 
     def acceleration_and_yaw_to_pwm(self, dt, acceleration, yaw, sensor_data):
         # for tuning
-        if self.tuning_level == "att":
+        if self.tuning_level == "att_rp":
             acceleration[1] = self.tuning(-self.limits["L_acc_rp"],self.limits["L_acc_rp"],2,dt,acceleration[1], -sensor_data["roll"], "roll [rad]", transform=True)
         if self.tuning_level == "att_y":
             yaw = self.tuning(-2,2,2,dt,yaw, sensor_data["yaw"], "yaw [rad]")
@@ -165,7 +191,7 @@ class quadrotor_controller():
         if self.tuning_level == "rate_rp":
             rate_roll_setpoint = self.tuning(-self.limits["L_rate_rp"],self.limits["L_rate_rp"],0.4,dt,rate_roll_setpoint, sensor_data["rate_roll"], "roll rate [rad/s]")
         if self.tuning_level == "rate_y":
-            rate_yaw_setpoint = self.tuning(-self.limits["L_rate_y"],self.limits["L_rate_y"],1.0,dt,rate_yaw_setpoint, sensor_data["rate_yaw"], "yaw rate [rad]")
+            rate_yaw_setpoint = self.tuning(-self.limits["L_rate_y"],self.limits["L_rate_y"],2.0,dt,rate_yaw_setpoint, sensor_data["rate_yaw"], "yaw rate [rad]")
 
         self.pid_rate_roll.setpoint = rate_roll_setpoint
         self.pid_rate_pitch.setpoint = rate_pitch_setpoint

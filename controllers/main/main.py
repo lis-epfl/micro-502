@@ -3,15 +3,14 @@
 import numpy as np
 from controller import Supervisor, Keyboard
 from exercises.ex1_pid_control import quadrotor_controller
-# from exercises.ex2_kalman_filter import kalman_filter as KF
-# from exercises.ex3_motion_planner import MotionPlanner3D as MP
+from exercises.ex2_kalman_filter import kalman_filter as KF
 import exercises.ex0_rotations as ex0_rotations
 from scipy.spatial.transform import Rotation as R
 import lib.mapping_and_planning_examples as mapping_and_planning_examples
 import time, random
 import threading
 
-exp_num = 1                     # 0: Coordinate Transformation, 1: PID Tuning, 2: Kalman Filter, 3: Motion Planning, 4: Project
+exp_num = 2                     # 0: Coordinate Transformation, 1: PID Tuning, 2: Kalman Filter, 3: Motion Planning, 4: Project
 control_style = 'path_planner'      # 'keyboard' or 'path_planner'
 rand_env = False                # Randomise the environment
 
@@ -91,7 +90,7 @@ class CrazyflieInDroneDome(Supervisor):
         self.laser_down.enable(self.timestep)
         
         # Crazyflie velocity PID controller
-        self.PID_CF = quadrotor_controller()
+        self.PID_CF = quadrotor_controller(exp_num)
         self.PID_update_last_time = self.getTime()
         self.sensor_read_last_time = self.getTime()
         self.step_count = 0
@@ -427,15 +426,18 @@ class CrazyflieInDroneDome(Supervisor):
         # Call appending of states over run
         self.KF.aggregate_states(measured_data_raw, measured_noisy_data, KF_state_outputs, self.getTime())
 
-        if self.KF.use_noisy_measurement:
+        if self.KF.use_direct_noisy_measurement:
             if self.getTime() < 2.0:
                 output_measurement = measured_data_raw
             else:
                 output_measurement = measured_noisy_data.copy()
-        elif self.KF.use_ground_truth_measurement:
+        elif self.KF.use_KF_measurement:
+            if measured_data_raw['z_global'] < 0.49:
+                output_measurement = measured_data_raw
+            else:
+                output_measurement = KF_state_outputs.copy()
+        elif self.KF.use_direct_ground_truth_measurement:
             output_measurement = measured_data_raw.copy()
-        else:
-            output_measurement = KF_state_outputs.copy()
 
         return output_measurement
     
@@ -638,7 +640,6 @@ if __name__ == '__main__':
         planner_thread.start()
    
     try:
-
         # Simulation loops
         for step in range(100000):
             
@@ -670,7 +671,10 @@ if __name__ == '__main__':
                     # # Update the setpoint
                     if exp_num != 4:
                         if exp_num != 3:
-                            setpoint = mapping_and_planning_examples.path_planning(sensor_data,drone.dt_ctrl,drone.setpoints,drone.tol_goal)
+                            if np.round(drone.dt_ctrl,3) >= drone.ctrl_update_period/1000: 
+                                setpoint = mapping_and_planning_examples.path_planning(sensor_data,drone.dt_ctrl,drone.setpoints,drone.tol_goal)
+                            else:
+                                setpoint = [sensor_data['x_global'], sensor_data['y_global'], sensor_data['z_global'],0]
                         else:
                             setpoint = mapping_and_planning_examples.trajectory_tracking(sensor_data,drone.dt_ctrl,drone.timepoints,drone.setpoints, drone.tol_goal)
 
