@@ -114,11 +114,9 @@ and optimal prediction covariance (**self.P_opt**) obtained at the time of the l
 
   a) Propagate the current optimal Kalman filter state by the provided input time interval **dt_last_measurement** to yield the propragated Kalman Filter state (**X_prop**) and prediction covariance estimates (**P_prop**).
 
-  b) When either a GPS or an Accelerometer (but not both) measurements is received, using appropriate values for **R**, **H** and **Z** with the **KF_sensor_fusion** function, calculate and return the new optimal state (**self.X_opt**) and prediction covariance (**self.P_opt**).
+  b) For each case of **sensor_state_flag**, use the appropriate values for **R**, **H** and **Z** and call the **KF_sensor_fusion** function to calculate the optimal state (**self.X_opt**) and optimal prediction covariance (**self.P_opt**) at the current timestep and return them as **X_est** and **P_est**.
 
-  c) Return the final state and prediction covariance estimates depending on each case as **X_est** and **P_est**.
-
-  When both measurements are received simultaneously, both measurements are fused sequentially as explained in the lecture. This case is provided to you as an example in the function.
+  When both measurements are received simultaneously (**sensor_state_flag** = 3), the measurements are fused sequentially as explained in the lecture. This case is provided to you as an example in the function.
 
 To test your implementation, first set **self.use_direct_ground_truth_measurement = True** with all other flags set to false and compare your Kalman Filter estimate to the ground truth using the plots generated at the end of the run.
 Your results should look similar to the plots below:
