@@ -68,7 +68,12 @@ Exercise
 
 Part 1 - Implementation
 ------------------------
-You will begin by implementing your Kalman Filer code in the file **ex2_kalman_filter.py**. 
+You will begin by implementing your Kalman Filer code in the file **ex2_kalman_filter.py**. A reference snapshot of the sensor measurement and state estimation timeline is shown in the figure below.
+
+.. image:: Figures/KF_timeline_diagram.png
+  :width: 650
+  :alt: Kalman Filter sensor measurement and state estimation timeline
+  :align: center
 
 The state prediction vector is represented by a 9 x 1 column vector and must be ordered as: 
 
