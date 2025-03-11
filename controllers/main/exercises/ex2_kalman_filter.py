@@ -101,7 +101,7 @@ class kalman_filter():
         #   X_pred: State propagated to time of fusion (n_states x 1)
         #   P_pred: Covariance matrix propagated to time of fusion (n_states x n_states)
         #   H: Measurement Matrix of measured sensor (n_measurements x n_states)
-        #   R: Measurement Covariance of measured sensor (n_measurements x n_states)
+        #   R: Measurement Covariance of measured sensor (n_measurements x n_measurements)
         #   Z: Measurement vector received from the sensor (n_measurements x 1)
         # Outputs:
         #   self.X_opt: Fused state estimate at sensor readout time (n_states x 1)

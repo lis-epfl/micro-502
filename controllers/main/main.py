@@ -43,7 +43,7 @@ class CrazyflieInDroneDome(Supervisor):
         self.m4_motor.setPosition(float('inf'))
         self.m4_motor.setVelocity(1)
 
-        self.meas_state_gps = np.zeros((2,1))
+        self.meas_state_gps = np.zeros((3,1))
         self.meas_state_accel = np.zeros((3,1))
 
         self.accel_read_last_time = 0.0
