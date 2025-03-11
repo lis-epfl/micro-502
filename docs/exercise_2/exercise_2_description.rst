@@ -71,7 +71,7 @@ Part 1 - Implementation
 You will begin by implementing your Kalman Filer code in the file **ex2_kalman_filter.py**. A reference snapshot of the sensor measurement and state estimation timeline is shown in the figure below.
 
 .. image:: Figures/KF_timeline_diagram.png
-  :width: 650
+  :width: 700
   :alt: Kalman Filter sensor measurement and state estimation timeline
   :align: center
 
@@ -118,7 +118,7 @@ and optimal prediction covariance (**self.P_opt**) obtained at the time of the l
 
   c) Return the final state and prediction covariance estimates depending on each case as **X_est** and **P_est**.
 
-  When both measurements are received simultaneously, both measurements are fused sequentially. This case is provided to you as an example in the function.
+  When both measurements are received simultaneously, both measurements are fused sequentially as explained in the lecture. This case is provided to you as an example in the function.
 
 To test your implementation, first set **self.use_direct_ground_truth_measurement = True** with all other flags set to false and compare your Kalman Filter estimate to the ground truth using the plots generated at the end of the run.
 Your results should look similar to the plots below:

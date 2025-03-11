@@ -143,9 +143,8 @@ class kalman_filter():
 
         # # Example implementation for case sensor_state_flag = 3
         if sensor_state_flag == 3:
-            X_opt_gps, P_opt_gps = self.KF_sensor_fusion(X_prop, P_prop, self.H_GPS, self.R_GPS, measured_state_gps)
-            X_est, P_est = self.KF_sensor_fusion(X_opt_gps, P_opt_gps, self.H_ACCEL, self.R_ACCEL, measured_state_accel)
-
+            X_opt_gps, P_opt_gps = self.KF_sensor_fusion(X_prop, P_prop, self.H_GPS, self.R_GPS, measured_state_gps) #Fuse the GPS measurement with the propagated state
+            X_est, P_est = self.KF_sensor_fusion(X_opt_gps, P_opt_gps, self.H_ACCEL, self.R_ACCEL, measured_state_accel) #Fuse the fused GPS state (X_opt_gps) with the accelerometer measurement at the same timestep
         return X_est, P_est
     
     # --------------------------------------------------------- WORK ONLY UP TO HERE --------------------------------------------------------------------------------- #
