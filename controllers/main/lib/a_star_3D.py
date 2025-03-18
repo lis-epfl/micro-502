@@ -21,6 +21,7 @@ class AStar3D:
         self.obstacles = obstacles
         self.bounds = bounds
         self.diagonal = diagonal_flag
+        self.inflation = 0.25
 
         self.path = None
 
@@ -43,17 +44,41 @@ class AStar3D:
             ]
         else:
             moves = [
-            (1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, -1, 0),
-            (0, 0, 1), (0, 0, -1)
+                (1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, -1, 0),
+                (0, 0, 1), (0, 0, -1)
             ]
         for dx, dy, dz in moves:
             new_pos = (x + dx * self.grid_size, y + dy * self.grid_size, z + dz * self.grid_size)
             if self.bounds[0] <= new_pos[0] <= self.bounds[1] and self.bounds[2] <= new_pos[1] <= self.bounds[3] and self.bounds[4] <= new_pos[2] <= self.bounds[5]:
-                if not any(obs[0] <= new_pos[0] <= obs[0] + obs[3] and
-                           obs[1] <= new_pos[1] <= obs[1] + obs[4] and
-                           obs[2] <= new_pos[2] <= obs[2] + obs[5] for obs in self.obstacles):
+                if not any(obs[0] - self.inflation <= new_pos[0] <= obs[0] + obs[3] + self.inflation and
+                           obs[1] - self.inflation <= new_pos[1] <= obs[1] + obs[4] + self.inflation and
+                           obs[2] - self.inflation <= new_pos[2] <= obs[2] + obs[5] + self.inflation and
+                           self.line_intersects_aabb(node.position, new_pos, obs) for obs in self.obstacles):
                     neighbors.append(new_pos)
         return neighbors
+
+    def line_intersects_aabb(self, start, end, box):
+        """Check if a line segment intersects an axis-aligned bounding box (AABB)."""
+        box_min = np.array([box[0] - self.inflation, box[1] - self.inflation, box[2] - self.inflation])
+        box_max = np.array([box[0] + box[3] + self.inflation, box[1] + box[4] + self.inflation, box[2] + box[5] + self.inflation])
+
+        start = np.array(start)
+        end = np.array(end)
+
+        tmin, tmax = 0, 1
+        direction = end - start
+
+        for i in range(3):  # Check x, y, z axes
+            if abs(direction[i]) < 1e-6:  # Parallel to slab
+                if start[i] < box_min[i] or start[i] > box_max[i]:
+                    return False
+            else:
+                t1 = (box_min[i] - start[i]) / direction[i]
+                t2 = (box_max[i] - start[i]) / direction[i]
+                tmin, tmax = max(tmin, min(t1, t2)), min(tmax, max(t1, t2))
+                if tmin > tmax:
+                    return False
+        return True
 
     def find_path(self):
         open_list = []
@@ -68,7 +93,9 @@ class AStar3D:
                 while current_node:
                     self.path.append(current_node.position)
                     current_node = current_node.parent
-                return self.path[::-1]
+                self.path = self.path[::-1]
+                self.path = self.remove_unnecessary_points(self.path)
+                return self.path
             
             closed_set.add(current_node.position)
             
@@ -83,3 +110,15 @@ class AStar3D:
                 heapq.heappush(open_list, neighbor_node)
         
         return None  # No path found
+
+    def remove_unnecessary_points(self, path):
+        if not path:
+            return path
+
+        optimized_path = [path[0]]
+        for i in range(2, len(path)):
+            for obs in self.obstacles:
+                if self.line_intersects_aabb(optimized_path[-1], path[i], obs):
+                    optimized_path.append(path[i - 1])
+        optimized_path.append(path[-1])
+        return optimized_path

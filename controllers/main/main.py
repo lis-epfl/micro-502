@@ -4,13 +4,14 @@ import numpy as np
 from controller import Supervisor, Keyboard
 from exercises.ex1_pid_control import quadrotor_controller
 from exercises.ex2_kalman_filter import kalman_filter as KF
+from exercises.ex3_motion_planner import MotionPlanner3D as MP
 import exercises.ex0_rotations as ex0_rotations
 from scipy.spatial.transform import Rotation as R
 import lib.mapping_and_planning_examples as mapping_and_planning_examples
 import time, random
 import threading
 
-exp_num = 2                     # 0: Coordinate Transformation, 1: PID Tuning, 2: Kalman Filter, 3: Motion Planning, 4: Project
+exp_num = 3                    # 0: Coordinate Transformation, 1: PID Tuning, 2: Kalman Filter, 3: Motion Planning, 4: Project
 control_style = 'path_planner'      # 'keyboard' or 'path_planner'
 rand_env = False                # Randomise the environment
 
@@ -115,18 +116,18 @@ class CrazyflieInDroneDome(Supervisor):
         if exp_num == 3:
             start = (0.0, 0.0, 0.5)
             goal = (5, 1, 1)
-            grid_size = 0.5
-            obstacles = [(0.75, 0.25, 0.0, 0.5, 0.5, 1.5),
-                        (1.25, 1.75, 0.0, 0.5, 0.5, 2.0),
-                        (3.25, 1.25, 0.0, 0.5, 0.5, 1.5),
-                        (4.0, 2.0, 0.0, 0.5, 0.5, 1.5),
-                        (4.0, 0.875, 0.0, 0.5, 0.25, 1.5),
-                        (2.5, 0.0, 0.0, 0.5, 2.25, 1.5),
-                        (2.5, 2.25, 0.0, 0.5, 0.75, 0.25),
-                        (2.5, 2.25, 1.0, 0.5, 0.75, 0.50),
-                        (2.5, 2.75, 0.25, 0.5, 0.25, 0.50)
+            grid_size = 0.25
+            obstacles = [(0.75, 0.25, 0.0, 0.4, 0.4, 1.5),
+                        (1.25, 1.625, 0.0, 0.4, 0.4, 1.5),
+                        (3.25, 1.0, 0.0, 0.4, 0.4, 1.5),
+                        (4.0, 2.25, 0.0, 0.4, 0.4, 1.5),
+                        (4.0, 0.725, 0.0, 0.5, 0.25, 1.5),
+                        (2.5, 0.0, 0.0, 0.5, 1.875, 1.5),
+                        (2.5, 1.875, 0.0, 0.5, 1.125, 0.125),
+                        (2.5, 1.875, 1.0, 0.5, 1.125, 0.5),
+                        (2.5, 2.75, 0.125, 0.5, 0.25, 0.875)
                         ]  # (x, y, z, width_x, width_y, width_z)
-            bounds = (0, 5, 0, 5, 0, 1.5)  # (x_min, x_max, y_min, y_max, z_min, z_max)
+            bounds = (0, 5, 0, 3, 0, 1.5)  # (x_min, x_max, y_min, y_max, z_min, z_max)
             mp_obj = MP(start, obstacles, bounds, grid_size, goal)
             self.setpoints = mp_obj.trajectory_setpoints
             self.timepoints = mp_obj.time_setpoints
