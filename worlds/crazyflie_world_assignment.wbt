@@ -1,0 +1,341 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/floors/protos/Floor.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/lights/protos/CeilingLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/robots/bitcraze/crazyflie/protos/Crazyflie.proto"
+EXTERNPROTO "../protos/RacingGate.proto"
+
+WorldInfo {
+  basicTimeStep 8
+  defaultDamping Damping {
+    linear 0.5
+    angular 0.5
+  }
+}
+Viewpoint {
+  orientation 0.08678493737856167 0.9897152282172664 0.11371957473998688 0.87719713954117
+  position -10.990884266069395 1.5017359200435347 17.15158484699886
+}
+TexturedBackground {
+}
+Crazyflie {
+  translation 1.0 4.0 0.12
+  rotation 0.0 0.0 -1.0 1.57
+  name "crazyflie"
+  controller "main"
+  supervisor TRUE
+  extensionSlot [
+    DEF CF_CAMERA Camera {
+      name "cf_camera"
+      fieldOfView 1.5
+      width 300
+      height 300
+      near 0.2
+    }
+    DistanceSensor {
+      translation -0.0106777 -0.00872367 0.013
+      rotation -0.23981088349186744 0.9407345429597554 0.23981088349186744 1.63185
+      name "laser_down"
+      lookupTable [
+        0 0 0
+        0.1 100 0.001
+        3 3000 0.001
+      ]
+      type "laser"
+      aperture 0.005
+    }
+    Accelerometer {
+    }
+  ]
+}
+CeilingLight {
+  translation 4 4 6
+  name "ceiling light 1"
+  pointLightIntensity 7
+}
+CeilingLight {
+  translation 7 1 6
+  name "ceiling light 2"
+  pointLightIntensity 7
+}
+CeilingLight {
+  translation 7 7 6
+  name "ceiling light 3"
+  pointLightIntensity 7
+}
+CeilingLight {
+  translation 1 1 6
+  name "ceiling light 4"
+  pointLightIntensity 7
+}
+CeilingLight {
+  translation 1 7 6
+  name "ceiling light 5"
+  pointLightIntensity 7
+}
+Floor {
+  translation 4 4 0
+  tileSize 0.64 0.64
+  appearance PBRAppearance {
+    baseColorMap ImageTexture {
+      url [
+        "./textures_epfl_lis/floor_concrete.jpg"
+      ]
+    }
+    roughness 1
+    metalness 0
+  }
+}
+DEF WALL_LEFT Solid {
+  translation 4 9 3
+  rotation 1 0 0 1.57
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "./textures_epfl_lis/wall_left.jpg"
+          ]
+        }
+        roughness 1
+        metalness 0
+        textureTransform TextureTransform {
+        }
+      }
+      geometry DEF DOOR_WALL_SHAPE Plane {
+        size 10 6
+      }
+      castShadows FALSE
+    }
+  ]
+  name "wall-left"
+  boundingObject USE DOOR_WALL_SHAPE
+}
+DEF WALL_FRONT Solid {
+  translation 9 4 3
+  rotation 0.5773502691896258 -0.5773502691896258 -0.5773502691896258 2.093
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "./textures_epfl_lis/wall_front.jpg"
+          ]
+        }
+        roughness 1
+        metalness 0
+        textureTransform TextureTransform {
+        }
+      }
+      geometry DEF DOOR_WALL_SHAPE Plane {
+        size 10 6
+      }
+      castShadows FALSE
+    }
+  ]
+  name "wall-front"
+  boundingObject USE DOOR_WALL_SHAPE
+}
+DEF WALL_RIGHT Solid {
+  translation 4 -1 3
+  rotation 0 0.7071067811865475 0.7071067811865475 3.141
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "./textures_epfl_lis/wall_right.jpg"
+          ]
+        }
+        roughness 1
+        metalness 0
+        textureTransform TextureTransform {
+        }
+      }
+      geometry DEF DOOR_WALL_SHAPE Plane {
+        size 10 6
+      }
+      castShadows FALSE
+    }
+  ]
+  name "wall-right"
+  boundingObject USE DOOR_WALL_SHAPE
+}
+DEF WALL_BACK Solid {
+  translation -1 4 3
+  rotation 0.5773502691896258 0.5773502691896258 0.5773502691896258 2.094
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "./textures_epfl_lis/wall_front.jpg"
+          ]
+        }
+        roughness 1
+        metalness 0
+        textureTransform TextureTransform {
+        }
+      }
+      geometry DEF DOOR_WALL_SHAPE Plane {
+        size 10 6
+      }
+      castShadows FALSE
+    }
+  ]
+  name "wall-back"
+  boundingObject USE DOOR_WALL_SHAPE
+}
+DEF CEILING Solid {
+  translation 4 4 6
+  rotation 0 -1 0 3.141
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "./textures_epfl_lis/ceiling.jpg"
+          ]
+        }
+        roughness 1
+        metalness 0
+        textureTransform TextureTransform {
+        }
+      }
+      geometry DEF DOOR_WALL_SHAPE Plane {
+        size 10 10
+      }
+      castShadows FALSE
+    }
+  ]
+  name "wall-up"
+  boundingObject USE DOOR_WALL_SHAPE
+}
+DEF TAKE_OFF_PAD Solid {
+  translation 1.0 4.0 0.05
+  rotation 0 0 1 0
+  children [
+    DEF PAD_SHAPE Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "./textures_epfl_lis/obstacle_box.jpg"
+          ]
+        }
+        roughness 1
+        metalness 0
+      }
+      geometry Box {
+        size 0.31 0.31 0.1
+      }
+    }
+  ]
+  name "take_off_pad"
+  boundingObject USE PAD_SHAPE
+}
+DEF FLIGHT_AREA Solid {
+  translation 4 4 0.001
+  children [
+    DEF FLIGHT_AREA_SHAPE Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "./textures_epfl_lis/flight_area.jpg"
+          ]
+        }
+        roughness 1
+        metalness 0
+      }
+      geometry Box {
+        size 8 8 0.001
+      }
+    }
+  ]
+  name "flight_area"
+}
+DEF GATE0 RacingGate {
+  name "GATE0"
+  translation 2.124168303596588 1.8387423986448623 1.2368074871854897
+  rotation 0 0 1 -0.48120683686347876
+  goalVisible 0.2
+  goalSize 0.04 0.7163711882772628 0.7163711882772628
+  topBeamTranslation 0 0 0.3881855941386314
+  topBeamScale 0.7163711882772628 0.06 0.04
+  bottomBeamTranslation 0 0 -0.3881855941386314
+  bottomBeamScale 0.7163711882772628 0.06 0.04
+  leftBeamTranslation 0 0.3881855941386314 -0.3893109465234291
+  leftBeamScale 1.6149930813241211 0.06 0.04
+  rightBeamTranslation 0 -0.3881855941386314 -0.3893109465234291
+  rightBeamScale 1.6149930813241211 0.06 0.04
+  leftLegTranslation 0 0.3881855941386314 -1.2168074871854897
+  rightLegTranslation 0 -0.3881855941386314 -1.2168074871854897
+}
+DEF GATE1 RacingGate {
+  name "GATE1"
+  translation 5.121376254502453 2.3044081358004056 0.7804119378001283
+  rotation 0 0 1 0.6581589362801161
+  goalVisible 0.2
+  goalSize 0.04 1.0870565733970852 1.0870565733970852
+  topBeamTranslation 0 0 0.5735282866985426
+  topBeamScale 1.0870565733970852 0.06 0.04
+  bottomBeamTranslation 0 0 -0.5735282866985426
+  bottomBeamScale 1.0870565733970852 0.06 0.04
+  leftBeamTranslation 0 0.5735282866985426 -0.06844182555079281
+  leftBeamScale 1.343940224498671 0.06 0.04
+  rightBeamTranslation 0 -0.5735282866985426 -0.06844182555079281
+  rightBeamScale 1.343940224498671 0.06 0.04
+  leftLegTranslation 0 0.5735282866985426 -0.7604119378001283
+  rightLegTranslation 0 -0.5735282866985426 -0.7604119378001283
+}
+DEF GATE2 RacingGate {
+  name "GATE2"
+  translation 7.200970498052067 3.2693420353198173 1.2857527178095909
+  rotation 0 0 1 1.7416767335657022
+  goalVisible 0.2
+  goalSize 0.04 0.8717569698937373 0.8717569698937373
+  topBeamTranslation 0 0 0.4658784849468687
+  topBeamScale 0.8717569698937373 0.06 0.04
+  bottomBeamTranslation 0 0 -0.4658784849468687
+  bottomBeamScale 0.8717569698937373 0.06 0.04
+  leftBeamTranslation 0 0.4658784849468687 -0.3749371164313611
+  leftBeamScale 1.7416312027564596 0.06 0.04
+  rightBeamTranslation 0 -0.4658784849468687 -0.3749371164313611
+  rightBeamScale 1.7416312027564596 0.06 0.04
+  leftLegTranslation 0 0.4658784849468687 -1.2657527178095909
+  rightLegTranslation 0 -0.4658784849468687 -1.2657527178095909
+}
+DEF GATE3 RacingGate {
+  name "GATE3"
+  translation 5.29501277548932 6.741273395137664 1.189188546485254
+  rotation 0 0 1 2.7319841002638325
+  goalVisible 0.2
+  goalSize 0.04 0.47054478209334105 0.47054478209334105
+  topBeamTranslation 0 0 0.26527239104667055
+  topBeamScale 0.47054478209334105 0.06 0.04
+  bottomBeamTranslation 0 0 -0.26527239104667055
+  bottomBeamScale 0.47054478209334105 0.06 0.04
+  leftBeamTranslation 0 0.26527239104667055 -0.42695807771929173
+  leftBeamScale 1.4444609375319246 0.06 0.04
+  rightBeamTranslation 0 -0.26527239104667055 -0.42695807771929173
+  rightBeamScale 1.4444609375319246 0.06 0.04
+  leftLegTranslation 0 0.26527239104667055 -1.169188546485254
+  rightLegTranslation 0 -0.26527239104667055 -1.169188546485254
+}
+DEF GATE4 RacingGate {
+  name "GATE4"
+  translation 2.521888217677749 5.504741294300318 1.0441489379968407
+  rotation 0 0 1 -2.852997395808118
+  goalVisible 0.2
+  goalSize 0.04 0.3142791879936981 0.3142791879936981
+  topBeamTranslation 0 0 0.18713959399684904
+  topBeamScale 0.3142791879936981 0.06 0.04
+  bottomBeamTranslation 0 0 -0.18713959399684904
+  bottomBeamScale 0.3142791879936981 0.06 0.04
+  leftBeamTranslation 0 0.18713959399684904 -0.39350467199999584
+  leftBeamScale 1.2212885319936897 0.06 0.04
+  rightBeamTranslation 0 -0.18713959399684904 -0.39350467199999584
+  rightBeamScale 1.2212885319936897 0.06 0.04
+  leftLegTranslation 0 0.18713959399684904 -1.0241489379968407
+  rightLegTranslation 0 -0.18713959399684904 -1.0241489379968407
+}
