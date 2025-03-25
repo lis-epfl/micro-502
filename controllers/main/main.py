@@ -1,22 +1,26 @@
 # Main simulation file called by the Webots
+import sys
+print("You are using python at this location:", sys.executable)
 
 import numpy as np
 from controller import Supervisor, Keyboard
 from exercises.ex1_pid_control import quadrotor_controller
 from exercises.ex2_kalman_filter import kalman_filter as KF
 from exercises.ex3_motion_planner import MotionPlanner3D as MP
+import assignment.my_assignment as assignment
 import exercises.ex0_rotations as ex0_rotations
 from scipy.spatial.transform import Rotation as R
 import lib.mapping_and_planning_examples as mapping_and_planning_examples
 import time, random
 import threading
 
-exp_num = 3                    # 0: Coordinate Transformation, 1: PID Tuning, 2: Kalman Filter, 3: Motion Planning, 4: Project
+exp_num = 4                    # 0: Coordinate Transformation, 1: PID Tuning, 2: Kalman Filter, 3: Motion Planning, 4: Project
 control_style = 'path_planner'      # 'keyboard' or 'path_planner'
 rand_env = False                # Randomise the environment
 
 # Global variables for handling threads
 latest_sensor_data = None
+latest_camera_data = None
 sensor_lock = threading.Lock()
 
 current_setpoint = np.zeros(4)
@@ -158,6 +162,7 @@ class CrazyflieInDroneDome(Supervisor):
             self.gate_progress = [[False] * self.num_gates for _ in range(self.num_laps)]
             self.lap = 0
             self.lap_times = [1000] * self.num_laps
+            self.start_time = 0
             
             # Get the angular segments of the gates
             self.angular_bounds = []
@@ -195,12 +200,13 @@ class CrazyflieInDroneDome(Supervisor):
             x = self.circle_centre[0] - radius * np.cos(angular_position)
             y = self.circle_centre[1] - radius * np.sin(angular_position)
 
-            if i == 0:
+            # if i == 0:
                 # Set the take-off pose of the drone and take-off pad
-                takeoff_position = [x, y]
-                takeoff_orientation = angular_position - np.pi/2
-                self.set_take_off_position(takeoff_position, takeoff_orientation)
-            else:
+                # takeoff_position = [x, y]
+                # takeoff_orientation = angular_position - np.pi/2
+                # self.set_take_off_position(takeoff_position, takeoff_orientation)
+            # else:
+            if i > 0:
                 # Set the pose of the gate
                 goal_node = super().getFromDef('GATE' + str(i-1))
                 goal_height = np.random.uniform(self.gate_height_bounds[0], self.gate_height_bounds[1])
@@ -291,21 +297,22 @@ class CrazyflieInDroneDome(Supervisor):
         curr_segment = drone.check_segment(sensor_data)
 
         # Start timing when the drone leaves the first segment
-        if curr_segment > 0 and drone.segment == 0:
-            drone.start_time = time.time()
+        if curr_segment != 0 and drone.segment == 0 and drone.start_time == 0:
+            drone.start_time = drone.getTime()
             print("Timing started...")
 
         # Stop timing when the drone returns to segment 0
-        if curr_segment == 0 and drone.segment > 0:
-            elapsed_time = time.time() - drone.start_time
+        # print('curr_segment:', curr_segment, 'drone.segment:', drone.segment)
+        if curr_segment == 0 and drone.segment == 5:
+            elapsed_time = drone.getTime() - drone.start_time
             drone.lap_times[drone.lap] = elapsed_time
             drone.lap += 1
             print(f"Lap completed. Total time elapsed: {elapsed_time:.2f} seconds") 
             drone.segment_progress = [False] * drone.num_segments
             drone.segment = 0
         
-        # Make sure that segment can only increase to avoid going back
-        if curr_segment > drone.segment:
+        # Update the current segment
+        if curr_segment != -1:
             drone.segment = curr_segment
 
         # Mark the segment as completed
@@ -524,6 +531,17 @@ class CrazyflieInDroneDome(Supervisor):
 
         return data
 
+    # Read the camera feed
+    def read_camera(self):
+
+        # Read the camera image in BRGA format
+        camera_image = self.camera.getImage()
+
+        # Convert the image to a numpy array for OpenCV
+        image = np.frombuffer(camera_image, np.uint8).reshape((self.camera.getHeight(), self.camera.getWidth(), 4))
+
+        return image
+    
     # Detect which segment the drone is in
     def check_segment(self, sensor_data):
         drone_pos = np.array([sensor_data['x_global'], sensor_data['y_global'], sensor_data['z_global']])
@@ -606,24 +624,41 @@ class CrazyflieInDroneDome(Supervisor):
 
 # A thread that runs the path planner in parallel with the simulation
 def path_planner_thread(drone):
-    global latest_sensor_data, current_setpoint, running
-    
+    global latest_sensor_data, latest_camera_data, current_setpoint, running
+
+    # Set the initial last planner time
+    last_planner_time = drone.getTime()
+
     while running:
-        # Make a local copy of the sensor data
+        
+        # Make a local copy of the sensor data and camera data
         sensor_data_copy = None
-        dt_ctrl = 0.0
+        camera_data_copy = None
 
         # Lock the sensor data to prevent it from being updated while we are using it
         with sensor_lock:
+
             # Update sensor data if it is available
             if latest_sensor_data is not None:
                 sensor_data_copy = latest_sensor_data.copy()
-                dt_ctrl = drone.getTime() - drone.PID_update_last_time
+
+            # Update the camera data if it is available
+            if latest_camera_data is not None:
+                camera_data_copy = latest_camera_data.copy()
+
         # Call the path planner to get the new setpoint
-        if sensor_data_copy is not None:
-            new_setpoint = mapping_and_planning_examples.path_planning(sensor_data_copy,dt_ctrl,drone.setpoints,drone.tol_goal)
+        if sensor_data_copy is not None and camera_data_copy is not None:
+
+            # Update the time interval for the planner
+            current_time = drone.getTime()
+            dt_planner = current_time - last_planner_time
+            last_planner_time = current_time
+
+            new_setpoint = assignment.get_command(sensor_data_copy, camera_data_copy, dt_planner)
+            
             with setpoint_lock:
                 current_setpoint = new_setpoint
+
         time.sleep(0.01)
     
 
@@ -684,12 +719,17 @@ if __name__ == '__main__':
 
                     else:
 
+                        # Read the camera feed
+                        camera_data = drone.read_camera()
+                        
                         # Update the sensor data in the thread
                         with sensor_lock:
                             latest_sensor_data = sensor_data
+                            latest_camera_data = camera_data
 
                         # Call the PID controller to get the motor commands
                         motorPower = drone.PID_CF.setpoint_to_pwm(drone.dt_ctrl, current_setpoint, latest_sensor_data)
+                        # motorPower = drone.PID_CF.setpoint_to_pwm(dt_ctrl, current_setpoint, latest_sensor_data)
 
                 if exp_num == 4:
                     # Track the progress of the drone through the assignment world

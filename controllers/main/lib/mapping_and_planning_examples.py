@@ -40,9 +40,12 @@ def path_planning(sensor_data, dt, setpoints, tol):
 
     # Take off
     if startpos is None:
-        startpos = [sensor_data['x_global'], sensor_data['y_global'], sensor_data['z_global']]    
+        startpos = [sensor_data['x_global'], sensor_data['y_global'], sensor_data['z_global']]
+        # print(startpos)    
     if on_ground and sensor_data['z_global'] < 0.49:
+        #current_setpoint = [0.97,0.84,height_desired,0]
         current_setpoint = [startpos[0], startpos[1], height_desired, 0.0]
+        # print(current_setpoint)
         return current_setpoint
     else:
         on_ground = False
@@ -78,7 +81,7 @@ def path_planning(sensor_data, dt, setpoints, tol):
 
     return current_setpoint
 
-def trajectory_tracking(sensor_data, dt, timepoints, setpoints, tol):
+def trajectory_tracking(sensor_data, dt, timepoints, setpoints, tol, repeat = False):
     global on_ground, index_current_setpoint, timer, timer_done
 
     start_point = setpoints[0]
@@ -86,7 +89,7 @@ def trajectory_tracking(sensor_data, dt, timepoints, setpoints, tol):
 
     # Take off 
     if on_ground and sensor_data['z_global'] < start_point[2] - 0.01:
-        current_setpoint = start_point
+        current_setpoint = [sensor_data['x_global'], sensor_data['y_global'], sensor_data['z_global'] + 0.5, sensor_data['yaw']]
         return current_setpoint
     else:
         on_ground = False
@@ -94,10 +97,10 @@ def trajectory_tracking(sensor_data, dt, timepoints, setpoints, tol):
             # Begin timer and start trajectory
             timer = 0
             print("Trajectory tracking started")
-            index_current_setpoint == 1
+            index_current_setpoint = 1
         else:
             timer += dt
-        
+
     # Determine the current setpoint based on the time
     if not on_ground and timer is not None:
         if index_current_setpoint < len(timepoints) - 1:
@@ -108,10 +111,13 @@ def trajectory_tracking(sensor_data, dt, timepoints, setpoints, tol):
         else:
             # Hover at the final setpoint
             current_setpoint = end_point
-            if timer_done is None and np.linalg.norm([sensor_data['x_global'] - end_point[0], sensor_data['y_global'] - end_point[1], sensor_data['z_global'] - end_point[2], sensor_data['yaw'] - end_point[3]]) < tol:
+            if timer_done is None and np.linalg.norm([sensor_data['x_global'] - end_point[0], sensor_data['y_global'] - end_point[1], sensor_data['z_global'] - end_point[2]]) < tol:
                 timer_done = True
                 print("Trajectory took " + str(np.round(timer,1)) + " [s]")
-        
+                if repeat:
+                    timer_done = None
+                    timer = None
+                
     return current_setpoint
     
     
