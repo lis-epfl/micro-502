@@ -305,6 +305,7 @@ class CrazyflieInDroneDome(Supervisor):
         # print('curr_segment:', curr_segment, 'drone.segment:', drone.segment)
         if curr_segment == 0 and drone.segment == 5:
             elapsed_time = drone.getTime() - drone.start_time
+            drone.start_time = 0
             drone.lap_times[drone.lap] = elapsed_time
             drone.lap += 1
             print(f"Lap completed. Total time elapsed: {elapsed_time:.2f} seconds") 
