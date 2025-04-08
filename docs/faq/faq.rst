@@ -42,4 +42,4 @@ Remove shadows to make it quicker. Tools / preferences / OpenGL / disable shadow
 
 ====================================================================================
 
-If your question still persist, rise your hand and ask a TA.
+If your question still persists, raise your hand and ask a TA.
