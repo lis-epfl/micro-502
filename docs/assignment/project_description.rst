@@ -8,7 +8,7 @@ In the remaining weeks of the course, all students will then compete as groups t
 Simulation Task overview (individual work)
 -------------------------
 
-.. image:: arc_simulation.pdf
+.. image:: arc_simulation.png
   :width: 650
   :alt: objective figure
 
