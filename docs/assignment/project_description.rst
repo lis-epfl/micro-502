@@ -38,6 +38,7 @@ Your grade in this simulation exercise will be determined the following way:
 
 **Overall Grading:**
 
+- We run your code on 3 randomly generated worlds (they are the same 3 used for everyone).
 - Each world/map will be graded separately.
 - Your final grade will be the average of your grades across all maps.
 
