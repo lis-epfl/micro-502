@@ -34,12 +34,13 @@ Here is an example:
   :width: 650
   :alt: demo video in simulation
 
-Your grade in this simulation exercise will be determined according to the following **Performance metrics**:
-
-- **Grade 3.5**: Take off
-- **Grade 3.5 - 4.75**: For each gate passed through in the first lap you get + 0.25
-- **Grade 4.75 - 6.0**: Average time over the second and third lap compared to the rest of the class
-- Solutions that go against the spirit of the exercise will not be accepted (e.g. finding bugs and exploiting them).
+Your grade in this simulation exercise will be determined the following way: 
+**Overall Grading:**
+- Each world/map will be graded separately.
+- Your final grade will be the average of your grades across all maps.
+**Grading per Map:**
+- You start with a grade of **3.5**. Then for each gate you pass through in lap 1, you get an additional 0.25 so you can reach a **max of 4.75**.
+- For the remaining **1.25**, you are ranked first on total number of **gates missed in lap 1, 2, and 3** and then among students with the same number of missed gates, you're further ranked by your **average lap time**. From 0-17% percentile you get no additional points, 17-33% you get 0.25, and so on ...
 
 Hardware Task overview (group work)
 -----------------------
