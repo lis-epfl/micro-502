@@ -13,12 +13,32 @@ Please ensure that the zip file you submit at least contains your **my_assignmen
 - Please save your code before the submission deadline on Moodle to avoid any potential last-minute system crashes
 - Simulation code submission deadline is **April 28th at 23:59**
 
-============== ========= ========= 
-Name           Avg Gates Avg Time 
-============== ========= ========= 
-RIM            5.0       16.29 s
-adv_trial      5.0       670.87 s
-USAIN_BOLD     0.0       1000.00 s
-============== ========= ========= 
+============== ========== =========
+Name           Avg Gates   Avg Time
+============== ========== =========
+pizza               5.00      8.86
+albatros            5.00     10.01
+THURGOVIA           5.00     10.48
+odermatt            5.00     11.88
+Jojo de Crissi      5.00     12.30
+Katrix              5.00     13.24
+AGN_v0              5.00     14.80
+USAIN_BOLD          5.00     25.24
+Oscar_F             4.67    345.88
+Malkarenn           4.33     13.16
+MaydayMayday        4.33     13.54
+RIM_v4              4.00    340.02
+my_assignment.      4.00    340.87
+kika                4.33    671.28
+AerialEM            3.67     13.15
+TartareSauce        3.33    342.38
+adv_trial2          3.33    670.73
+Only_One_Lap        3.33   1000.00
+gg_1                0.00   1000.00
+TrackTouristV1      0.00   1000.00
+ccka                0.00   1000.00
+the_runner          0.00   1000.00
+MatheoTailland      0.00   1000.00
+============== ========== =========
 
-For detailed grading information, please refer to the `grading_full <https://github.com/Ben-Jarvis/TEMP-crazy-tutorials-2024/blob/main/docs/assignment/grading_full.xlsx?raw=true>`_ file.
+For detailed grading information, please refer to the `grading_full <https://github.com/lis-epfl/micro-502/blob/main/docs/assignment/grading_full.xlsx?raw=true>`_ file.
