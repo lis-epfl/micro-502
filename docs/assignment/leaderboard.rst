@@ -13,6 +13,7 @@ Please ensure that the zip file you submit at least contains your **my_assignmen
 - Please save your code before the submission deadline on Moodle to avoid any potential last-minute system crashes
 - Simulation code submission deadline is **April 28th at 23:59**
 
+
 ============== ========== ========= =========
 Name           Avg Gates  Avg Gates  Avg Time
               (1st lap)  (all laps)          
@@ -48,6 +49,5 @@ the_runner          0.00      0.00   1000.00
 ccka                0.00      0.00   1000.00
 Hey_gringo          0.00      0.00   1000.00
 ============== ========== ========= =========
-
 
 For detailed grading information, please refer to the `grading_full <https://github.com/lis-epfl/micro-502/blob/main/docs/assignment/grading_full.xlsx?raw=true>`_ file.
