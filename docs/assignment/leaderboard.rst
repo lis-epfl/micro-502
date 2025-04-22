@@ -15,8 +15,7 @@ Please ensure that the zip file you submit at least contains your **my_assignmen
 
 
 ============== ========== ========= =========
-Name           Avg Gates  Avg Gates  Avg Time
-              (1st lap)  (all laps)          
+Name           Lap1 Gates Avg Gates  Avg Time
 ============== ========== ========= =========
 Rimski_Korsako      5.00      5.00     11.68
 JojoDeCrissier      5.00      4.89      8.53
