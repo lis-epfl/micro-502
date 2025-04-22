@@ -17,29 +17,36 @@ Please ensure that the zip file you submit at least contains your **my_assignmen
 Name           Avg Gates  Avg Gates  Avg Time
               (1st lap)  (all laps)          
 ============== ========== ========= =========
-Jojo de Crissi      5.00      4.89      8.46
-kika                5.00      4.89     13.85
-albatros            5.00      4.78     10.01
+Rimski_Korsako      5.00      5.00     11.68
+JojoDeCrissier      5.00      4.89      8.53
+tau                 5.00      4.89     10.84
+crasyJv1            5.00      4.89     13.68
 THURGOVIA           5.00      4.78     10.46
-AGN_v0              5.00      4.78     15.48
-odermatt            5.00      4.44     11.97
-USAIN_BOLD          5.00      4.44    349.95
-TartareSauce        5.00      3.89    342.99
-Oscar_F             5.00      2.56    672.92
-pizza               4.67      4.56     10.07
-Katrix              4.67      3.56    342.41
-Malkarenn           4.33      4.33     13.08
-MaydayMayday        4.33      4.22     13.27
-my_assignment.      4.00      3.56    340.74
-RIM_v4              4.00      3.44    339.99
-AerialEM            3.67      3.44     12.86
+adv_v3              5.00      4.78     13.20
+AGN_v0              5.00      4.78     14.74
+USAIN_BOLD          5.00      4.78     25.57
+odermatt            5.00      4.67     11.94
+CPT                 5.00      4.56      8.40
+Albatros            5.00      4.44      8.89
+pizza               5.00      3.89    339.22
+gg_2                4.67      4.56     11.29
+TrackTouristV2      4.67      3.89     14.37
+snail               4.67      3.22    511.09
+AerialEM            4.33      4.67     11.81
+Malkarenn           4.33      4.56     12.99
+kika_millo          4.33      3.67    342.88
+MaydayMayday2       4.00      4.00     13.50
+Katrix              4.00      3.56     14.24
+my_assignment.      4.00      3.56    340.79
+Oscar_F             4.00      2.78    345.87
+TartareSauce        3.67      2.33    671.52
 Only_One_Lap        3.33      1.11   1000.00
-adv_trial2          3.00      2.11    670.71
+slowbutprecise      3.00      1.00   1000.00
+ppff4-1             2.33      0.78   1000.00
 MatheoTailland      0.00      0.00   1000.00
 the_runner          0.00      0.00   1000.00
 ccka                0.00      0.00   1000.00
-TrackTouristV1      0.00      0.00   1000.00
-gg_1                0.00      0.00   1000.00
+Hey_gringo          0.00      0.00   1000.00
 ============== ========== ========= =========
 
 
