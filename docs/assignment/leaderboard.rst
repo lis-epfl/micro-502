@@ -11,7 +11,11 @@ Please ensure that the zip file you submit at least contains your **my_assignmen
 
 - Your code will be evaluated on three randomly generated environments
 - Please save your code before the submission deadline on Moodle to avoid any potential last-minute system crashes
-- Simulation code submission deadline is **April 28th at 23:59**
+- Simulation code submission deadline is **April 29th at 11:59 (noon)**
+
+Since the performance of your algorithms may vary across runs, we will always retain your best score. That means if your performance drops in a later run, your previous higher score will be preserved. The grading varies even though the grading worlds are the same because 2 threads are running in parallel (the simulation and your code), and there are timing differences and the real-time factor varies from run to run even though it stays close to 1.
+
+To ensure consistency, please **keep the name of your submission file the same**. We’ll use this filename to track and store your highest-performing result across all grading sessions. The best way to make sure you score well is to make sure your code is robust.
 
 
 ============== ========== ========= =========
