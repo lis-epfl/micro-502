@@ -90,7 +90,7 @@ The following table provides the schedule of the crazy-practical project.
 | Week 7, April 1           | Simulation development, Q&A
 | Week 8, April 8           | Simulation development, Q&A
 | Week 9, April 15          | Simulation development, Q&A
-                            | Simulation due 23:59 April 28, submit code in Moodle
+                            | Simulation due 11:59 am (noon) April 29, submit code in Moodle
                             | Select the hardware group in Moodle
 | Week 10, April 29         | Hardware introduction, pick up your drone by group
 | Week 11, May 6            | Hardware development, Q&A
