@@ -65,6 +65,7 @@ AerialEM3           4.67      4.89     11.17
 iLoveSat            4.67      4.67     12.18
 knight              4.67      4.67     13.42
 Hey_gringo          4.67      4.56     12.33
+slowking            4.67      4.22     14.17
 fastandfurious      4.67      3.89     15.92
 TartareSauce        4.67      3.78    343.65
 Oscar_F_V6          4.67      3.44    343.25
@@ -74,7 +75,6 @@ Nyx                 4.33      3.78    341.58
 MatheoTailland      4.33      3.67    342.70
 Joko                4.33      3.67    345.13
 Top7_Fave           4.33      2.78     21.96
-slowking            4.33      2.67    508.00
 43RT1K              4.33      2.44    670.05
 DODO_V1             4.33      1.44   1000.00
 MaydayMayday2       4.00      4.00     13.34
@@ -89,7 +89,6 @@ slowbutprecise      3.00      1.00   1000.00
 assignment_wit      2.00      0.67   1000.00
 my_assignment       1.67      0.78    687.35
 Leofly              1.67      0.56   1000.00
-Top7_fave           0.00      0.00   1000.00
 ============== ========== ========= =========
 
 
