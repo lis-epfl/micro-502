@@ -36,7 +36,7 @@ Duration: up to 7 minutes
 
 Video of one trial
 ------------------
-You will prepare and submit a video of one of your trials with your own obsatcles. The video should:
+You will prepare and submit a video of one of your trials showcasing your algorithm performance. The video should:
 
 - Be at most 2 minutes long
 - Contain no edits except speed-ups (indicate speed up factor in overlay) and text additions
@@ -87,15 +87,16 @@ Overall grading for the hardware task
 We will evaluate you as a group and determine your grade for this hardware task as a weighted average of the following elements:
 
 - Presentation and video showcasing the algorithm on one of your trials (Grade 1-6, Weighting: 50%) 
-- Demonstration (Grade 1-6, Weighting: 50%)
+- 5 minute hardware Demonstration (Grade 1-6, Weighting: 50%)
 
 The assistants will judge your presentation right before your hardware demonstration. Your video submission to moodle will be judged separately in the same week.
 
-The demonstration performance will be graded according to the performance metrics defined under :ref:`Hardware Task overview` and are the same as in simulation:
+You will have five minutes to use the drone arena setup on demonstration day. You should fly two consecutive laps at a time, which we will time in their entirety.
+For grading, we will consider the set of two laps which performs best during those five minutes according to the following grading metrics:
 
 - **Grade 3.5**: Take off
-- **Grade 3.5 - 4.75**: For each gate passed through in the first lap you get + 0.25
-- **Grade 4.75 - 6.0**: Best lap time over your trials compared to the rest of the class
+- **Grade 3.5 - 4.75**: For each gate passed through during your best trial you get + 0.25
+- **Grade 4.75 - 6.0**: After passing through all gates over your two laps, we count the best lap time over two laps in comparison to the rest of the class
 
 .. Demonstration schedule on May 28th
 .. ----------------------------------
