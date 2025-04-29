@@ -60,7 +60,10 @@ For both Ubuntu and Windows, you can install the library by running following co
     cd crazyflie-lib-python
     pip3 install -e .
 
-Possible installation issues: 1. In Windows, if pip3 command is not found, then you need to use pip instead; 2. Useful `links <https://www.bitcraze.io/documentation/repository/crazyflie-clients-python/master/installation/install/>`_ to Python and pip issues on Windows.
+Possible installation issues: 
+1. In Windows, if pip3 command is not found, then you need to use pip instead
+2. Useful `links <https://www.bitcraze.io/documentation/repository/crazyflie-clients-python/master/installation/install/>`_ to Python and pip issues on Windows.
+3. Create a new virtual environment to clone and install all files for this project
 
 To connect to the drone and visualize its measurements, you can install the Crazyflie client. To do this, follow the instructions under the section "Installing from source" on the site:
 `links <https://www.bitcraze.io/documentation/repository/crazyflie-clients-python/master/installation/install/>`_. If there are issue with launching the crazyflie client, install both the crazyflie-lib and crazyflie-client it in a new conda / virtual environment.
@@ -102,7 +105,7 @@ In the Crazyflie software you may access the state estimates from these `logging
 
 Example - log
 -------------
-Now you can test the communication with the drone by downloading and running this log example:
+Now you can test the communication with the drone by downloading and running this script from wtihin the crazyflie-lib-python directory.
 
 .. `Download the script <_static/log.py>`_
 
@@ -114,6 +117,7 @@ Now you can test the communication with the drone by downloading and running thi
    .. <a href="_static/log.py" download>Download the logging example file</a>
 
 For this example you can put the drone on desk as there is no control.
+Do not run the cfclient simultaneously with your script, as this will block communication with the drone.
 If the library and radio driver is configured correctly, you should see sensor data printed in your terminal when running this example (remember changing the uri).
 Try moving your hand closer and farther away from the multi-ranger sensors and observe the sensor data change.
 
@@ -121,7 +125,7 @@ Try moving your hand closer and farther away from the multi-ranger sensors and o
 
 Example - log_and_control
 -------------------------
-This example code will control the drone to fly a figure-eight trajectory, while also logging all sensor data at the same time.
+This example code will control the drone to fly a figure-eight trajectory, while also logging all sensor data at the same time. It serves you as agoo dstarting point for your implementation.
 
 .. .. raw:: html
 
@@ -134,5 +138,8 @@ This example code will control the drone to fly a figure-eight trajectory, while
 
 Please ensure that you place the drone on the ground before testing this example, as the drone is programmed to take off and fly.
 Additionally, it is recommended to take off from a white part of the ground for best performance.
+
+NOTE: The *commander* object is used to send drone commands. In the example, *commander.send_hover_setpoint* in fact sends x and y vecloity, yaw rate and altitude commands.
+Consult the `Crazyflie Python library documentation for the commander <https://www.bitcraze.io/documentation/repository/crazyflie-lib-python/master/api/cflib/crazyflie/commander/>`_ for more information on all available commander functions.
 
 These two examples give you a sufficient framework to finish the task. Additional examples can be found at `Crazyflie Python library examples <https://github.com/bitcraze/crazyflie-lib-python/tree/master/examples>`_.
