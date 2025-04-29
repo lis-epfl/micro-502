@@ -39,6 +39,10 @@ Webots is super slow
 -------------
 Remove shadows to make it quicker. Tools / preferences / OpenGL / disable shadows, disable anti-aliasing.
 
+Crazyflie does not power on
+----------------------------
+Check if the battery connector cables are good and that all decks are properly connected. If the battery cables are broken, please directly contact a TA and DO NOT attempt to fix it yourself.
+
 
 ====================================================================================
 
