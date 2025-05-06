@@ -44,7 +44,7 @@ from cflib.crazyflie.log import LogConfig
 from cflib.utils import uri_helper
 
 # TODO: CHANGE THIS URI TO YOUR CRAZYFLIE & YOUR RADIO CHANNEL
-uri = uri_helper.uri_from_env(default='radio://0/100/2M/E7E7E7E720')
+uri = uri_helper.uri_from_env(default='radio://0/70/2M/E7E7E7E717') #Example for group 17
 
 # Only output errors from the logging framework
 logging.basicConfig(level=logging.ERROR)
@@ -61,6 +61,8 @@ class LoggingExample:
 
         self._cf = Crazyflie(rw_cache='./cache')
 
+        self.prev_z_ = [None, None, None, None, None]
+
         # Connect some callbacks from the Crazyflie API
         self._cf.connected.add_callback(self._connected)
         self._cf.disconnected.add_callback(self._disconnected)
@@ -74,6 +76,22 @@ class LoggingExample:
 
         # Variable used to keep main loop occupied until disconnect
         self.is_connected = True
+
+        # Init states variables
+        self.sensor_data = {}
+
+        self.sensor_data['t'] = 0
+        self.sensor_data["x"] = 0
+        self.sensor_data["y"] = 0
+        self.sensor_data["z"] = 0
+        self.sensor_data["yaw"] = 0
+
+        # Accumulators for smoothing / hand detection 
+        self.accumulator_z = [0]*10
+
+        # Boolean states
+        self.emergency_stop = False
+        self.block_callback = False 
 
     def _connected(self, link_uri):
         """ This callback is called form the Crazyflie API when a Crazyflie
@@ -118,11 +136,31 @@ class LoggingExample:
     def _stab_log_data(self, timestamp, data, logconf):
         """Callback from a the log API when data arrives"""
 
-        # Print the data to the console
-        # print(f'[{timestamp}][{logconf.name}]: ', end='')
+        # Print the data to the console to see what the Logger is getting !
+        #print(f'[{timestamp}][{logconf.name}]: ', end='')
         # for name, value in data.items():
         #     print(f'{name}: {value:3.3f} ', end='')
         # print()
+
+        # Store the state estimate data you need in a dictionary
+        if not(self.block_callback):
+            self.block_callback = True  # Prevents the callback from being called again while processing
+
+            # Update the other states
+            for name, value in data.items():
+                if name == 'stateEstimate.x':
+                    self.sensor_data['x'] = value
+                if name == 'stateEstimate.y':
+                    self.sensor_data['y'] = value
+                if name == 'stateEstimate.z':
+                    self.sensor_data['z'] = value
+                    # Update the accumulator
+                    self.accumulator_z.append(value)
+                    self.accumulator_z.pop(0)
+                if name == 'stabilizer.yaw':
+                    self.sensor_data['yaw'] = value
+
+            self.block_callback = False
 
     def _connection_failed(self, link_uri, msg):
         """Callback when connection initial connection fails (i.e no Crazyflie
@@ -142,13 +180,14 @@ class LoggingExample:
 
 
 # Define your custom callback function
-def emergency_stop_callback(cf):
+def emergency_stop_callback(le):
+    cf = le._cf  # Access the Crazyflie instance from the LoggingExample
+    
     def on_press(key):
         try:
             if key.char == 'q':  # Check if the "space" key is pressed
                 print("Emergency stop triggered!")
-                cf.commander.send_stop_setpoint()  # Stop the Crazyflie
-                cf.close_link()  # Close the link to the Crazyflie
+                le.emergency_stop = True
                 return False     # Stop the listener
         except AttributeError:
             pass
@@ -156,6 +195,11 @@ def emergency_stop_callback(cf):
     # Start listening for key presses
     with keyboard.Listener(on_press=on_press) as listener:
         listener.join()
+
+    # Send the stop setpoint to the Crazyflie if the emergency stop is triggered
+    if le.emergency_stop:
+        cf.commander.send_stop_setpoint()
+        cf.close_link()
 
 if __name__ == '__main__':
     # Initialize the low-level drivers
@@ -170,7 +214,7 @@ if __name__ == '__main__':
     time.sleep(2)
 
     # Replace the thread creation with the updated function
-    emergency_stop_thread = threading.Thread(target=emergency_stop_callback, args=(cf,))
+    emergency_stop_thread = threading.Thread(target=emergency_stop_callback, args=(le,))
     emergency_stop_thread.start()
 
     # TODO : CHANGE THIS TO YOUR NEEDS
