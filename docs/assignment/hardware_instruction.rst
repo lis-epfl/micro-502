@@ -95,8 +95,8 @@ You will have five minutes to use the drone arena setup on demonstration day. Yo
 For grading, we will consider the set of two laps which performs best during those five minutes according to the following grading metrics:
 
 - **Grade 3.5**: Take off
-- **Grade 3.5 - 4.75**: For each gate passed through during your best trial you get + 0.25
-- **Grade 4.75 - 6.0**: After passing through all gates over your two laps, we count the best lap time over two laps in comparison to the rest of the class
+- **Grade 3.5 - 4.5**: For each gate passed through during your best trial you get + 0.25
+- **Grade 4.75 - 6.0**: After passing through all gates over your two laps, we count the best lap time over two laps in comparison to the rest of the class (similar as in Simulation)
 
 .. Demonstration schedule on May 28th
 .. ----------------------------------
