@@ -5,6 +5,10 @@ Texture not loading
 -------------
 Download the whole repo and not only the world file from github.
 
+PROTO import errors
+-------------
+If a PROTO fails to import, check the Webots version in the EXTERNPROTO URL (e.g., R2023a/R2023b) and make sure it matches your installed Webots version. If it does not match, edit the version string in the URL to your version.
+
 python.exe not found (on Windows)
 -------------
 Usually an installation issue, can have any number of causes. Clean out any installed version of Python, downloading the official installer from python.org and checking “Add to path” when installing. 
@@ -13,6 +17,10 @@ If Python is installed without administrator access, it is usually somewhere in 
 Otherwise, if it is somewhere in Program Files, it should be added to system path. In this case, it is sufficient to close any Webots and terminal windows and reopen them, it should just work. 
 If it is not in AppData or Program Files, it is just the shortcut in the start menu! It should not be necessary to modify the Webots preferences, as long as path is correctly configured. 
 On Windows, it is also recommended to disable the Python app alias that opens the Windows Store. Adding “.exe” is usually not required in Windows (it appends this automatically). 
+
+CreateProcess failed with error 193 (on Windows)
+-------------
+Install or move the project to a directory path that contains no spaces, then restart Webots.
 
 numpy / matplotlib not found
 -------------
@@ -35,9 +43,14 @@ Camera view not showing
 -------------
 Right-click on the robot and in the scene tree, click overlays / camera devices / show cf_camera. If still not visible, click overlay on the bar and untick hide all cameras.
 
+Changing control keys
+-------------
+If the drone does not react as you expect, it usually means the key code does not match the key you pressed. In action_from_keyboard (controllers/main/main.py), letter keys use ord('W'), ord('A'), etc., while special keys (arrows, Shift, etc.) use Webots key codes (e.g., Up Arrow can be key == 315). Get those codes from the Webots Keyboard API or asking to ChatGPT.
+
 Webots is super slow
 -------------
 Remove shadows to make it quicker. Tools / preferences / OpenGL / disable shadows, disable anti-aliasing.
+If it is still too slow, switch to wireframe rendering (Shift+W). To return to normal rendering, press Shift+P.
 
 Crazyflie does not power on
 ----------------------------
