@@ -30,7 +30,7 @@ in consumer drones where "forward" always means the same fixed direction in the 
 where the drone is pointing. This is useful for autonomous waypoint navigation, GPS-based control, or
 simply when the operator has lost track of the drone's heading.
 
-.. image:: before_transform.gif
+.. image:: body_frame_example.gif
   :width: 650
   :alt: Without the transformation the drone moves relative to its own orientation
 
@@ -40,7 +40,7 @@ Euler angles, to calculate the inverse rotation that maps world-frame velocity c
 drone's local frame. Once implemented, pressing "forward" will always move the drone in the same
 world-space direction regardless of its yaw, enabling headless-mode behaviour.
 
-.. image:: after_transform.gif
+.. image:: inertial_frame_example.gif
   :width: 650
   :alt: When the rotation is implemented correctly the drone moves in the inertial frame regardless of its orientation
 
