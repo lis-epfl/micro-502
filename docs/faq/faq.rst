@@ -63,8 +63,7 @@ If the drone does not react as you expect, it usually means the key code does no
 
 Webots is super slow
 -------------
-Remove shadows to make it quicker. Tools / preferences / OpenGL / disable shadows, disable anti-aliasing.
-If it is still too slow, switch to wireframe rendering (Shift+W). To return to normal rendering, press Shift+P.
+Remove shadows to make it quicker. Tools / preferences / OpenGL / disable shadows, disable anti-aliasing. Also disable ambient occlusion. If it is still too slow, switch to wireframe rendering (Shift+W). To return to normal rendering, press Shift+P.
 
 Crazyflie does not power on
 ----------------------------
