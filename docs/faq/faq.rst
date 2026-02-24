@@ -1,6 +1,20 @@
 Frequently Asked Questions
 ==================================================
 
+Getting and updating the course repo
+-------------
+**First-time setup:**
+
+1. Clone the repo: in VSCode, open the Command Palette (``Ctrl+Shift+P`` / ``Cmd+Shift+P``), type *Git: Clone*, and paste the repo URL.
+2. Create your own branch: open the Source Control panel (the icon with three circles connected by lines), click the branch name in the bottom-left status bar, then select *Create new branch* and give it a name (e.g. ``my-work``). This is where you save your own code.
+
+**Getting weekly solution releases:**
+
+1. Fetch new changes: in the Source Control panel, click the ``...`` menu → *Pull, Push* → *Fetch From All Remotes*.
+2. Switch to ``main``: click the branch name in the status bar and select ``main``.
+3. Pull the latest solutions: click the ``...`` menu → *Pull*.
+4. Optionally, switch back to your branch and merge ``main`` into it to bring in the solutions: click the ``...`` menu → *Branch* → *Merge Branch…* → select ``main``.
+
 Texture not loading
 -------------
 Download the whole repo and not only the world file from github.
