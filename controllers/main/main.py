@@ -699,7 +699,7 @@ if __name__ == '__main__':
                     # Rotate the control commands from the body reference frame to the inertial reference frame
                     euler_angles = [sensor_data['roll'], sensor_data['pitch'], sensor_data['yaw']]
                     quaternion = [sensor_data['q_x'], sensor_data['q_y'], sensor_data['q_z'], sensor_data['q_w']]
-                    control_commands = ex0_rotations.rot_body2inertial(control_commands, euler_angles, quaternion)
+                    control_commands = ex0_rotations.rot_inertial2body(control_commands, euler_angles, quaternion)
 
                     # Call the PID controller to get the motor commands
                     motorPower = drone.PID_CF.keys_to_pwm(drone.dt_ctrl, control_commands, sensor_data)    
