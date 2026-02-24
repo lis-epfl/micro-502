@@ -24,19 +24,19 @@ def euler2rotmat(euler_angles):
 
     # --- SAMPLE SOLUTION ---
 
-    # R_roll = np.array([ [1, 0, 0], 
-    #                     [0, np.cos(euler_angles[0]), -np.sin(euler_angles[0])],
-    #                     [0, np.sin(euler_angles[0]), np.cos(euler_angles[0])]])
+    R_roll = np.array([ [1, 0, 0], 
+                        [0, np.cos(euler_angles[0]), -np.sin(euler_angles[0])],
+                        [0, np.sin(euler_angles[0]), np.cos(euler_angles[0])]])
     
-    # R_pitch = np.array([[np.cos(euler_angles[1]), 0, np.sin(euler_angles[1])],
-    #                     [0, 1, 0],
-    #                     [-np.sin(euler_angles[1]), 0, np.cos(euler_angles[1])]])
+    R_pitch = np.array([[np.cos(euler_angles[1]), 0, np.sin(euler_angles[1])],
+                        [0, 1, 0],
+                        [-np.sin(euler_angles[1]), 0, np.cos(euler_angles[1])]])
     
-    # R_yaw = np.array([ [np.cos(euler_angles[2]), -np.sin(euler_angles[2]), 0],
-    #                       [np.sin(euler_angles[2]), np.cos(euler_angles[2]), 0],
-    #                       [0, 0, 1]])
+    R_yaw = np.array([ [np.cos(euler_angles[2]), -np.sin(euler_angles[2]), 0],
+                          [np.sin(euler_angles[2]), np.cos(euler_angles[2]), 0],
+                          [0, 0, 1]])
     
-    # R = R_yaw @ R_pitch @ R_roll
+    R = R_yaw @ R_pitch @ R_roll
     
 
     return R
