@@ -110,6 +110,54 @@ class quadrotor_controller():
             setpoint = self.init_pos + np.array([0,0,0.75,0]) #Hover above initial position
 
         ### START EXERCISE 1 implementation part ###
+        ### Position control loop ###
+        # For tuning
+        if self.tuning_level == "pos_xy":
+            setpoint[1] = self.tuning(-3, 3, 5, dt, setpoint[1], sensor_data["y_global"], "y position [m]")
+        if self.tuning_level == "pos_z":
+            setpoint[2] = self.tuning(0.5, 1.5, 5, dt, setpoint[2], sensor_data["z_global"], "z position [m]")
+
+        # Position error in inertial frame (use sensor_data["x_global"], sensor_data["y_global"], sensor_data["z_global"])
+        # pos_x_error = 
+        # pos_y_error = 
+        # pos_z_error = 
+        # yaw_setpoint = 
+
+        # Calculate rotation
+        # R_current = 
+        # R_body_to_inertial =   # Rotation from body to inertial frame
+        # R_inertial_to_body =   # Inverse (transpose for rotation matrices)
+
+        # Rotate position error into body frame
+        # pos_error_inertial = 
+        # pos_error_body = 
+        # pos_x_error, pos_y_error, pos_z_error = pos_error_body
+
+        # Put setpoint of PID controller
+        # self.pid_pos_x.set_setpoint(???)
+        # self.pid_pos_y.set_setpoint(???)
+        # self.pid_pos_z.set_setpoint(???)
+
+        # Call PID controller
+        # vel_x_setpoint = self.pid_pos_x.call(0, dt=dt)
+        # vel_y_setpoint = self.pid_pos_y.call(0, dt=dt)
+        # vel_z_setpoint = self.pid_pos_z.call(0, dt=dt)
+        
+        # For tuning
+        if self.tuning_level == "vel_xy":
+            vel_y_setpoint = self.tuning(-self.limits["L_vel_xy"], self.limits["L_vel_xy"], 3, dt, vel_y_setpoint, sensor_data["v_y"], "y velocity [m/s]")
+        if self.tuning_level == "vel_z":
+            vel_z_setpoint = self.tuning(-self.limits["L_vel_z"], self.limits["L_vel_z"], 2, dt, vel_z_setpoint, sensor_data["v_z"], "z velocity [m/s]")
+
+        # Put setpoint of PID controller
+        # self.pid_vel_x.set_setpoint(???)
+        # self.pid_vel_y.set_setpoint(???)
+        # self.pid_vel_z.set_setpoint(???)
+        
+        # Call PID controller (use sensor_data["v_forward"], sensor_data["v_left"], sensor_data["v_up"])
+        # acc_x_setpoint = self.pid_vel_x.call(???, dt=dt)
+        # acc_y_setpoint = self.pid_vel_y.call(???, dt=dt)
+        # acc_z_setpoint = self.pid_vel_z.call(???, dt=dt)
 
         # return self.acceleration_and_yaw_to_pwm(dt, [acc_x_setpoint, acc_y_setpoint, acc_z_setpoint], yaw_setpoint, sensor_data)
         return self.acceleration_and_yaw_to_pwm(dt, [0, 0, 0], 0, sensor_data) #replace this with the line above
