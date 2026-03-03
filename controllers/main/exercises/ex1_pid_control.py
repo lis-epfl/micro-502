@@ -21,6 +21,14 @@ class quadrotor_controller():
                     "P_rate_rp": 1.5,   "I_rate_rp":0.0,    "D_rate_rp": 0.1,
                     "P_rate_y": 0.02,   "I_rate_y": 0.0,    "D_rate_y": 0.001
                     }
+        
+        self.limits = {
+                        "L_rate_rp": 2.0,
+                        "L_rate_y": 3.0,
+                        "L_acc_rp": np.pi/6,
+                        "L_vel_z": 0.75,
+                        "L_vel_xy": 2.0
+                        }
         ### END EXERCISE 1 tuning part ###
         
         if exp_num == 2 or exp_num == 3:
