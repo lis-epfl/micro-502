@@ -9,7 +9,7 @@ class quadrotor_controller():
         # Exercise 1: Choose what to tune ["vel_z", "pos_z", "vel_xy", "pos_xy"]
         self.tuning_level = "off" #"off" to disable tuning
         
-        ### START EXERCISE 1 2nd part ###
+        ### START EXERCISE 1 tuning part ###
         # Only change the gains you are asked to, the others are already tuned by us (INITIAL GAINS)
         gains = {
                     "P_pos_z": 8.0,     "I_pos_z": 0.0,     "D_pos_z": 0.8,
@@ -21,7 +21,7 @@ class quadrotor_controller():
                     "P_rate_rp": 1.5,   "I_rate_rp":0.0,    "D_rate_rp": 0.1,
                     "P_rate_y": 0.02,   "I_rate_y": 0.0,    "D_rate_y": 0.001
                     }
-        ### END EXERCISE 1 2nd part ###
+        ### END EXERCISE 1 tuning part ###
         
         if exp_num == 2 or exp_num == 3:
             # KF gains and limits
@@ -101,12 +101,12 @@ class quadrotor_controller():
                 self.init_pos = [sensor_data['x_global'], sensor_data['y_global'], sensor_data['z_global'], 0]
             setpoint = self.init_pos + np.array([0,0,0.75,0]) #Hover above initial position
 
-        ### START EXERCISE 1 1st part ###
+        ### START EXERCISE 1 implementation part ###
 
         # return self.acceleration_and_yaw_to_pwm(dt, [acc_x_setpoint, acc_y_setpoint, acc_z_setpoint], yaw_setpoint, sensor_data)
         return self.acceleration_and_yaw_to_pwm(dt, [0, 0, 0], 0, sensor_data) #replace this with the line above
     
-        ### END EXERCISE 1 1st part ###
+        ### END EXERCISE 1 implementation part ###
     
     def keys_to_pwm(self, dt, keys, sensor_data):
         # keys = acc_x, acc_y, altitude, yaw

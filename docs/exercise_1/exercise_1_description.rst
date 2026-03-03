@@ -62,7 +62,6 @@ This should lead you to similar performance:
 
 Once you are happy with your gains, you can disable tuning (**self.tuning_level = "off"**).
 Please send your gains and your best lap time to **simon.jeger@epfl.ch** with the subject "exercise 1".
-We will keep a live score board during the exercise session.
 
 Our best time is 12.6 s. Let the fastest drone win!
 
