@@ -1,0 +1,379 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/floors/protos/Floor.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/lights/protos/CeilingLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/robots/bitcraze/crazyflie/protos/Crazyflie.proto"
+EXTERNPROTO "../protos/Pedestrian.proto"
+EXTERNPROTO "../protos/Wall.proto"
+
+WorldInfo {
+  basicTimeStep 8
+  defaultDamping Damping {
+    linear 0.5
+    angular 0.5
+  }
+}
+Viewpoint {
+  orientation 0.5773500176691247 -0.5773505911005823 -0.5773501987990214 4.18878656478853
+  position 2.147093045922005 1.5615265646845424 11.682701429895697
+  follow "crazyflie"
+}
+TexturedBackground {
+}
+Crazyflie {
+  translation 0 0 0.12
+  rotation 1.4432514312069223e-13 -7.094951043479413e-14 1 0.004202810932212425
+  name "crazyflie"
+  controller "main"
+  supervisor TRUE
+  extensionSlot [
+    DEF CF_CAMERA Camera {
+      name "cf_camera"
+      fieldOfView 1.5
+      width 300
+      height 300
+      near 0.2
+    }
+    DistanceSensor {
+      translation -0.0106777 -0.00872367 0.013
+      rotation -0.23981088349186744 0.9407345429597554 0.23981088349186744 1.63185
+      name "laser_down"
+      lookupTable [
+        0 0 0
+        0.1 100 0.001
+        3 3000 0.001
+      ]
+      type "laser"
+      aperture 0.005
+    }
+    Accelerometer {
+    }
+  ]
+}
+CeilingLight {
+  translation 3 0 6
+  name "ceiling light 1"
+  pointLightIntensity 7
+}
+CeilingLight {
+  translation 6 -3 6
+  name "ceiling light 2"
+  pointLightIntensity 7
+}
+CeilingLight {
+  translation 6 3 6
+  name "ceiling light 3"
+  pointLightIntensity 7
+}
+CeilingLight {
+  translation 0 -3 6
+  name "ceiling light 4"
+  pointLightIntensity 7
+}
+CeilingLight {
+  translation 0 3 6
+  name "ceiling light 5"
+  pointLightIntensity 7
+}
+Floor {
+  translation 3 0 0
+  tileSize 0.64 0.64
+  appearance PBRAppearance {
+    baseColorMap ImageTexture {
+      url [
+        "./textures_epfl_lis/floor_concrete.jpg"
+      ]
+    }
+    roughness 1
+    metalness 0
+  }
+}
+DEF OBSTACLE3 Solid {
+  translation 3.5 1.25 0.75
+  children [
+    DEF CYLINDER_SHAPE Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "./textures_epfl_lis/obstacle_cylinder.jpg"
+          ]
+        }
+        roughness 1
+        metalness 0
+      }
+      geometry Cylinder {
+        height 1.48
+        radius 0.2
+      }
+    }
+  ]
+  name "obstacle-C3(1)"
+  boundingObject USE CYLINDER_SHAPE
+}
+DEF WALL_LEFT Solid {
+  translation 3 5 3
+  rotation 1 0 0 1.57
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "./textures_epfl_lis/wall_left.jpg"
+          ]
+        }
+        roughness 1
+        metalness 0
+        textureTransform TextureTransform {
+        }
+      }
+      geometry DEF DOOR_WALL_SHAPE Plane {
+        size 10 6
+      }
+      castShadows FALSE
+    }
+  ]
+  name "wall-left"
+  boundingObject USE DOOR_WALL_SHAPE
+}
+DEF WALL_FRONT Solid {
+  translation 8 0 3
+  rotation 0.5773502691896258 -0.5773502691896258 -0.5773502691896258 2.093
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "./textures_epfl_lis/wall_front.jpg"
+          ]
+        }
+        roughness 1
+        metalness 0
+        textureTransform TextureTransform {
+        }
+      }
+      geometry DEF DOOR_WALL_SHAPE Plane {
+        size 10 6
+      }
+      castShadows FALSE
+    }
+  ]
+  name "wall-front"
+  boundingObject USE DOOR_WALL_SHAPE
+}
+DEF WALL_RIGHT Solid {
+  translation 3 -5 3
+  rotation 0 0.7071067811865475 0.7071067811865475 3.141
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "./textures_epfl_lis/wall_right.jpg"
+          ]
+        }
+        roughness 1
+        metalness 0
+        textureTransform TextureTransform {
+        }
+      }
+      geometry DEF DOOR_WALL_SHAPE Plane {
+        size 10 6
+      }
+      castShadows FALSE
+    }
+  ]
+  name "wall-right"
+  boundingObject USE DOOR_WALL_SHAPE
+}
+DEF WALL_BACK Solid {
+  translation -2 0 3
+  rotation 0.5773502691896258 0.5773502691896258 0.5773502691896258 2.094
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "./textures_epfl_lis/wall_front.jpg"
+          ]
+        }
+        roughness 1
+        metalness 0
+        textureTransform TextureTransform {
+        }
+      }
+      geometry DEF DOOR_WALL_SHAPE Plane {
+        size 10 6
+      }
+      castShadows FALSE
+    }
+  ]
+  name "wall-back"
+  boundingObject USE DOOR_WALL_SHAPE
+}
+DEF CEILING Solid {
+  translation 3 0 6
+  rotation 0 -1 0 3.141
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "./textures_epfl_lis/ceiling.jpg"
+          ]
+        }
+        roughness 1
+        metalness 0
+        textureTransform TextureTransform {
+        }
+      }
+      geometry DEF DOOR_WALL_SHAPE Plane {
+        size 10 10
+      }
+      castShadows FALSE
+    }
+  ]
+  name "wall-up"
+  boundingObject USE DOOR_WALL_SHAPE
+}
+DEF CHECKERBOARD_A4_25mm_8x6 Solid {
+  translation 8 0 0.5
+  children [
+    DEF CHECKERBOARD_LOGO Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "./textures_epfl_lis/checkerboard_A4_25mm_8x6.png"
+          ]
+        }
+        roughness 1
+        metalness 0
+      }
+      geometry Box {
+        size 0.01 0.297 0.21
+      }
+    }
+  ]
+  name "checkerboard"
+}
+DEF GOAL Solid {
+  translation 5 1 1
+  rotation 0 1 0 0
+  children [
+    DEF GOAL_SHAPE Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0 0 0
+          emissiveColor 1 0 1
+          transparency 0.2
+        }
+      }
+      geometry Box {
+        size 0.1 0.4 0.4
+      }
+    }
+  ]
+  name "goal"
+}
+DEF OBSTACLE1 Solid {
+  translation 1 0.5 0.75
+  children [
+    DEF CYLINDER_SHAPE Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "./textures_epfl_lis/obstacle_cylinder.jpg"
+          ]
+        }
+        roughness 1
+        metalness 0
+      }
+      geometry Cylinder {
+        height 1.48
+        radius 0.2
+      }
+    }
+  ]
+  name "obstacle-C1(1)"
+  boundingObject USE CYLINDER_SHAPE
+}
+DEF OBSTACLE3 Solid {
+  translation 4.25 2.25 0.75
+  children [
+    USE CYLINDER_SHAPE
+  ]
+  name "obstacle-C3"
+  boundingObject USE CYLINDER_SHAPE
+}
+DEF OBSTACLE4 Solid {
+  translation 1.5 1.825 0.75
+  children [
+    USE CYLINDER_SHAPE
+  ]
+  name "obstacle-C4"
+  boundingObject USE CYLINDER_SHAPE
+}
+DEF TAKE_OFF_PAD Solid {
+  translation 0 0 0.05
+  children [
+    DEF PAD_SHAPE Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "./textures_epfl_lis/obstacle_box.jpg"
+          ]
+        }
+        roughness 1
+        metalness 0
+      }
+      geometry Box {
+        size 0.31 0.31 0.1
+      }
+    }
+  ]
+  name "take_off_pad"
+  boundingObject USE PAD_SHAPE
+}
+DEF FLIGHT_AREA Solid {
+  translation 2.5 1.5 0.001
+  children [
+    DEF FLIGHT_AREA_SHAPE Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "./textures_epfl_lis/flight_area.jpg"
+          ]
+        }
+        roughness 1
+        metalness 0
+      }
+      geometry Box {
+        size 5 3 0.001
+      }
+    }
+  ]
+  name "flight_area"
+}
+Wall {
+  translation 2.75 2.4375 1
+  name "wall(2)"
+  size 0.5 1.125 0.5
+}
+Wall {
+  translation 2.75 2.4375 0
+  name "wall(1)"
+  size 0.5 1.125 0.125
+}
+Wall {
+  translation 2.75 2.875 0.125
+  name "wall(3)"
+  size 0.5 0.25 0.875
+}
+Pedestrian {
+  translation 4.25 0.85 1.26
+  rotation 0 0 1 1.5708
+}
+Wall {
+  translation 2.75 0.9375 0
+  size 0.5 1.875 1.5
+}
