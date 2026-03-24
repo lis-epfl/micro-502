@@ -19,6 +19,7 @@ This documentation introduces you to the project and it's core concepts. During 
    exercise_1/exercise_1_description
    exercise_2/exercise_2_description
    exercise_3/exercise_3_description
+   assignment/project_description
    faq/faq
 
 .. rubric:: Indices and tables
