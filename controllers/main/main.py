@@ -14,9 +14,9 @@ import lib.mapping_and_planning_examples as mapping_and_planning_examples
 import time, random
 import threading
 
-exp_num = 3                    # 0: Coordinate Transformation, 1: PID Tuning, 2: Kalman Filter, 3: Motion Planning, 4: Project
+exp_num = 4                    # 0: Coordinate Transformation, 1: PID Tuning, 2: Kalman Filter, 3: Motion Planning, 4: Project
 control_style = 'path_planner'      # 'keyboard' or 'path_planner'
-rand_env = False                # Randomise the environment
+rand_env = True                # Randomise the environment
 
 # Global variables for handling threads
 latest_sensor_data = None
@@ -149,7 +149,7 @@ class CrazyflieInDroneDome(Supervisor):
             self.inner_radius = 1.5
             self.outer_radius = 3.5
             self.gate_height_bounds = [0.7, 2.0]
-            self.goal_size_bounds = [0.3, 1.1]
+            self.goal_size_bounds = [0.3, 0.5]
             self.goal_rotation_bounds = [-np.pi/6, np.pi/6]
             self.num_gates = 5
             self.num_segments = self.num_gates + 1
@@ -246,34 +246,35 @@ class CrazyflieInDroneDome(Supervisor):
 
         # Get the gate height
         goal_height = goal_position[2]
+        goal_opening_height = 0.4
 
         # Update the goal size
         goal_size_field = goal_node.getField('goalSize')
-        goal_size_field.setSFVec3f([h, goal_size, goal_size])
+        goal_size_field.setSFVec3f([h, goal_size, goal_opening_height])
 
         # Update the top beam
         top_beam_length = goal_size
         top_beam_scale_field = goal_node.getField('topBeamScale')
         top_beam_scale_field.setSFVec3f([top_beam_length, w, h])
         top_beam_translation_field = goal_node.getField('topBeamTranslation')
-        top_beam_translation_field.setSFVec3f([0, 0, goal_size/2 + w/2])
+        top_beam_translation_field.setSFVec3f([0, 0, goal_opening_height/2 + w/2])
 
         # Update the bottom beam
         bottom_beam_length = goal_size
         bottom_beam_scale_field = goal_node.getField('bottomBeamScale')
         bottom_beam_scale_field.setSFVec3f([bottom_beam_length, w, h])
         bottom_beam_translation_field = goal_node.getField('bottomBeamTranslation')
-        bottom_beam_translation_field.setSFVec3f([0, 0, -goal_size/2 - w/2])
+        bottom_beam_translation_field.setSFVec3f([0, 0, -goal_opening_height/2 - w/2])
 
         # Update the left beam
-        left_beam_length = goal_height + goal_size/2 + w - h
+        left_beam_length = goal_height + goal_opening_height/2 + w - h
         left_beam_scale_field = goal_node.getField('leftBeamScale')
         left_beam_scale_field.setSFVec3f([left_beam_length, w, h])
         left_beam_translation_field = goal_node.getField('leftBeamTranslation')
         left_beam_translation_field.setSFVec3f([0, goal_size/2 + w/2, h + left_beam_length/2 - goal_height])
 
         # Update the right beam
-        right_beam_length = goal_height + goal_size/2 + w - h
+        right_beam_length = goal_height + goal_opening_height/2 + w - h
         right_beam_scale_field = goal_node.getField('rightBeamScale')
         right_beam_scale_field.setSFVec3f([right_beam_length, w, h])
         right_beam_translation_field = goal_node.getField('rightBeamTranslation')
