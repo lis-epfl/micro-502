@@ -17,7 +17,10 @@ Please ensure that the zip file you submit at least contains your **my_assignmen
 ============== ========== ========= =========
 Name           Lap1 Gates Avg Gates  Avg Time
 ============== ========== ========= =========
-
+Maverick       5.00       5.00       13.85
+cyprienR       5.00       4.56       8.89
+Bibb           4.67       3.56       10.85
+test_bel       2.33       2.33       342.64
 ============== ========== ========= =========
 
-For detailed grading information, please refer to the `grading_full <https://github.com/lis-epfl/micro-502/blob/main/docs/assignment/grading_full.xlsx?raw=true>`_ file.
+For detailed grading information, please refer to the `grading_full <https://github.com/lis-epfl/micro-502/blob/main/docs/assignment/grading_full.ods?raw=true>`_ file.
