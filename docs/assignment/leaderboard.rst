@@ -14,13 +14,18 @@ Please ensure that the zip file you submit at least contains your **my_assignmen
 - Simulation code submission deadline is **May 2nd at 23:59**
 
 
-============== ========== ========= =========
-Name           Lap1 Gates Avg Gates  Avg Time
-============== ========== ========= =========
-Maverick       5.00       5.00       13.85
-cyprienR       5.00       4.56       8.89
-Bibb           4.67       3.56       10.85
-test_bel       2.33       2.33       342.64
-============== ========== ========= =========
+===================== ============ =========== ==========
+Name                 Lap1 Gates  Avg Gates  Avg Time
+===================== ============ =========== ==========
+NR                   5.00        5.00       10.25   
+Maverick             5.00        5.00       13.87   
+Concorde             5.00        5.00       506.94  
+Red_Baron            5.00        4.78       7.61    
+cyprienR             5.00        4.33       8.85    
+Makkaron             5.00        4.11       10.70   
+Bibb                 4.33        4.11       12.44   
+Assignment_ACardaba  2.67        0.89       1000.00 
+bel2.py              2.33        2.00       342.84  
+===================== ============ =========== ==========
 
 For detailed grading information, please refer to the `grading_full <https://github.com/lis-epfl/micro-502/blob/main/docs/assignment/grading_full.ods?raw=true>`_ file.
