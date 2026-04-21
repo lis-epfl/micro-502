@@ -38,11 +38,13 @@ Your grade in this simulation exercise will be determined according to the follo
 
 - **Grade 3.5**: Take off
 - **Grade 3.5 - 4.75**: For each gate passed through in the first lap you get + 0.25
-- **Grade 4.75 – 6.0**:
-  Grades in this range are determined by a ranking based on the following criteria (in order of priority):
-  1. **Number of gates correctly detected and passed during the first lap**
-  2. **Total number of gates passed across all three laps**
-  3. **Average completion time of the second and third laps**, compared to the rest of the class
+- **Grade 4.75 - 6.0**:
+
+  Grades in this range are determined by a ranking based on the following criteria, in order of priority:
+
+  #. **Number of gates correctly detected and passed during the first lap**
+  #. **Total number of gates passed across all three laps**
+  #. **Average completion time of the second and third laps**, compared to the rest of the class
 - Solutions that go against the spirit of the exercise will not be accepted (e.g. finding bugs and exploiting them).
 
 Hardware Task overview (group work)
