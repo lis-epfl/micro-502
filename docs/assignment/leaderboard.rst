@@ -17,14 +17,18 @@ Please ensure that the zip file you submit at least contains your **my_assignmen
 =================== ========== ========= ========
 Name                Lap1 Gates Avg Gates Avg Time
 =================== ========== ========= ========
+Red_Baron            5.00        5.00       7.62    
 NR                   5.00        5.00       10.25   
 Maverick             5.00        5.00       13.87   
 Concorde             5.00        5.00       506.94  
-Red_Baron            5.00        4.78       7.61    
+zippy                5.00        4.78       12.27   
+my_assignment        5.00        4.67       10.42   
 cyprienR             5.00        4.33       8.85    
 Makkaron             5.00        4.11       10.70   
 test_L               5.00        3.33       8.42    
+ctg_2104             5.00        2.78       342.54  
 tortuga              4.67        3.56       14.55   
+doudou               4.67        3.33       337.88  
 SKD_handout          4.67        3.22       505.76  
 Bibb                 4.33        4.11       12.44   
 VL_2104              2.67        1.56       835.22  
@@ -32,7 +36,7 @@ Assignment_ACardaba  2.67        0.89       1000.00
 bel2.py              2.33        2.00       342.84  
 Testus               0.00        0.00       1000.00 
 Clode                0.00        0.00       1000.00 
-20260421             0.00        0.00       1000.00
+20260421             0.00        0.00       1000.00 
 =================== ========== ========= ========
 
 
