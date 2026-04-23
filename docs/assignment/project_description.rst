@@ -53,7 +53,7 @@ Hardware Task overview (group work)
 In the hardware task, you will later work towards transferring your algorithms from simulation onto the real Crazyflie hardware.
 This time you work in a team of 4-5 people.
 
-The hardware arena is similar in structure to the simulation arena but smaller. We will, however, tell you the position of the gates before the start of this task, so no need for computer vision in the Hardware task.
+The hardware arena is similar in structure to the simulation arena but smaller.
 
 Your grade in this hardware exercise will be determined according to the same **Performance metrics** as in simulation. You will have three trials, the best one counts.
 
