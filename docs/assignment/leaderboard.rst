@@ -14,9 +14,9 @@ Please ensure that the zip file you submit at least contains your **my_assignmen
 - Simulation code submission deadline is **May 2nd at 23:59**
 
 
-=================== ========== ========= ========
-Name                Lap1 Gates Avg Gates Avg Time
-=================== ========== ========= ========
+===================== ========== ========= ========
+Name                  Lap1 Gates Avg Gates Avg Time
+===================== ========== ========= ========
 Red_Baron              5.00        5.00       7.62    
 NR                     5.00        5.00       10.21   
 zippy                  5.00        5.00       12.28   
@@ -30,6 +30,7 @@ Test_L                 5.00        4.22       7.86
 LeKAID                 5.00        4.22       7.95    
 Makkaron               5.00        4.11       10.70   
 ABA                    5.00        3.89       341.30  
+WW                     5.00        3.33       180.89  
 ctg_2104               5.00        2.78       342.54  
 Submission_1_SUPERMAN  4.67        4.89       9.00    
 Testus                 4.67        4.89       12.10   
@@ -49,8 +50,9 @@ Assignment_ACardaba    3.67        1.33       679.52
 Clode                  0.00        0.00       1000.00 
 MaxVerstappen          0.00        0.00       1000.00 
 aerialSim_v0.0         0.00        0.00       1000.00 
-=================== ========== ========= ========
+===================== ========== ========= ========
 
-Best submissions as of 17h23 on 23.04.
+Best submissions as of 10h12 on 24.04.
+**While every submission is graded, the leaderboard only shows the best result per student.**
 
 For detailed grading information, please refer to the `grading_full <https://github.com/lis-epfl/micro-502/blob/main/docs/assignment/grading_full.ods?raw=true>`_ file.
