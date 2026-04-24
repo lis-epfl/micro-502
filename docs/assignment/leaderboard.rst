@@ -24,6 +24,7 @@ Maverick               5.00        5.00       13.86
 Concorde               5.00        5.00       506.94  
 my_assignment          5.00        4.78       10.29   
 genie                  5.00        4.78       13.70   
+20260421               5.00        4.78       16.57   
 cyprienR               5.00        4.67       8.88    
 Test_L                 5.00        4.22       7.86    
 LeKAID                 5.00        4.22       7.95    
@@ -33,19 +34,23 @@ ctg_2104               5.00        2.78       342.54
 Submission_1_SUPERMAN  4.67        4.89       9.00    
 Testus                 4.67        4.89       12.10   
 Bibb2                  4.67        4.44       12.21   
+volvic                 4.67        4.22       11.73   
 SKD_handout            4.67        3.78       341.06  
 tortuga                4.67        3.56       14.55   
 doudou                 4.67        3.33       337.88  
+Eggplant               4.33        4.44       19.11   
+Vinci                  4.33        4.33       10.28   
 Zigounetti             4.33        4.11       8.92    
 VL_22_04               4.33        4.11       14.17   
 DM                     4.33        2.56       669.16  
+noeud                  3.67        3.22       6.89    
 bel.zip                3.67        2.78       17.02   
 Assignment_ACardaba    3.67        1.33       679.52  
 Clode                  0.00        0.00       1000.00 
-20260421               0.00        0.00       1000.00 
-Eggplant               0.00        0.00       1000.00 
 MaxVerstappen          0.00        0.00       1000.00 
+aerialSim_v0.0         0.00        0.00       1000.00 
 =================== ========== ========= ========
 
+Best submissions as of 17h23 on 23.04.
 
 For detailed grading information, please refer to the `grading_full <https://github.com/lis-epfl/micro-502/blob/main/docs/assignment/grading_full.ods?raw=true>`_ file.
