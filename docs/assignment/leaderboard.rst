@@ -14,43 +14,45 @@ Please ensure that the zip file you submit at least contains your **my_assignmen
 - Simulation code submission deadline is **May 2nd at 23:59**
 
 
-===================== ========== ========= ========
-Name                  Lap1 Gates Avg Gates Avg Time
-===================== ========== ========= ========
-Red_Baron              5.00        5.00       7.62    
-NR                     5.00        5.00       10.21   
-zippy                  5.00        5.00       12.28   
-Maverick               5.00        5.00       13.86   
-Concorde               5.00        5.00       506.94  
-my_assignment          5.00        4.78       10.29   
-genie                  5.00        4.78       13.70   
-20260421               5.00        4.78       16.57   
-cyprienR               5.00        4.67       8.88    
-Test_L                 5.00        4.22       7.86    
-LeKAID                 5.00        4.22       7.95    
-Makkaron               5.00        4.11       10.70   
-ABA                    5.00        3.89       341.30  
-WW                     5.00        3.33       180.89  
-ctg_2104               5.00        2.78       342.54  
-Submission_1_SUPERMAN  4.67        4.89       9.00    
-Testus                 4.67        4.89       12.10   
-Bibb2                  4.67        4.44       12.21   
-volvic                 4.67        4.22       11.73   
-SKD_handout            4.67        3.78       341.06  
-tortuga                4.67        3.56       14.55   
-doudou                 4.67        3.33       337.88  
-Eggplant               4.33        4.44       19.11   
-Vinci                  4.33        4.33       10.28   
-Zigounetti             4.33        4.11       8.92    
-VL_22_04               4.33        4.11       14.17   
-DM                     4.33        2.56       669.16  
-noeud                  3.67        3.22       6.89    
-bel.zip                3.67        2.78       17.02   
-Assignment_ACardaba    3.67        1.33       679.52  
-Clode                  0.00        0.00       1000.00 
-MaxVerstappen          0.00        0.00       1000.00 
-aerialSim_v0.0         0.00        0.00       1000.00 
-===================== ========== ========= ========
+===================== ============ =========== ==========
+Name                 Lap1 Gates  Avg Gates  Avg Time
+===================== ============ =========== ==========
+Red_Baron            5.00        5.00       7.62    
+NR                   5.00        5.00       10.21   
+zippy                5.00        5.00       12.28   
+Maverick             5.00        5.00       13.86   
+Concorde             5.00        5.00       506.94  
+c_r_3                5.00        4.78       7.68    
+Thragg               5.00        4.78       8.91    
+my_assignment        5.00        4.78       10.29   
+genie                5.00        4.78       13.70   
+20260421             5.00        4.78       16.57   
+Test_L               5.00        4.56       8.12    
+Clode23              5.00        4.56       11.68   
+volvic 2             5.00        4.44       9.07    
+LeKAID               5.00        4.22       7.95    
+Makkaron             5.00        4.11       10.70   
+WW                   5.00        3.89       16.30   
+ABA                  5.00        3.89       341.30  
+VL_22_04             5.00        3.89       342.91  
+tortuga              5.00        3.67       14.66   
+ctg_2104             5.00        2.78       342.54  
+papoucrazy_le_BG     5.00        1.67       4.05    
+Testus__1b3b1a36     4.67        4.89       12.06   
+Bibb2                4.67        4.44       12.21   
+SKD_handout          4.67        3.78       341.05  
+doudou               4.67        3.33       337.88  
+Eggplant             4.33        4.44       19.11   
+Vinci                4.33        4.33       10.28   
+Zigounetti           4.33        4.11       8.92    
+belsafe              4.33        4.00       351.06  
+DM                   4.33        2.56       669.16  
+Assignment_ACardaba  4.33        1.89       358.82  
+noeud                4.00        3.11       7.35    
+rendu                3.67        3.44       344.39  
+MaxVerstappen        0.00        0.00       1000.00 
+aerialSim_v0.0       0.00        0.00       1000.00 
+===================== ============ =========== ==========
 
 Best submissions as of 10h12 on 24.04.
 **While every submission is graded, the leaderboard only shows the best result per student.**
