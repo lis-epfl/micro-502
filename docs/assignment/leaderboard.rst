@@ -54,7 +54,7 @@ MaxVerstappen        0.00        0.00       1000.00
 aerialSim_v0.0       0.00        0.00       1000.00 
 ===================== ============ =========== ==========
 
-Best submissions as of 10h12 on 24.04.
+Best submissions as of 17h00 on 24.04.
 **While every submission is graded, the leaderboard only shows the best result per student.**
 
 For detailed grading information, please refer to the `grading_full <https://github.com/lis-epfl/micro-502/blob/main/docs/assignment/grading_full.ods?raw=true>`_ file.
