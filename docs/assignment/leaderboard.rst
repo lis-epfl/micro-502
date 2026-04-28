@@ -24,7 +24,9 @@ Please ensure that the zip file you submit at least contains your **my_assignmen
    "TestusV4", 5.00, 5.00, 12.03
    "zippy", 5.00, 5.00, 12.28
    "Maverick", 5.00, 5.00, 13.86
+   "lightning_mcQueen_V2", 5.00, 5.00, 14.37
    "le_E", 5.00, 5.00, 16.68
+   "claudia", 5.00, 5.00, 17.94
    "W_W", 5.00, 5.00, 22.53
    "Me", 5.00, 5.00, 38.71
    "Concorde", 5.00, 5.00, 506.94
@@ -32,8 +34,7 @@ Please ensure that the zip file you submit at least contains your **my_assignmen
    "c_r_3", 5.00, 4.78, 7.68
    "my_assignment", 5.00, 4.78, 10.29
    "genie", 5.00, 4.78, 13.70
-   "20260421", 5.00, 4.78, 16.57
-   "lightning_mcQueen", 5.00, 4.67, 14.46
+   "V20260426_1320_S_", 5.00, 4.78, 16.42
    "Test_L", 5.00, 4.56, 8.12
    "Clode23", 5.00, 4.56, 11.68
    "Gabbro", 5.00, 4.56, 13.47
@@ -49,25 +50,27 @@ Please ensure that the zip file you submit at least contains your **my_assignmen
    "kokopelli", 4.67, 4.56, 14.31
    "Bibb2", 4.67, 4.44, 12.21
    "JOJO", 4.67, 4.44, 17.43
-   "Conquii", 4.67, 4.11, 14.14
+   "Conqui2", 4.67, 4.22, 14.16
+   "SegFault2", 4.67, 4.00, 15.05
    "SKD_handout", 4.67, 3.78, 341.05
+   "Vinci2", 4.67, 3.56, 340.79
    "doudou", 4.67, 3.33, 337.88
    "Eggplant", 4.33, 4.44, 19.11
-   "Vinci", 4.33, 4.33, 10.28
    "Zigounetti", 4.33, 4.11, 8.92
    "belsafe2", 4.33, 4.11, 30.80
-   "SegFault", 4.33, 3.67, 341.91
    "Bird_V1000", 4.33, 3.67, 343.54
    "DM", 4.33, 2.56, 669.16
    "Assignment_ACardaba", 4.33, 1.89, 358.82
    "sustainability", 4.00, 3.33, 8.41
    "noeud", 4.00, 3.11, 7.35
    "LeDroneJames", 1.00, 0.67, 32.08
+   "Mater", 0.00, 0.00, 25.91
    "katzen", 0.00, 0.00, 338.50
-   "Dinoco", 0.00, 0.00, 352.59
    "MaxVerstappen", 0.00, 0.00, 1000.00
    "aerialSim_v0.0", 0.00, 0.00, 1000.00
    "racing_bug", 0.00, 0.00, 1000.00
+   "piefek", 0.00, 0.00, 1000.00
+   "C6", 0.00, 0.00, 1000.00
 
 Best submissions as of 18h24 on 27.04.
 **While every submission is graded, the leaderboard only shows the best result per student.**
