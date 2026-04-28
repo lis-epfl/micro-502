@@ -15,13 +15,12 @@ Learning objectives
 
 Tasks
 -----
-The final deliverables which you will be graded on for this hardware practical are the following:
+The final deliverables which you will need to submit for this hardware practical are the following:
 
 - Short presentation (4 slides maximum)
 - Video recording of your most successful trials
 - Task video, code and presentation files submitted on Moodle by May 25th 23:59
-- Demonstration on May 26th: 3 trials (**best grade counts**), and each trial must be completed with only one battery
-
+- Demonstration on May 26th
 Presentation
 ------------
 Length: up to 4 slides
@@ -35,13 +34,15 @@ Duration: up to 4 minutes
 
 Video of one trial
 ------------------
-You will prepare and submit a video of one of your trials with your own obsatcles. The video should:
+You will prepare and submit a video of one of your trials with your own track. The video should:
 
 - Contain no edits except speed-ups (indicate speed up factor in overlay) and text additions
 - Show at least one of the team members
 - Show both drone view and third view
 - Show a clock/stop watch with a physical device (i.e a timer on a phone) that indicates seconds at the beginning and at the end
 - Be in mp4 format
+
+We will use it as a backup if the final demostration does not go as planned.
 
 Demonstrations
 --------------
@@ -61,14 +62,15 @@ To develop and test your algorithms, you will use our pre-built setup with the L
 The setup consists of 5 gates. The drone must take-off from and land on the indicated landing pad. The first part is going to be vision-based, where the goal is to detect the gates and fly through them. The second part, consisting in two laps, is going to be position-based, where the exact gate positions will be provided and the goal is to fly through as many gates as possible in the shortest time. The exact gate positions will be provided after the vision-based task.
 You may reposition the gates to your liking during your own testing, whilst please maintaining a good working order and placing them back neatly within the testing space.
 
-In this `form <https://docs.google.com/spreadsheets/d/1jxJD-PnUoYsJz4ouRZlyiNg_vVRUKn35aWl69dxFwjU/edit?gid=1016483530#gid=1016483530>`_, each group will be able to book slots for use of the setup for a maximum of 3 hours per day up to the deadline, which you can split up as you like. Bookings can be made at maximum two workday weeks in advance.
+.. In this `form <https://docs.google.com/spreadsheets/d/1jxJD-PnUoYsJz4ouRZlyiNg_vVRUKn35aWl69dxFwjU/edit?gid=1016483530#gid=1016483530>`_,
+We will soon give you the chance to book slots for use of the setup for a maximum of 3 hours per day up to the deadline, which you can split up as you like. Bookings can be made at maximum two workday weeks in advance.
 
 A representative group captain must provide their name, surname, SCIPER and group number by e-mail to charbel.toumieh@epfl.ch to obtain drone arena access.
 
 Complementary information
 -------------------------
 
-- **Submit by Monday 26th May, 23:59** (your code with comments, the video as MP4, presentation as PPTX) in a zip file named GROUPNUMBER_LASTNAME1_LASTNAME2_LASTNAME3_LASTNAME4_LASTNAME5.zip on Moodle
+- **Submit by Monday 25th May, 23:59** (your code with comments, the video as MP4, presentation as PPTX) in a zip file named GROUPNUMBER_LASTNAME1_LASTNAME2_LASTNAME3_LASTNAME4_LASTNAME5.zip on Moodle
 - The initial position of the landing pad and the camera infos will be given one day before the final demonstration
 - Each group will present the PPTX from our computer before the demonstration
 - Return the drone directly after the demonstration
@@ -85,11 +87,12 @@ We will evaluate you as a group and determine your grade for this hardware task 
 
 The assistants will judge your presentation right before your hardware demonstration.
 
+For the Hardware demostration you will have 20 minutes of time in total.
 The demonstration performance will be graded according to the performance metrics defined under :ref:`Hardware Task overview` and are the same as in simulation:
 
 - **Grade 3.5**: Take off
-- **Grade 3.5 - 4.75**: During the first lap, teams must detect the gates using vision. Each gate that is both correctly detected and flown through adds +0.25.
-- **Grade 4.75 - 6.0**: After the first lap, the exact gate positions will be provided. Here you will have 3 trials and only the best one will be considered. Teams will then be ranked according to the total number of gates completed and the average completion time of the two laps, compared to the rest of the class.
+- **Grade 3.5 - 4.75**: During the first part, teams must detect the gates using vision in a counter-clockwise manner. Each gate that is both correctly detected and flown through adds +0.25.
+- **Grade 4.75 - 6.0**: After that, the exact gate positions will be provided. Here you will have the remaining time to do how many trials you want. Only the best one will be considered. Teams will then be ranked according to the total number of gates completed and the average completion time of the two laps, compared to the rest of the class.
 - Solutions that go against the spirit of the exercise will not be accepted (e.g. finding bugs and exploiting them).
 
 .. Demonstration schedule on May 26th
