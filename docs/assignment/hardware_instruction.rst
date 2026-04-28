@@ -62,8 +62,7 @@ To develop and test your algorithms, you will use our pre-built setup with the L
 The setup consists of 5 gates. The drone must take-off from and land on the indicated landing pad. The first part is going to be vision-based, where the goal is to detect the gates and fly through them. The second part, consisting in two laps, is going to be position-based, where the exact gate positions will be provided and the goal is to fly through as many gates as possible in the shortest time. The exact gate positions will be provided after the vision-based task.
 You may reposition the gates to your liking during your own testing, whilst please maintaining a good working order and placing them back neatly within the testing space.
 
-.. In this `form <https://docs.google.com/spreadsheets/d/1jxJD-PnUoYsJz4ouRZlyiNg_vVRUKn35aWl69dxFwjU/edit?gid=1016483530#gid=1016483530>`_,
-We will soon give you the chance to book slots for use of the setup for a maximum of 3 hours per day up to the deadline, which you can split up as you like. Bookings can be made at maximum two workday weeks in advance.
+In this `form <https://docs.google.com/spreadsheets/d/1pecNiic4XJSPUXZYNv5mPVzeaJX4kDov0C4yeFLuC1o/edit?gid=0#gid=0>`_ you can book slots for the use of the setup for a maximum of 3 hours per day up to the deadline, which you can split up as you like. Bookings can be made at maximum two workday weeks in advance.
 
 A representative group captain must provide their name, surname, SCIPER and group number by e-mail to charbel.toumieh@epfl.ch to obtain drone arena access.
 
