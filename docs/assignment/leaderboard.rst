@@ -72,7 +72,7 @@ Please ensure that the zip file you submit at least contains your **my_assignmen
    "piefek", 0.00, 0.00, 1000.00
    "C6", 0.00, 0.00, 1000.00
 
-Best submissions as of 18h24 on 27.04.
+Best submissions as of 11h02 on 28.04.
 **While every submission is graded, the leaderboard only shows the best result per student.**
 
 For detailed grading information, please refer to the `grading_full <https://github.com/lis-epfl/micro-502/blob/main/docs/assignment/grading_full.ods?raw=true>`_ file.
