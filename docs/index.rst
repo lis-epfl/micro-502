@@ -22,7 +22,7 @@ This documentation introduces you to the project and it's core concepts. During 
    assignment/project_description
    assignment/simulation_quickstart
    assignment/leaderboard
-   assignment/hardware_description
+   assignment/hardware_instruction
    assignment/hardware_quickstart
    faq/faq
 
