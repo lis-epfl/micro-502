@@ -27,16 +27,17 @@ Please ensure that the zip file you submit at least contains your **my_assignmen
    "TestusV4", 5.00, 5.00, 12.03
    "kokopelli", 5.00, 5.00, 13.10
    "lightning_mcQueen_V3", 5.00, 5.00, 14.33
+   "noeud3", 5.00, 5.00, 14.42
    "Moléson", 5.00, 5.00, 15.08
    "le_E", 5.00, 5.00, 16.68
-   "noeud", 5.00, 5.00, 17.48
    "claudia", 5.00, 5.00, 17.94
    "W_W", 5.00, 5.00, 22.53
    "Me", 5.00, 5.00, 38.71
    "Concorde", 5.00, 5.00, 506.94
    "MT_0424", 5.00, 5.00, 512.97
+   "IL_PREDESTINATOOO", 5.00, 4.89, 5.96
+   "papoucrazy_le_BG", 5.00, 4.89, 8.81
    "C6", 5.00, 4.89, 10.45
-   "IL_PREDESTINATOO", 5.00, 4.78, 5.95
    "c_r_3", 5.00, 4.78, 7.68
    "my_assignment", 5.00, 4.78, 10.29
    "genie", 5.00, 4.78, 13.70
@@ -51,35 +52,34 @@ Please ensure that the zip file you submit at least contains your **my_assignmen
    "Clode23", 5.00, 4.56, 11.68
    "Gabbro", 5.00, 4.56, 13.47
    "LeKAID", 5.00, 4.22, 7.95
+   "toz", 5.00, 4.11, 12.39
+   "mouflon", 5.00, 3.89, 9.53
    "ubuntu", 5.00, 3.89, 13.94
    "Drone Cena", 5.00, 3.89, 15.85
    "ABA", 5.00, 3.89, 341.30
    "VL_22_04", 5.00, 3.89, 342.91
    "tortuga", 5.00, 3.67, 14.66
    "mathis", 5.00, 2.78, 670.26
-   "iqz_test", 5.00, 2.67, 504.36
-   "papoucrazy_le_BG", 5.00, 1.67, 4.05
+   "magpie", 4.67, 4.89, 9.57
    "JOJOPWE", 4.67, 4.89, 17.49
    "PierreGasly", 4.67, 4.67, 18.25
    "404_Gate_Not_Found", 4.67, 4.44, 11.88
    "Bibb2", 4.67, 4.44, 12.21
-   "Conqui2", 4.67, 4.22, 14.16
-   "sparrow", 4.67, 3.78, 339.73
+   "Conqui67", 4.67, 4.44, 14.41
+   "racing_bug", 4.67, 3.78, 340.41
    "SKD_handout", 4.67, 3.78, 341.05
-   "racing_bug", 4.67, 3.67, 340.13
+   "Bird_V1000", 4.67, 3.67, 14.58
    "Vinci3", 4.67, 3.56, 339.15
    "doudou", 4.67, 3.33, 337.88
    "Rendu_JO", 4.67, 2.00, 838.76
    "Zigounetti", 4.67, 1.56, 1000.00
    "bello", 4.33, 4.78, 40.45
    "Eggplant", 4.33, 4.44, 19.11
-   "Bird_V1000", 4.33, 3.67, 343.54
-   "0_mod_2_promille", 4.33, 2.78, 507.38
    "DM", 4.33, 2.56, 669.16
    "Assignment_ACardaba", 4.33, 1.89, 358.82
-   "Messi", 4.00, 1.78, 342.88
-   "just_a_tortle", 3.67, 4.11, 10.71
-   "tweety", 3.67, 3.44, 351.24
+   "just_a_little_turtle", 4.00, 4.11, 10.75
+   "messi", 4.00, 2.22, 14.53
+   "schiantatus2", 3.67, 4.11, 23.38
    "walid", 3.67, 1.22, 1000.00
    "lahuiss", 2.67, 1.89, 339.25
    "LeDroneJames", 2.33, 3.67, 26.09
@@ -89,9 +89,11 @@ Please ensure that the zip file you submit at least contains your **my_assignmen
    "aerialSim_v0.0", 0.00, 0.00, 1000.00
    "piefek", 0.00, 0.00, 1000.00
    "ABCDEF", 0.00, 0.00, 1000.00
+   "aled", 0.00, 0.00, 1000.00
 
 
-Best submissions as of 17h10 on 29.04.
+
+Best submissions as of 10h10 on 30.04.
 **While every submission is graded, the leaderboard only shows the best result per student.**
 
 For detailed grading information, please refer to the `grading_full <https://github.com/lis-epfl/micro-502/blob/main/docs/assignment/grading_full.ods?raw=true>`_ file.
