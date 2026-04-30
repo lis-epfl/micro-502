@@ -19,7 +19,7 @@ Please ensure that the zip file you submit at least contains your **my_assignmen
    :widths: 30, 15, 15, 15
 
    "Red_Baron", 5.00, 5.00, 7.62
-   "zippy_2", 5.00, 5.00, 8.48
+   "zippy_3", 5.00, 5.00, 8.20
    "NR", 5.00, 5.00, 8.70
    "Maverick", 5.00, 5.00, 9.00
    "Superman_3", 5.00, 5.00, 9.01
@@ -35,17 +35,18 @@ Please ensure that the zip file you submit at least contains your **my_assignmen
    "Me", 5.00, 5.00, 38.71
    "Concorde", 5.00, 5.00, 506.94
    "MT_0424", 5.00, 5.00, 512.97
+   "C6", 5.00, 4.89, 10.45
+   "IL_PREDESTINATOO", 5.00, 4.78, 5.95
    "c_r_3", 5.00, 4.78, 7.68
    "my_assignment", 5.00, 4.78, 10.29
    "genie", 5.00, 4.78, 13.70
    "V20260426_1320_S_", 5.00, 4.78, 16.42
    "new_try_2804_2", 5.00, 4.78, 16.51
    "Makkaron", 5.00, 4.78, 26.40
-   "IL_PREDESTINATO", 5.00, 4.67, 5.96
    "merlin1", 5.00, 4.67, 14.12
    "Test_L", 5.00, 4.56, 8.12
    "volvic 3", 5.00, 4.56, 9.18
-   "_beep_beep_", 5.00, 4.56, 9.24
+   "_beep_beep_v1", 5.00, 4.56, 9.23
    "pau", 5.00, 4.56, 11.53
    "Clode23", 5.00, 4.56, 11.68
    "Gabbro", 5.00, 4.56, 13.47
@@ -55,42 +56,42 @@ Please ensure that the zip file you submit at least contains your **my_assignmen
    "ABA", 5.00, 3.89, 341.30
    "VL_22_04", 5.00, 3.89, 342.91
    "tortuga", 5.00, 3.67, 14.66
+   "mathis", 5.00, 2.78, 670.26
    "iqz_test", 5.00, 2.67, 504.36
    "papoucrazy_le_BG", 5.00, 1.67, 4.05
    "JOJOPWE", 4.67, 4.89, 17.49
+   "PierreGasly", 4.67, 4.67, 18.25
    "404_Gate_Not_Found", 4.67, 4.44, 11.88
    "Bibb2", 4.67, 4.44, 12.21
    "Conqui2", 4.67, 4.22, 14.16
+   "sparrow", 4.67, 3.78, 339.73
    "SKD_handout", 4.67, 3.78, 341.05
    "racing_bug", 4.67, 3.67, 340.13
    "Vinci3", 4.67, 3.56, 339.15
-   "mathis", 4.67, 3.33, 175.75
    "doudou", 4.67, 3.33, 337.88
    "Rendu_JO", 4.67, 2.00, 838.76
    "Zigounetti", 4.67, 1.56, 1000.00
    "bello", 4.33, 4.78, 40.45
    "Eggplant", 4.33, 4.44, 19.11
-   "pigeon", 4.33, 4.11, 11.40
    "Bird_V1000", 4.33, 3.67, 343.54
    "0_mod_2_promille", 4.33, 2.78, 507.38
    "DM", 4.33, 2.56, 669.16
    "Assignment_ACardaba", 4.33, 1.89, 358.82
-   "Gasly", 4.00, 1.33, 1000.00
+   "Messi", 4.00, 1.78, 342.88
    "just_a_tortle", 3.67, 4.11, 10.71
    "tweety", 3.67, 3.44, 351.24
-   "Messsi", 3.00, 2.00, 13.07
+   "walid", 3.67, 1.22, 1000.00
    "lahuiss", 2.67, 1.89, 339.25
-   "LeDroneJames", 2.00, 3.11, 25.96
+   "LeDroneJames", 2.33, 3.67, 26.09
    "katzen", 1.67, 1.44, 11.58
    "Dinoco", 0.67, 0.56, 681.01
    "MaxVerstappen", 0.00, 0.00, 1000.00
    "aerialSim_v0.0", 0.00, 0.00, 1000.00
    "piefek", 0.00, 0.00, 1000.00
-   "C6", 0.00, 0.00, 1000.00
    "ABCDEF", 0.00, 0.00, 1000.00
 
 
-Best submissions as of 10h15 on 29.04.
+Best submissions as of 17h10 on 29.04.
 **While every submission is graded, the leaderboard only shows the best result per student.**
 
 For detailed grading information, please refer to the `grading_full <https://github.com/lis-epfl/micro-502/blob/main/docs/assignment/grading_full.ods?raw=true>`_ file.
