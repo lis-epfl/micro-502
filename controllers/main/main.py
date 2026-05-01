@@ -163,6 +163,7 @@ class CrazyflieInDroneDome(Supervisor):
             self.lap = 0
             self.lap_times = [1000] * self.num_laps
             self.start_time = 0
+            self.prev_drone_pos = None
             
             # Get the angular segments of the gates
             self.angular_bounds = []
