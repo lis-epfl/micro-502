@@ -595,17 +595,32 @@ class CrazyflieInDroneDome(Supervisor):
         half_dims = np.array(gate_size) / 2.0
 
         # Check if the drone is within the gate bounds in the gate's local frame
-        if (abs(local_pos[0]) <= half_dims[0] and
-            abs(local_pos[1]) <= half_dims[1] and
-            abs(local_pos[2]) <= half_dims[2]):
-            
-            if not self.gate_progress[self.lap][gate_idx]:
-                print("Gate", gate_idx, "reached!")
-                goal_node = super().getFromDef('GATE' + str(gate_idx))
-                goal_visibility = goal_node.getField('goalVisible')
-                goal_visibility.setSFFloat(1.0)
-                self.gate_progress[self.lap][gate_idx] = True
+        in_gate = (abs(local_pos[0]) <= half_dims[0] and
+                   abs(local_pos[1]) <= half_dims[1] and
+                   abs(local_pos[2]) <= half_dims[2])
 
+        # For fast drones that skip over the thin gate plane between timesteps,
+        # check if the trajectory crossed the gate plane (x=0 in local frame)
+        crossed_gate = False
+        if self.prev_drone_pos is not None:
+            prev_rel_pos = self.prev_drone_pos - gate_pos
+            prev_local_pos = Rz @ prev_rel_pos
+            if prev_local_pos[0] * local_pos[0] < 0:
+                t = prev_local_pos[0] / (prev_local_pos[0] - local_pos[0])
+                cross_y = prev_local_pos[1] + t * (local_pos[1] - prev_local_pos[1])
+                cross_z = prev_local_pos[2] + t * (local_pos[2] - prev_local_pos[2])
+                if abs(cross_y) <= half_dims[1] and abs(cross_z) <= half_dims[2]:
+                    crossed_gate = True
+
+        self.prev_drone_pos = drone_pos.copy()
+
+        if (in_gate or crossed_gate) and not self.gate_progress[self.lap][gate_idx]:
+            print("Gate", gate_idx, "reached!")
+            goal_node = super().getFromDef('GATE' + str(gate_idx))
+            goal_visibility = goal_node.getField('goalVisible')
+            goal_visibility.setSFFloat(1.0)
+            self.gate_progress[self.lap][gate_idx] = True
+            
     def reset(self):
         # Reset the simulation
         self.simulationResetPhysics()
