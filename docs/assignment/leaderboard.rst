@@ -20,26 +20,32 @@ Please ensure that the zip file you submit at least contains your **my_assignmen
 
    "Red_Baron", 5.00, 5.00, 7.62
    "zippy_3", 5.00, 5.00, 8.20
+   "c_r_11", 5.00, 5.00, 8.53
    "NR", 5.00, 5.00, 8.70
+   "Superman_agressive_tunning_3", 5.00, 5.00, 8.99
    "Maverick", 5.00, 5.00, 9.00
-   "Superman_3", 5.00, 5.00, 9.01
    "Taradrone", 5.00, 5.00, 9.36
    "TestusV4", 5.00, 5.00, 12.03
    "kokopelli", 5.00, 5.00, 13.10
    "lightning_mcQueen_V3", 5.00, 5.00, 14.33
    "noeud3", 5.00, 5.00, 14.42
    "Moléson", 5.00, 5.00, 15.08
+   "lahuiss", 5.00, 5.00, 16.33
    "le_E", 5.00, 5.00, 16.68
+   "Catia", 5.00, 5.00, 17.26
    "claudia", 5.00, 5.00, 17.94
+   "DM9", 5.00, 5.00, 21.96
    "W_W", 5.00, 5.00, 22.53
+   "MT_0430_A", 5.00, 5.00, 25.87
    "Me", 5.00, 5.00, 38.71
    "Concorde", 5.00, 5.00, 506.94
-   "MT_0424", 5.00, 5.00, 512.97
    "IL_PREDESTINATOOO", 5.00, 4.89, 5.96
    "papoucrazy_le_BG", 5.00, 4.89, 8.81
    "C6", 5.00, 4.89, 10.45
-   "c_r_3", 5.00, 4.78, 7.68
+   "ubuntu2", 5.00, 4.89, 10.71
+   "Zigounetti67", 5.00, 4.89, 10.80
    "my_assignment", 5.00, 4.78, 10.29
+   "Chutney1", 5.00, 4.78, 10.99
    "genie", 5.00, 4.78, 13.70
    "V20260426_1320_S_", 5.00, 4.78, 16.42
    "new_try_2804_2", 5.00, 4.78, 16.51
@@ -47,53 +53,56 @@ Please ensure that the zip file you submit at least contains your **my_assignmen
    "merlin1", 5.00, 4.67, 14.12
    "Test_L", 5.00, 4.56, 8.12
    "volvic 3", 5.00, 4.56, 9.18
-   "_beep_beep_v1", 5.00, 4.56, 9.23
+   "_beep_beep_v3_", 5.00, 4.56, 9.22
    "pau", 5.00, 4.56, 11.53
    "Clode23", 5.00, 4.56, 11.68
+   "toz2", 5.00, 4.56, 11.82
    "Gabbro", 5.00, 4.56, 13.47
    "LeKAID", 5.00, 4.22, 7.95
-   "toz", 5.00, 4.11, 12.39
+   "blackbird", 5.00, 3.89, 6.64
    "mouflon", 5.00, 3.89, 9.53
-   "ubuntu", 5.00, 3.89, 13.94
    "Drone Cena", 5.00, 3.89, 15.85
-   "ABA", 5.00, 3.89, 341.30
+   "ABA_4", 5.00, 3.89, 341.35
    "VL_22_04", 5.00, 3.89, 342.91
    "tortuga", 5.00, 3.67, 14.66
+   "Monsterinc", 5.00, 3.33, 672.90
    "mathis", 5.00, 2.78, 670.26
-   "magpie", 4.67, 4.89, 9.57
    "JOJOPWE", 4.67, 4.89, 17.49
-   "PierreGasly", 4.67, 4.67, 18.25
+   "PierreGasly", 4.67, 4.67, 18.00
    "404_Gate_Not_Found", 4.67, 4.44, 11.88
    "Bibb2", 4.67, 4.44, 12.21
    "Conqui67", 4.67, 4.44, 14.41
-   "racing_bug", 4.67, 3.78, 340.41
+   "Bird_V1000", 4.67, 4.22, 20.85
+   "racing_bug", 4.67, 3.78, 340.40
    "SKD_handout", 4.67, 3.78, 341.05
-   "Bird_V1000", 4.67, 3.67, 14.58
-   "Vinci3", 4.67, 3.56, 339.15
+   "Vinci5", 4.67, 3.78, 341.08
+   "MaxVerstappen30", 4.67, 3.77, 339.16
    "doudou", 4.67, 3.33, 337.88
    "Rendu_JO", 4.67, 2.00, 838.76
-   "Zigounetti", 4.67, 1.56, 1000.00
    "bello", 4.33, 4.78, 40.45
    "Eggplant", 4.33, 4.44, 19.11
-   "DM", 4.33, 2.56, 669.16
+   "katzen", 4.33, 4.22, 12.11
+   "neko", 4.33, 4.00, 10.69
+   "legion", 4.33, 3.11, 339.03
+   "messi", 4.33, 2.22, 13.85
+   "tomkirk", 4.33, 2.00, 835.55
    "Assignment_ACardaba", 4.33, 1.89, 358.82
-   "just_a_little_turtle", 4.00, 4.11, 10.75
-   "messi", 4.00, 2.22, 14.53
+   "aerialSimulation_v1_0", 4.00, 1.33, 1000.00
    "schiantatus2", 3.67, 4.11, 23.38
    "walid", 3.67, 1.22, 1000.00
-   "lahuiss", 2.67, 1.89, 339.25
+   "SorryImLate", 3.67, 1.22, 1000.00
+   "MH", 2.67, 0.89, 1000.00
    "LeDroneJames", 2.33, 3.67, 26.09
-   "katzen", 1.67, 1.44, 11.58
-   "Dinoco", 0.67, 0.56, 681.01
-   "MaxVerstappen", 0.00, 0.00, 1000.00
-   "aerialSim_v0.0", 0.00, 0.00, 1000.00
+   "Mater", 1.00, 0.78, 1000.00
    "piefek", 0.00, 0.00, 1000.00
    "ABCDEF", 0.00, 0.00, 1000.00
    "aled", 0.00, 0.00, 1000.00
+   "Blackwing", 0.00, 0.00, 1000.00
 
 
 
-Best submissions as of 10h10 on 30.04.
+
+Best submissions as of 17h52 on 30.04.
 **While every submission is graded, the leaderboard only shows the best result per student.**
 
 For detailed grading information, please refer to the `grading_full <https://github.com/lis-epfl/micro-502/blob/main/docs/assignment/grading_full.ods?raw=true>`_ file.
