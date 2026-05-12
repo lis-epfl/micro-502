@@ -78,18 +78,18 @@ Each drone has a unique address for communication between your laptop and the dr
 **Radio channel** = 10 * (group_number % 10), such as (10, 20, ..., **100**, 10, ..., 60).
 When developing your algorithm or running the following examples, **be sure to update the uri** in your code to reflect the correct address and radio channel for your team.
 
-For example, 'uri = uri_helper.uri_from_env(default='radio://0/10/2M/E7E7E7E701')' for group 1.
+For example, ``uri = uri_helper.uri_from_env(default='radio://0/10/2M/E7E7E7E701')`` for group 1.
 
 Operating the drone using AI deck
 ------------------------------------------------
 
-Drones are equipped with an AI deck, which allows you to receive visual information from the drone and communicate with it over a WiFi connection. You can run your own algorithms on your computer and send commands to the drone via this connection.
+Drones are equipped with an AI deck, which allows you to receive visual information from the drone over a WiFi connection. You can run your own algorithms on your computer using this visual information. In the FPV example below, the vision stream is received over the AI-deck WiFi, while flight commands are sent separately over Crazyradio.
 
 All drones are preconfigured to create a WiFi access point with the name 
 **"crazyflie_XX"** (XX is your group number) and password **"epfl_lis_XX"**. 
 To connect to the AI deck, connect your computer to the WiFi network "crazyflie_XX" using the corresponding password.
 
-To familiarise yourself with the AI deck, you can run an example script that provides an FPV video stream from the drone and allows you to control the drone using the keyboard. The script runs on your computer and communicates with the drone over WiFi:
+To familiarise yourself with the AI deck, you can run an example script that provides an FPV video stream from the drone and allows you to control the drone using the keyboard. The script runs on your computer: the video stream comes over WiFi from the AI deck, and the keyboard flight commands are sent over Crazyradio:
 
 - Arrow keys: forward, backward, left, right  
 - W / S: increase / decrease altitude  
@@ -104,6 +104,9 @@ For more details, refer to the Crazyflie documentation on the `commander class <
 
 - You will need to install the Crazyflie Python Library first.  
 - Make sure you are connected to the drone’s WiFi network before running the script.
+- Make sure Crazyradio is connected and configured, and update the ``URI`` in ``crazyflie_fpv_example.py`` for your Crazyflie address and radio channel.
+- The FPV stream uses grayscale JPEG images with an expected size of 324 x 244 pixels.
+- Frames may be delayed or cached if the network or GUI falls behind. Images may also be slightly distorted, although they looked fine in our experimental environment.
 
 Lighthouse positioning system information
 ------------------------------------------------

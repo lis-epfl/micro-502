@@ -69,6 +69,36 @@ Crazyflie does not power on
 ----------------------------
 Check if the battery connector cables are good and that all decks are properly connected. If the battery cables are broken, please directly contact a TA and DO NOT attempt to fix it yourself.
 
+Crazyflie FPV example says port 5001 is already in use
+------------------------------------------------------
+The FPV example receives the AI-deck video stream on local port ``5001``. If the script was not closed cleanly, an old Python process may still be running and keeping this port occupied. Close the old process or change ``LOCAL_PORT`` in ``crazyflie_fpv_example.py``.
+
+On Windows, find the process ID with:
+
+.. code-block:: bat
+
+   netstat -ano | findstr :5001
+
+Then stop the process with:
+
+.. code-block:: bat
+
+   taskkill /PID <PID>
+
+On Linux or macOS, you can look for the process with:
+
+.. code-block:: bash
+
+   lsof -i :5001
+
+or:
+
+.. code-block:: bash
+
+   ss -lunp | grep 5001
+
+Then stop the corresponding Python process.
+
 
 ====================================================================================
 

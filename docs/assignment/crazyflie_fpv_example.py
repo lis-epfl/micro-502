@@ -1,8 +1,20 @@
 #!/usr/bin/env python3
 """
 Crazyflie FPV example.
-  Video:   UDP stream from the AI-deck (laptop must be on the AI-deck WiFi)
-  Control: cflib over Crazyradio
+
+What happens when this script runs:
+  * Fly commands are sent to the Crazyflie with cflib over Crazyradio using URI.
+    Modify URI below to match your Crazyflie setup.
+  * Vision runs separately over WiFi: the laptop must be connected to the
+    AI-deck WiFi. The AI-deck sends camera frames as a UDP stream to LOCAL_PORT.
+  * Each frame is received as grayscale JPEG data, decoded with OpenCV, and
+    shown in a PyQt window. This example expects 324 x 244 images.
+  * The UDP socket and Qt event queue can briefly cache received data. If the
+    network or GUI falls behind, displayed frames may be delayed instead of
+    always showing the newest camera frame immediately. The images may also be
+    slightly distorted, though they looked fine in our experimental environment.
+  * If the script cannot start because LOCAL_PORT is already in use, a previous
+    run may still be alive. See the FAQ for how to free the port on your OS.
 
 Keys:  arrows = pitch/roll,  A/D = yaw,  W/S = up/down,  Space = stop.
 """
